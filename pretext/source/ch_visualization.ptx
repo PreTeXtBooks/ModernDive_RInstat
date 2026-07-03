@@ -910,7 +910,7 @@ individually.
         Observe that values above 30 mph are rather rare. However, because of the large
         number of bins, it's hard to get a sense for which range of wind speeds is spanned
         by each bin; everything is one giant amorphous blob. So let's add white vertical
-        borders demarcating the bins by clicking on "Plot Options > Histogram Options", similar
+        borders demarcating the bins by clicking on "Plot Options &gt; Histogram Options", similar
         to how we did in <xref ref = "scatterplot-dlg-2"/>, and setting "Colour" as "White"
         (<xref ref = "histogram-dlg-2"/>).
       </p>
@@ -1255,7 +1255,7 @@ individually.
       <p>
         Let's now create a side-by-side boxplot of hourly wind speeds split by the
         12 months as we did previously with the faceted histograms. We do this by selecting 
-        <alert>Describe > Graphs > Boxplot</alert>, and mapping
+        <alert>Describe &gt; Graphs &gt; Boxplot</alert>, and mapping
         the <c>month</c> variable to the x-position, the <c>wind_speed</c>
         variable to the y-position:
       </p>
@@ -1406,35 +1406,14 @@ individually.
     </p>
     <p>
       One complication, however, is how your data is represented. Is the categorical
-      variable of interest <q>pre-counted</q> or not? For example, run the following code
-      that manually creates two data frames representing a collection of fruit: 3 apples
-      and 2 oranges.
-    </p>
-
-    <program language="r">
-      <input>
-fruits &lt;- tibble(fruit = c("apple", "apple", "orange", "apple", "orange"))
-fruits_counted &lt;- tibble(
-  fruit = c("apple", "orange"),
-  number = c(3, 2))
-      </input>
-    </program>
-
-    <p>
-      We see both the <c>fruits</c> and <c>fruits_counted</c> data frames represent the
+      variable of interest <q>pre-counted</q> or not? For example, we give two dataframes:
+      <c>fruits</c> and <c>fruits_counted</c>. These data frames represent the
       same collection of fruit. Whereas <c>fruits</c> just lists the fruit individually...
     </p>
-        <program language="r">
-      <input>
-fruits
-      </input>
-    </program>
 
     <console prompt="> ">
       <output>
-# A tibble: 5 × 1
   fruit 
-  &lt;chr&gt; 
 1 apple 
 2 apple 
 3 orange
@@ -1447,17 +1426,9 @@ fruits
       <q>pre-counted</q> values of each fruit.
     </p>
 
-        <program language="r">
-      <input>
-fruits_counted
-      </input>
-    </program>
-
     <console prompt="> ">
       <output>
-# A tibble: 2 × 2
   fruit  number
-  &lt;chr&gt;  &lt;dbl&gt;
 1 apple       3
 2 orange      2
       </output>
@@ -1465,29 +1436,43 @@ fruits_counted
 
 <p>
 Depending on how your categorical data is
-      represented, you'll need to add a different <c>geom</c>etric layer type to your
-      <c>ggplot()</c> to create a barplot, as we now explore.
+      represented, you'll need to choose a different tab in your Barplot dialog in R-Instat.
     </p>
 
 
     <subsection xml:id="sec-geom-bar-col">
-      <title>Barplots via <c>geom_bar</c> or <c>geom_col</c></title>
+      <title>Barplots</title>
 
       <p>
         Let's generate barplots using these two different representations of the same
-        basket of fruit: 3 apples and 2 oranges. Using the <c>fruits</c> data frame where
-        all 5 fruits are listed individually in 5 rows, we map the <c>fruit</c> variable
-        to the x-position aesthetic and add a
-        <idx><h>R packages</h><h>ggplot2</h><h>geom_bar()</h></idx>
-        <c>geom_bar()</c> layer:
+        basket of fruit: 3 apples and 2 oranges. We first want to create the data frame in R.
+        To do this, go to <alert>File &gt; New Data Frame</alert>
+<ul>
+<li>Ensure that the "New" tab at the top is checked</li>
+<li>Set "Columns" to "1"</li>
+<li>Set "Rows" to 5</li>
+<li>Set "Name" to "fruit"</li>
+<li>Set "New Data Frame Name" to "fruits"</li>
+<li>Press "OK"</li>
+</ul>
+After this, a blank data frame will appear where you can manually type in "apple", "apple", "apple", 
+"orange", "orange" into the five cells.
       </p>
+      <figure xml:id="fig-create-df">
+        <caption>Create data frame with 5 rows and 1 column called "Fruit"</caption>
+        <image source="images/create-df.png" width="70%">
+        </image>
+      </figure>
 
-      <program language="r">
-        <input>
-ggplot(data = fruits, mapping = aes(x = fruit)) +
-  geom_bar()
-        </input>
-      </program>
+<p>
+Go to <alert>Describe &gt; Graph &gt; Bar Plot</alert> and ensure that the tab is on "Frequency".
+Place your "fruits" column into the "Single Variable" receiver as shown in <xref ref = "barchat-dlg-1"/>.
+</p>
+      <figure xml:id="barchat-dlg-1">
+        <caption>A simple filled in Bar Chart Dialog.</caption>
+        <image source="images/barchat-dlg-1.png" width="70%">
+        </image>
+      </figure>
 
       <figure xml:id="fig-geombar">
         <caption>Barplot when counts are not pre-counted.</caption>
@@ -1497,20 +1482,47 @@ ggplot(data = fruits, mapping = aes(x = fruit)) +
       </figure>
 
       <p>
-        However, using the <c>fruits_counted</c> data frame where the fruits have been
-        <q>pre-counted,</q> we once again map the <c>fruit</c> variable to the x-position
-        aesthetic. Here, we also map the <c>count</c> variable to the y-position
-        aesthetic, and add a
-        <idx><h>R packages</h><h>ggplot2</h><h>geom_col()</h></idx>
-        <c>geom_col()</c> layer instead.
+        Now we generate a summarised version of the fruits data frame.
+        To do this, go to <alert>Prepare &gt; Data Reshape &gt; Summarise</alert>,
+        and 
+<ul>
+<li>Insert "fruit" into "Variable(s) to Summarise"</li>
+<li>Insert "fruit" into "Summarise By"
+      <figure xml:id="barchart-dlg-2">
+        <caption>Filling in the Column Summaries Dialog</caption>
+        <image source="images/barchart-dlg-2.png" width="70%">
+        </image>
+      </figure>
+</li>
+<li>Click on "Summaries" for the sub-dialog</li>
+<li>On the sub-dialog, select "N Total", and uncheck any other options that are checked
+      <figure xml:id="barchart-dlg-3">
+        <caption>Selecting "N Total" in the Column Summaries Sub-Dialog</caption>
+        <image source="images/barchart-dlg-3.png" width="70%">
+        </image>
+      </figure>
+</li>
+<li>Press Return</li>
+<li>Press "OK"</li>
+</ul>
+
+      <figure xml:id="barchart-dlg-4">
+        <caption>The Summarised Fruits Data Frame</caption>
+        <image source="images/barchart-dlg-4.png" width="70%">
+        </image>
+      </figure>
+
+      <p>
+        We now have a data frame where the fruits have been <q>pre-counted</q>.
+        To generate a plot, open the "Bar Chart" dialog and click the <alert>"Value" tab</alert>.
+        We set "count_all_fruit" to be the Single Variable, and "fruit" to be the X Variable. 
       </p>
 
-      <program language="r">
-        <input>
-ggplot(data = fruits_counted, mapping = aes(x = fruit, y = number)) +
-  geom_col()
-        </input>
-      </program>
+      <figure xml:id="barchart-dlg-5">
+        <caption>The Bar Chart Dialog with the "Value" Tab Selected</caption>
+        <image source="images/barchart-dlg-5.png" width="70%">
+        </image>
+      </figure>
 
       <figure xml:id="fig-geomcol">
         <caption>Barplot when counts are pre-counted.</caption>
@@ -1523,14 +1535,14 @@ ggplot(data = fruits_counted, mapping = aes(x = fruit, y = number)) +
         Compare the barplots in <xref ref="fig-geombar"/> and
         <xref ref="fig-geomcol"/>. They are identical because they reflect counts of the
         same five fruits. However, depending on how our categorical data is represented,
-        either <q>pre-counted</q> or not, we must add a different <c>geom</c> layer. When
+        either <q>pre-counted</q> or not, we use this dialog differently. When
         the categorical variable whose distribution you want to visualize
       </p>
       <p>
         <ul>
           <li><p>Is <em>not</em> pre-counted in your data frame, we use
-          <c>geom_bar()</c>.</p></li>
-          <li><p>Is pre-counted in your data frame, we use <c>geom_col()</c> with the
+          <c>Frequency</c>.</p></li>
+          <li><p>Is pre-counted in your data frame, we use <c>Value</c> with the
           y-position aesthetic mapped to the variable that has the counts.</p></li>
         </ul>
       </p>
@@ -1543,20 +1555,13 @@ ggplot(data = fruits_counted, mapping = aes(x = fruit, y = number)) +
         data frame, you saw that each row corresponds to a flight. In other words, the
         <c>flights</c> data frame is more like the <c>fruits</c> data frame than the
         <c>fruits_counted</c> data frame because the flights have not been pre-counted by
-        <c>carrier</c>. Thus we should use <c>geom_bar()</c> instead of
-        <c>geom_col()</c> to create a barplot. Much like a <c>geom_histogram()</c>,
-        there is only one variable in the <c>aes()</c> aesthetic mapping: the variable
+        <c>carrier</c>. Thus we should use <c>Frequency</c> Tab instead of
+        <c>Value</c> to create a barplot. Much like with the Histogram,
+        there is only one variable in the aesthetic mapping: the variable
         <c>carrier</c> gets mapped to the <c>x</c>-position. As a difference though,
         histograms have bars that touch whereas bar graphs have white space between the
         bars going from left to right.
       </p>
-
-      <program language="r">
-        <input>
-ggplot(data = flights, mapping = aes(x = carrier)) +
-  geom_bar()
-        </input>
-      </program>
 
       <figure xml:id="fig-flightsbar">
         <caption>Number of flights departing NYC in 2023 by airline using <c>geom_bar()</c>.</caption>
@@ -1568,10 +1573,12 @@ ggplot(data = flights, mapping = aes(x = carrier)) +
       <p>
         Observe in <xref ref="fig-flightsbar"/> that Republic Airline (YX), United
         Airlines (UA), and JetBlue Airways (B6) had the most flights depart NYC in 2023.
-        If you don't know which airlines correspond to which carrier codes, then run
-        <c>View(airlines)</c> to see a directory of airlines. For example, AA is American
+        If you don't know which airlines correspond to which carrier codes, then have a look 
+        in the data viewer to see a directory of airlines. For example, AA is American
         Airlines Inc. Alternatively, say you had a data frame where the number of flights
         for each <c>carrier</c> was pre-counted as in <xref ref="tab-flights-counted"/>.
+        Like with the fruits data frame, this can be done using <alert>Prepare &gt; Data Reshape
+        &gt; Column Summaries</alert>.
       </p>
 
       <table xml:id="tab-flights-counted">
@@ -1600,12 +1607,13 @@ ggplot(data = flights, mapping = aes(x = carrier)) +
 
       <p>
         In order to create a barplot visualizing the distribution of the categorical
-        variable <c>carrier</c> in this case, we would now use <c>geom_col()</c> instead
-        of <c>geom_bar()</c>, with an additional <c>y = number</c> in the aesthetic
-        mapping on top of the <c>x = carrier</c>. The resulting barplot would be identical
+        variable <c>carrier</c> in this case, we would now use <c>Value</c> instead
+        of <c>Frequency</c>, with an additional <c>count_all_*</c> as the "Single Variable", and
+        the <c>carrier</c> as the "X Variable". The resulting barplot would be identical
         to <xref ref="fig-flightsbar"/>.
       </p>
 
+<exercises>
       <exercise xml:id="lc2-26">
         <title>Learning Check 2.26</title>
         <statement>
@@ -1634,6 +1642,7 @@ ggplot(data = flights, mapping = aes(x = carrier)) +
           could we better present the table to get this answer quickly?</p>
         </statement>
       </exercise>
+</exercises>
     </subsection>
 
 
@@ -1686,6 +1695,7 @@ ggplot(data = flights, mapping = aes(x = carrier)) +
         <idx><h>pie charts</h><h>problems with</h></idx> comparing angles.
       </p>
 
+<exercises>
       <exercise xml:id="lc2-30">
         <title>Learning Check 2.30</title>
         <statement>
@@ -1699,6 +1709,7 @@ ggplot(data = flights, mapping = aes(x = carrier)) +
           <p>Why do you think people continue to use pie charts?</p>
         </statement>
       </exercise>
+</exercises>
     </subsection>
 
 
@@ -1718,28 +1729,15 @@ ggplot(data = flights, mapping = aes(x = carrier)) +
         to the number of American Airlines flights from <c>JFK</c>, the number of
         American Airlines flights from <c>LGA</c>, the number of American Airlines flights
         from <c>EWR</c>, the number of Endeavor Air flights from <c>JFK</c>, and so on.
-        Recall the <c>ggplot()</c> code that created the barplot of <c>carrier</c>
-        frequency in <xref ref="fig-flightsbar"/>:
+        We can now add the additional variable <c>origin</c> by adding a
+        <c>origin</c> under the "By Factor" option in our dialog:
       </p>
 
-      <program language="r">
-        <input>
-ggplot(data = flights, mapping = aes(x = carrier)) + 
-  geom_bar()
-        </input>
-      </program>
-
-      <p>
-        We can now map the additional variable <c>origin</c> by adding a
-        <c>fill = origin</c> inside the <c>aes()</c> aesthetic mapping.
-      </p>
-
-      <program language="r">
-        <input>
-ggplot(data = flights, mapping = aes(x = carrier, fill = origin)) +
-  geom_bar()
-        </input>
-      </program>
+      <figure xml:id="barchart-dlg-6">
+        <caption>The Bar Chart Dialog with the "Frequency" Tab Selected, and an additional "Factor" given</caption>
+        <image source="images/barchart-dlg-6.png" width="70%">
+        </image>
+      </figure>
 
       <figure xml:id="fig-flights-stacked-bar">
         <caption>Stacked barplot of flight amount by carrier and origin.</caption>
@@ -1756,65 +1754,22 @@ ggplot(data = flights, mapping = aes(x = carrier, fill = origin)) +
         comparing the number of flights from each <c>origin</c> airport between the
         carriers.
       </p>
-      <p>
-        Before we continue, let's address some common points of confusion among new R
-        users. First, the <c>fill</c> aesthetic corresponds to the color used to fill the
-        bars, while the <c>color</c> aesthetic corresponds to the color of the outline of
-        the bars. This is identical to how we added color to our histogram in
-        <xref ref="sec-geom-histogram"/>: we set the outline of the bars to white by
-        setting <c>color = "white"</c> and the colors of the bars to blue steel by
-        setting <c>fill = "steelblue"</c>. Observe in
-        <xref ref="fig-flights-stacked-bar-color"/> that mapping <c>origin</c> to
-        <c>color</c> and not <c>fill</c> yields grey bars with different colored outlines.
-      </p>
-
-      <program language="r">
-        <input>
-ggplot(data = flights, mapping = aes(x = carrier, color = origin)) +
-  geom_bar()
-        </input>
-      </program>
-
-      <figure xml:id="fig-flights-stacked-bar-color">
-        <caption>Stacked barplot with color aesthetic used instead of fill.</caption>
-        <image source="images/fig-flights-stacked-bar-color.png" width="90%">
-          <description>Stacked barplot with carrier on the x-axis and origin mapped to the color (outline) aesthetic instead of fill. The bars appear grey with different colored outlines for each origin airport.</description>
-        </image>
-      </figure>
 
       <p>
-        Second, note that <c>fill</c> is another aesthetic mapping much like
-        <c>x</c>-position; thus we were careful to include it within the parentheses of
-        the <c>aes()</c> mapping. The following code, where the <c>fill</c> aesthetic is
-        specified outside the <c>aes()</c> mapping will yield an error. This is a fairly
-        common error that new <c>ggplot</c> users make:
+        Note that this "By Factor" (fill) is another aesthetic mapping much like
+        <c>x</c>-position.
       </p>
-
-      <program language="r">
-        <input>
-ggplot(data = flights, mapping = aes(x = carrier), fill = origin) +
-  geom_bar()
-        </input>
-      </program>
 
       <p>
         An alternative to stacked barplots are
         <idx><h>barplot</h><h>side-by-side</h></idx> <em>side-by-side barplots</em>,
         also known as <em>dodged barplots</em>, as seen in
-        <xref ref="fig-flights-dodged-bar-color"/>. The code to create a side-by-side
-        barplot is identical to the code to create a stacked barplot, but with a
-        <idx><h>R packages</h><h>ggplot2</h><h>position</h></idx>
-        <c>position = "dodge"</c> argument added to <c>geom_bar()</c>. In other words,
-        we are overriding the default barplot type, which is a <em>stacked</em> barplot,
+        <xref ref="fig-flights-dodged-bar-color"/>. You can create a side-by-side
+        barplot by simply clicking on the "Position" drop-down on the Dialog, and selecting
+        "Dodge". In other words,
+        we are overriding the default barplot type, which is a <em>Stacked</em> barplot,
         and specifying it to be a side-by-side barplot instead.
       </p>
-
-      <program language="r">
-        <input>
-ggplot(data = flights, mapping = aes(x = carrier, fill = origin)) +
-  geom_bar(position = "dodge")
-        </input>
-      </program>
 
       <figure xml:id="fig-flights-dodged-bar-color">
         <caption>Side-by-side barplot comparing number of flights by carrier and origin.</caption>
@@ -1829,18 +1784,10 @@ ggplot(data = flights, mapping = aes(x = carrier, fill = origin)) +
         <xref ref="sec-facets"/> we visualized the distribution of hourly wind speeds at
         the 3 NYC airports <em>split</em> by month using facets. We apply the same
         principle to our barplot visualizing the frequency of <c>carrier</c> split by
-        <c>origin</c>. Instead of mapping <c>origin</c> to <c>fill</c> we include it as
-        the variable to create small multiples of the plot across the levels of
+        <c>origin</c>. Instead of having "origin" under our "By Factor" receiver, we include it 
+        under the "Facet By" receiver. This gives small multiples of the plot across the levels of
         <c>origin</c> in <xref ref="fig-facet-bar-vert"/>.
       </p>
-
-      <program language="r">
-        <input>
-ggplot(data = flights, mapping = aes(x = carrier)) +
-  geom_bar() +
-  facet_wrap(~ origin, ncol = 1)
-        </input>
-      </program>
 
       <figure xml:id="fig-facet-bar-vert">
         <caption>Faceted barplot comparing the number of flights by carrier and origin.</caption>
@@ -1849,6 +1796,7 @@ ggplot(data = flights, mapping = aes(x = carrier)) +
         </image>
       </figure>
 
+<exercises>
       <exercise xml:id="lc2-32">
         <title>Learning Check 2.32</title>
         <statement>
@@ -1895,6 +1843,7 @@ ggplot(data = flights, mapping = aes(x = carrier)) +
           easily seen in the faceted barplot?</p>
         </statement>
       </exercise>
+</exercises>
     </subsection>
 
 
