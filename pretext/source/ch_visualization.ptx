@@ -5,8 +5,7 @@
   <p>
     We begin the development of your data science toolbox with data visualization. By
     visualizing data, we gain valuable insights we couldn't initially obtain from just
-    looking at the raw data values. We'll use the <c>ggplot2</c> package, as it provides
-    an easy way to customize your plots. <c>ggplot2</c> is rooted in the data
+    looking at the raw data values. R-Instat uses the data
     visualization theory known as <em>the grammar of graphics</em>, developed by Leland
     Wilkinson <xref ref="bib-wilkinson2005"/>. <idx><h>Wilkinson, Leland</h></idx>
   </p>
@@ -27,23 +26,6 @@
     such as what are the center and spread of the values, as we go across the levels of a
     different categorical variable.
   </p>
-
-  <assemblage>
-    <title>Needed packages</title>
-    <p>
-      Let's load all the packages needed for this chapter (this assumes you've already
-      installed them). Read <xref ref="sec-packages"/> for information on how to install
-      and load R packages.
-    </p>
-    <program language="r">
-      <input>
-library(nycflights23)
-library(ggplot2)
-library(moderndive)
-library(tibble)
-      </input>
-    </program>
-  </assemblage>
   </introduction>
 
   <!-- ============================================================ -->
@@ -62,7 +44,7 @@ library(tibble)
       graphics</q> defines a set of rules for constructing <em>statistical graphics</em>
       by combining different types of <em>layers</em>. This grammar was created by Leland
       Wilkinson <xref ref="bib-wilkinson2005"/> and has been implemented in a variety of data visualization software
-      platforms like R, but also <url href="https://plot.ly/">Plotly</url> and
+      platforms like R-Instat, but also <url href="https://plot.ly/">Plotly</url> and
       <url href="https://www.tableau.com/">Tableau</url>.
     </p>
 
@@ -97,7 +79,7 @@ library(tibble)
       <p>
         You might be wondering why we wrote the terms <c>data</c>, <c>geom</c>, and
         <c>aes</c> in a computer code type font. We'll see very shortly that we'll
-        specify the elements of the grammar in R using these terms. However, let's first
+        specify the elements of the grammar in R-Instat using these terms. However, let's first
         break down the grammar with an example.
       </p>
     </subsection>
@@ -248,31 +230,28 @@ library(tibble)
 
 
     <subsection xml:id="sec-ggplot2-package">
-      <title>ggplot2 package</title>
+      <title>ggplot2 package [Advanced]</title>
 
       <p>
-        In this book, we will use the <c>ggplot2</c> package for data visualization,
+        R-Instat uses the <c>ggplot2</c> package for data visualization,
         which is an implementation of the <em>g</em>rammar of <em>g</em>raphics for R <xref ref="bib-R-ggplot2"/>.
         As we noted earlier, a lot of the previous section was written in a computer code
         type font. This is because the various components of the grammar of graphics are
         specified in the <c>ggplot()</c>
         <idx><h>R packages</h><h>ggplot2</h><h>ggplot()</h></idx> function included in
-        the <c>ggplot2</c> package. For the purposes of this book, we'll always provide
-        the <c>ggplot()</c> function with the following arguments (i.e., inputs) at a
+        the <c>ggplot2</c> package. In R-Instat, we'll always provide
+        our graphics with the following at a
         minimum:
       </p>
       <p>
         <ul>
-          <li><p>The data frame where the variables exist: the <c>data</c>
-          argument.</p></li>
-          <li><p>The mapping of the variables to aesthetic attributes: the
-          <c>mapping</c> argument which specifies the <c>aes</c>thetic attributes
+          <li><p>The data frame where the variables exist.</p></li>
+          <li><p>The variables to plot from the data, and how. This argument specifies the <c>aes</c>thetic attributes
           involved.</p></li>
         </ul>
       </p>
       <p>
-        After we've specified these components, we then add <em>layers</em> to the plot
-        using the <c>+</c> sign. The most essential layer to add to a plot is the layer
+        We then add <em>layers</em> to the plot. The most essential layer to add to a plot is the layer
         that specifies which type of <c>geom</c>etric object we want the plot to involve:
         points, lines, bars, and others. Other layers we can add to a plot include the
         plot title, axes labels, visual themes for the plots, and facets (which we'll see
@@ -297,11 +276,11 @@ library(tibble)
     </p>
     <p>
       <ol>
+        <li><p>barplots</p></li>
+        <li><p>boxplots</p></li>
+        <li><p>histograms</p></li>
         <li><p>scatterplots</p></li>
         <li><p>linegraphs</p></li>
-        <li><p>histograms</p></li>
-        <li><p>boxplots</p></li>
-        <li><p>barplots</p></li>
       </ol>
     </p>
     <p>
@@ -310,6 +289,15 @@ library(tibble)
       variable types. Note that certain plots are only appropriate for categorical
       variables, while others are only appropriate for numerical variables.
     </p>
+    <p>
+      In R-Instat, these five types of plots can be easily found on under the <alert>Describe 
+      &gt; Graphs</alert> menu.
+    </p>
+      <figure xml:id="fig-5ng-menu">
+        <caption>The Five Named Graphs in the R-Instat Menu.</caption>
+        <image source="images/5ng.png" width="90%">
+        </image>
+      </figure>
   </section>
 
 
@@ -347,61 +335,45 @@ library(tibble)
         <p>
           Take a look at both the <c>flights</c> data frame from the
           <c>nycflights23</c> package and the <c>envoy_flights</c> data frame from the
-          <c>moderndive</c> package by running <c>View(flights)</c> and
-          <c>View(envoy_flights)</c>. In what respect do these data frames differ? For
-          example, think about the number of rows in each dataset.
+          <c>moderndive</c> package. You can import these in R-Instat through the 
+          <alert>File &gt; Import From Library</alert> menu. In what respect do these
+          data frames differ? For example, think about the number of rows in each dataset.
         </p>
       </statement>
     </exercise>
-
 
     <subsection xml:id="sec-geom-point">
       <title>Scatterplots via <c>geom_point</c></title>
 
       <p>
-        Let's now go over the code that will create the desired scatterplot, while keeping
+        Let's now go over how to create the desired scatterplot, while keeping
         in mind the grammar of graphics framework we introduced in
-        <xref ref="sec-grammar-of-graphics"/>. Let's take a look at the code and break it
+        <xref ref="sec-grammar-of-graphics"/>. Let's take a look at the dialog and break it
         down piece-by-piece.
       </p>
 
-            <program language="r">
-        <input>
-ggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay)) + 
-  geom_point()
-        </input>
-      </program>
-
-      <console prompt="> ">
-        <output>
-Warning: Removed 3 rows containing missing values or values outside the scale range 
-(`geom_point()`).
-        </output>
-      </console>
+      <figure xml:id="scatterplot-dlg-1">
+        <caption>A simple filled in Scatter Plot Dialog.</caption>
+        <image source="images/scatterplot-dlg-1.png" width="90%">
+        </image>
+      </figure>
 
       <p>
-        Within the <c>ggplot()</c>
-        <idx><h>R packages</h><h>ggplot2</h><h>ggplot()</h></idx> function, we specify
-        two of the components of the grammar of graphics as arguments (i.e., inputs):
+        Within the dialog, we specify two of the components of the grammar of graphics:
       </p>
       <p>
         <ol>
           <li><p>The <c>data</c> as the <c>envoy_flights</c> data frame via
-          <c>data = envoy_flights</c>.</p></li>
-          <li><p>The <c>aes</c>thetic
-          <idx><h>R packages</h><h>ggplot2</h><h>mapping</h></idx>
-          <c>mapping</c> by setting
-          <c>mapping = aes(x = dep_delay, y = arr_delay)</c>. Specifically, the variable
-          <c>dep_delay</c> maps to the <c>x</c> position aesthetic, while the variable
-          <c>arr_delay</c> maps to the <c>y</c> position.</p></li>
+          the selector seen on the left hand side.</p></li>
+          <li><p>The aesthetic mappings by placing <c>arr_delay</c> as the single variable
+          and <c>dep_delay</c> as the X variable.</p></li>
         </ol>
       </p>
       <p>
-        We then add a layer to the <c>ggplot()</c> function call using the <c>+</c>
-        sign. The added layer in question specifies the third component of the grammar:
-        the <c>geom</c>etric object. In this case, the geometric object is set to be
-        points by specifying <c>geom_point()</c>. After running these two lines of code
-        in your console, you'll notice two outputs: a warning message and the graphic
+        This dialog then adds a layer to the plot to specify the third component of the grammar:
+        the geometric object. In this case, the geometric object is set to be points since we are
+        using the scatter plot dialog. After running these two lines of code
+        in your console, you'll notice the graphic
         shown in <xref ref="fig-noalpha"/>.
       </p>
 
@@ -419,41 +391,6 @@ Warning: Removed 3 rows containing missing values or values outside the scale ra
         increase. Observe also the large mass of points clustered near (0, 0), the point
         indicating flights that neither departed nor arrived late.
       </p>
-      <p>
-        Let's turn our attention to the warning message. R is alerting us to the fact
-        that three rows were ignored due to them being missing. For these three rows,
-        either the value for <c>dep_delay</c> or <c>arr_delay</c> or both were missing
-        (recorded in R as <c>NA</c>), and thus these rows were ignored in our plot.
-      </p>
-      <p>
-        Before we continue, let's make a few more observations about this code that
-        created the scatterplot. Note that the <c>+</c> sign comes at the end of lines,
-        and not at the beginning. You'll get an error in R if you put it at the beginning
-        of a line. <idx><h>R packages</h><h>ggplot2</h><h>+</h></idx> When adding layers
-        to a plot, you are encouraged to start a new line after the <c>+</c> (by pressing
-        the Return/Enter button on your keyboard) so that the code for each layer is on a
-        new line. As we add more and more layers to plots, you'll see this will greatly
-        improve the legibility of your code.
-      </p>
-      <p>
-        To stress the importance of adding the layer specifying the <c>geom</c>etric
-        object, consider <xref ref="fig-nolayers"/> where no layers are added. Because
-        the <c>geom</c>etric object was not specified, we have a blank plot that is not
-        very useful!
-      </p>
-
-      <program language="r">
-        <input>
-ggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay))
-        </input>
-      </program>
-
-      <figure xml:id="fig-nolayers">
-        <caption>A plot with no layers.</caption>
-        <image source="images/fig-nolayers.png" width="90%">
-          <description>An empty ggplot canvas with x-axis labeled dep_delay and y-axis labeled arr_delay but no data points or geometric objects shown.</description>
-        </image>
-      </figure>
 
       <exercise xml:id="lc2-2">
         <title>Learning Check 2.2</title>
@@ -469,7 +406,7 @@ ggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay))
           <p>What variables in the <c>weather</c> data frame would you expect to have a
           negative correlation (i.e., a negative relationship) with <c>dep_delay</c>?
           Why? Remember that we are focusing on numerical variables here. Hint: Explore
-          the <c>weather</c> dataset by using the <c>View()</c> function.</p>
+          the <c>weather</c> dataset by looking at it in the Data View.</p>
         </statement>
       </exercise>
 
@@ -519,54 +456,10 @@ ggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay))
       </p>
 
       <p>
-        <alert>Method 1: Changing the transparency</alert>
+        <alert>Method 1: Jittering the points</alert>
       </p>
       <p>
-        The first way of addressing overplotting is to change the transparency/opacity of
-        the points by setting the <c>alpha</c> argument in <c>geom_point()</c>. We can
-        change the <c>alpha</c> argument to be any value between <c>0</c> and <c>1</c>,
-        where <c>0</c> sets the points to be 100% transparent and <c>1</c> sets the
-        points to be 100% opaque. By default, <c>alpha</c> is set to <c>1</c>. In other
-        words, if we don't explicitly set an <c>alpha</c> value, R will use
-        <c>alpha = 1</c>.
-      </p>
-      <p>
-        Note how the following code is identical to the code in
-        <xref ref="sec-scatterplots"/> that created the scatterplot with overplotting,
-        but with <c>alpha = 0.2</c> added to the <c>geom_point()</c> function:
-      </p>
-
-      <program language="r">
-        <input>
-ggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay)) + 
-  geom_point(alpha = 0.2)
-        </input>
-      </program>
-
-      <figure xml:id="fig-alpha">
-        <caption>Arrival vs. departure delays scatterplot with alpha = 0.2.</caption>
-        <image source="images/fig-alpha.png" width="90%">
-          <description>Scatterplot of arrival delay versus departure delay with alpha transparency set to 0.2. Areas with more overplotting appear darker, revealing the density of points clustered near (0, 0).</description>
-        </image>
-      </figure>
-
-      <p>
-        The key feature to note in <xref ref="fig-alpha"/> is that the transparency
-        <idx><h>R packages</h><h>ggplot2</h><h>alpha</h></idx>
-        <idx><h>adding transparency to plots</h></idx> of the points is cumulative: areas
-        with a high-degree of overplotting are darker, whereas areas with a lower degree
-        are less dark. Note, furthermore, that there is no <c>aes()</c> surrounding
-        <c>alpha = 0.2</c>. This is because we are not mapping a variable to an aesthetic
-        attribute, but rather merely changing the default setting of <c>alpha</c>. In
-        fact, you'll receive an error if you try to change the second line to read
-        <c>geom_point(aes(alpha = 0.2))</c>.
-      </p>
-
-      <p>
-        <alert>Method 2: Jittering the points</alert>
-      </p>
-      <p>
-        The second way of addressing overplotting is by <em>jittering</em> all the
+        One way of addressing overplotting is by <em>jittering</em> all the
         points. This means giving each point a small <q>nudge</q> in a random direction.
         You can think of <q>jittering</q> as shaking the points around a bit on the plot.
         Let's illustrate using a simple example first. Say we have a data frame with 4
@@ -593,24 +486,24 @@ ggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
         Keep in mind, however, that jittering is strictly a visualization tool; even
         after creating a jittered scatterplot, the original values saved in the data frame
         remain unchanged.
-        <idx><h>R packages</h><h>ggplot2</h><h>geom_jitter()</h></idx>
       </p>
       <p>
-        To create a jittered scatterplot, instead of using <c>geom_point()</c>, we use
-        <c>geom_jitter()</c>. Observe how the following code is very similar to the code
-        that created the scatterplot with overplotting in
-        <xref ref="sec-geom-point"/>, but with
-        <c>geom_point()</c>
-        <idx><h>R packages</h><h>ggplot2</h><h>geom_point()</h></idx> replaced with
-        <c>geom_jitter()</c>.
+        To create a jittered scatterplot, we simply check the "Jitter" option on the dialog instead
+        of "Points". In order to specify how much jitter to add, we can adjusted the Width and Height.
+        This corresponds to how hard
+        you'd like to shake the plot in horizontal x-axis units and vertical y-axis
+        units, respectively. In this case, both axes are in minutes. How much jitter
+        should we add using the <c>width</c> and <c>height</c> arguments? On the one
+        hand, it is important to add just enough jitter to break any overlap in points,
+        but on the other hand, not so much that we completely alter the original pattern
+        in points.
       </p>
 
-      <program language="r">
-        <input>
-ggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay)) + 
-  geom_jitter(width = 30, height = 30)
-        </input>
-      </program>
+      <figure xml:id="scatterplot-dlg-4">
+        <caption>Adding "Jitter" option for our points in our Scatter Plot.</caption>
+        <image source="images/scatterplot-dlg-4.png" width="90%">
+        </image>
+      </figure>
 
       <figure xml:id="fig-jitter">
         <caption>Arrival versus departure delays jittered scatterplot.</caption>
@@ -620,20 +513,57 @@ ggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
       </figure>
 
       <p>
-        In order to specify how much jitter to add, we adjusted the <c>width</c> and
-        <c>height</c> arguments to <c>geom_jitter()</c>. This corresponds to how hard
-        you'd like to shake the plot in horizontal x-axis units and vertical y-axis
-        units, respectively. In this case, both axes are in minutes. How much jitter
-        should we add using the <c>width</c> and <c>height</c> arguments? On the one
-        hand, it is important to add just enough jitter to break any overlap in points,
-        but on the other hand, not so much that we completely alter the original pattern
-        in points.
+        As can be seen in the resulting <xref ref="fig-jitter"/>, in this case jittering
+        doesn't really provide much new insight. Instead, we look to
+        changing the transparency of the points.
+      </p>
+
+      <p>
+        <alert>Method 2: Changing the transparency</alert>
       </p>
       <p>
-        As can be seen in the resulting <xref ref="fig-jitter"/>, in this case jittering
-        doesn't really provide much new insight. In this particular case, it can be argued
-        that changing the transparency of the points by setting <c>alpha</c> proved more
-        effective. When would it be better to use a jittered scatterplot? When would it
+        The second way of addressing overplotting is to change the transparency/opacity of
+        the points by setting the <c>alpha</c> argument in <c>geom_point()</c>. We can
+        change the <c>alpha</c> argument to be any value between <c>0</c> and <c>1</c>,
+        where <c>0</c> sets the points to be 100% transparent and <c>1</c> sets the
+        points to be 100% opaque. By default, <c>alpha</c> is set to <c>1</c>. In other
+        words, if we don't explicitly set an <c>alpha</c> value, the points will not be transparent.
+      </p>
+      <p>
+        To change the transparency, click on the downwards arrow next to "Plot Options", and select
+        "Point Options". This brings up a new dialog. Click under "Layer Parameters", and select "alpha".
+        An option comes up, where you can fill in a value from 0 to 1. We put in 0.2 in our example.
+      </p>
+
+      <figure xml:id="scatterplot-dlg-2">
+        <caption>Selecting "Plot Options" on the Scatter Plot Dialog.</caption>
+        <image source="images/scatterplot-dlg-2.png" width="90%">
+        </image>
+      </figure>
+      <figure xml:id="scatterplot-dlg-3">
+        <caption>Filling in alpha as 0.2 for transparency in the Scatter Plot Dialog.</caption>
+        <image source="images/scatterplot-dlg-3.png" width="90%">
+        </image>
+      </figure>
+
+      <figure xml:id="fig-alpha">
+        <caption>Arrival vs. departure delays scatterplot with alpha = 0.2.</caption>
+        <image source="images/fig-alpha.png" width="90%">
+          <description>Scatterplot of arrival delay versus departure delay with alpha transparency set to 0.2. Areas with more overplotting appear darker, revealing the density of points clustered near (0, 0).</description>
+        </image>
+      </figure>
+
+      <p>
+        The key feature to note in <xref ref="fig-alpha"/> is that the transparency
+        of the points is cumulative: areas
+        with a high-degree of overplotting are darker, whereas areas with a lower degree
+        are less dark.
+      </p>
+
+      <p>
+        As can be seen in the resulting <xref ref="fig-alpha"/>, making points transparent provides
+        much new insight than jittering the points.
+        When would it be better to use a jittered scatterplot? When would it
         be better to alter the points' transparency? There is no single right answer that
         applies to all situations. You need to make a subjective choice and own that
         choice. At the very least when confronted with overplotting, however, we suggest
