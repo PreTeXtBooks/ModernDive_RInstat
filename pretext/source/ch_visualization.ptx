@@ -329,6 +329,7 @@
       Envoy Airlines' carrier code).
     </p>
 
+<exercises>
     <exercise xml:id="lc2-1">
       <title>Learning Check 2.1</title>
       <statement>
@@ -341,6 +342,7 @@
         </p>
       </statement>
     </exercise>
+</exercises>
 
     <subsection xml:id="sec-geom-point">
       <title>Scatterplots via <c>geom_point</c></title>
@@ -392,6 +394,7 @@
         indicating flights that neither departed nor arrived late.
       </p>
 
+<exercises>
       <exercise xml:id="lc2-2">
         <title>Learning Check 2.2</title>
         <statement>
@@ -432,6 +435,7 @@
           <c>envoy_flights</c> data frame by modifying the example given.</p>
         </statement>
       </exercise>
+</exercises>
     </subsection>
 
 
@@ -571,6 +575,7 @@
         trying to make.
       </p>
 
+<exercises>
       <exercise xml:id="lc2-7">
         <title>Learning Check 2.7</title>
         <statement>
@@ -589,6 +594,7 @@
           set in <xref ref="fig-noalpha"/>?</p>
         </statement>
       </exercise>
+</exercises>
     </subsection>
 
 
@@ -635,11 +641,20 @@
       frame.
     </p>
     <p>
-      Let's explore the <c>weather</c> data frame from the <c>nycflights23</c> package
-      by running <c>View(weather)</c> and <c>glimpse(weather)</c>. Furthermore, let's
-      read the associated help file by running <c>?weather</c> to bring up the help
-      file.
+      Let's explore the <c>weather</c> data frame from the <c>nycflights23</c> package.
+      We can read the associated help file by clicking "R Help" on the Import from Library dialog
+      to bring up the help file (<xref ref = "fig-r-help-weather"/>). Furthermore, we can
+      look in the View Data window. We can explore further by going to the
+<alert>Describe &gt; One Variable &gt; Summarise</alert> dialog to look at each variable
+individually.
     </p>
+
+      <figure xml:id="fig-r-help-weather">
+        <caption>Viewing the Help File for a Data Set in the Library</caption>
+        <image source="images/r-help-weather.png" width="90%">
+        </image>
+      </figure>
+
     <p>
       Observe that there is a variable called <c>wind_speed</c> of hourly wind speed
       recordings in miles per hour at weather stations near all three major airports in
@@ -656,13 +671,13 @@
       <c>month</c> equal to <c>1</c>, and <c>day</c> less than or equal to <c>15</c>.
     </p>
 
+<exercises>
     <exercise xml:id="lc2-9">
       <title>Learning Check 2.9</title>
       <statement>
         <p>Take a look at both the <c>weather</c> data frame from the
         <c>nycflights23</c> package and the <c>early_january_2023_weather</c> data frame
-        from the <c>moderndive</c> package by running <c>View(weather)</c> and
-        <c>View(early_january_2023_weather)</c>. In what respect do these data frames
+        from the <c>moderndive</c> package. In what respect do these data frames
         differ?</p>
       </statement>
     </exercise>
@@ -670,12 +685,12 @@
     <exercise xml:id="lc2-10">
       <title>Learning Check 2.10</title>
       <statement>
-        <p><c>View()</c> the <c>flights</c> data frame again. Why does the
+        <p>View the <c>flights</c> data frame again. Why does the
         <c>time_hour</c> variable uniquely identify the hour of the measurement, whereas
         the <c>hour</c> variable does not?</p>
       </statement>
     </exercise>
-
+</exercises>
 
     <subsection xml:id="sec-geom-line">
       <title>Linegraphs via <c>geom_line</c></title>
@@ -683,18 +698,17 @@
       <p>
         Let's create a time series plot (as seen in <xref ref="fig-hourlytemp"/>) of the
         hourly wind speeds saved in the <c>early_january_2023_weather</c> data frame by
-        using <c>geom_line()</c> to create a linegraph
-        <idx><h>R packages</h><h>ggplot2</h><h>geom_line()</h></idx>, instead of using
-        <c>geom_point()</c> like we used previously to create scatterplots:
+        using the Line Plot dialog to create a linegraph, instead of using
+        the Scatter Plot dialog like we used previously to create scatterplots:
       </p>
 
-      <program language="r">
-        <input>
-ggplot(data = early_january_2023_weather, 
-       mapping = aes(x = time_hour, y = wind_speed)) +
-  geom_line()
-        </input>
-      </program>
+      <figure xml:id="fig-lineplot-dlg-1">
+        <caption>A simple filled in Line Plot Dialog.</caption>
+        <image source="images/lineplot-dlg-1.png" width="90%">
+        <description>Lineplot dialog filled in with "wind_speed"
+        in the "Single Variable", and "time_hour" in the "X Variable" receiver.</description>
+        </image>
+      </figure>
 
       <figure xml:id="fig-hourlytemp">
         <caption>Hourly wind speed in Newark for January 1&#x2013;15, 2023.</caption>
@@ -704,31 +718,27 @@ ggplot(data = early_january_2023_weather,
       </figure>
 
       <p>
-        Much as with the <c>ggplot()</c> code that created the scatterplot of departure
+        Much as with the scatterplot of departure
         and arrival delays for Envoy Air flights in <xref ref="fig-noalpha"/>, let's
-        break down this code piece-by-piece in terms of the grammar of graphics:
-      </p>
-      <p>
-        Within the <c>ggplot()</c> function call, we specify two of the components of
+        break down this dialog piece-by-piece in terms of the grammar of graphics. 
+        We specify two of the components of
         the grammar of graphics as arguments:
       </p>
       <p>
         <ol>
-          <li><p>The <c>data</c> to be the <c>early_january_2023_weather</c> data frame
-          by setting <c>data = early_january_2023_weather</c>.</p></li>
-          <li><p>The <c>aes</c>thetic <c>mapping</c> by setting
-          <c>mapping = aes(x = time_hour, y = wind_speed)</c>. Specifically, the variable
-          <c>time_hour</c> maps to the <c>x</c> position aesthetic, while the variable
-          <c>wind_speed</c> maps to the <c>y</c> position aesthetic.</p></li>
+          <li><p>The <c>data</c> as the <c>early_january_2023_weather</c> data frame via
+          the selector seen on the left hand side of the dialog.</p></li>
+          <li><p>The aesthetic mappings by placing <c>wind_speed</c> as the single variable
+          and <c>time_hour</c> as the X variable.</p></li>
         </ol>
       </p>
       <p>
-        We add a layer to the <c>ggplot()</c> function call using the <c>+</c> sign. The
-        layer in question specifies the third component of the grammar: the
-        <c>geom</c>etric object in question. In this case, the geometric object is a
-        <c>line</c> set by specifying <c>geom_line()</c>.
+        This dialog then adds a layer to the plot to specify the geometric object.
+        In this case, the geometric object is set to be a line since we are
+        using the scatter plot dialog.
       </p>
 
+<exercises>
       <exercise xml:id="lc2-11">
         <title>Learning Check 2.11</title>
         <statement>
@@ -753,6 +763,7 @@ ggplot(data = early_january_2023_weather,
           doesn't have a lot of missing (<c>NA</c>) values.</p>
         </statement>
       </exercise>
+</exercises>
     </subsection>
 
 
