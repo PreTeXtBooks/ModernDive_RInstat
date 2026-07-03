@@ -1938,7 +1938,7 @@ Place your "fruits" column into the "Single Variable" receiver as shown in <xref
         In reality, the <c>envoy_flights</c> data frame is merely a subset of the
         <c>flights</c> data frame from the <c>nycflights23</c> package consisting of
         <em>all</em> flights that left NYC in 2023. We created <c>envoy_flights</c> using
-        data wrangling.
+        data wrangling (here, filtering).
       </p>
       <p>
         Data Wrangling is covered in detail in <xref ref="ch-wrangling"/> on data wrangling.
