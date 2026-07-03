@@ -942,13 +942,6 @@ individually.
         </image>
       </figure>
 
-      <program language="r">
-        <input>
-ggplot(data = weather, mapping = aes(x = wind_speed)) +
-  geom_histogram(color = "white", fill = "steelblue")
-        </input>
-      </program>
-
       <p>
         You can click "Pick Colour..." on the drop down, instead of typing in "steelblue" to choose any colour in R!
       </p>
@@ -1065,20 +1058,29 @@ ggplot(data = weather, mapping = aes(x = wind_speed)) +
       <xref ref="fig-histogramexample"/> differed in each month. We could <q>split</q>
       this histogram by the 12 possible months in a given year. In other words, we would
       plot histograms of <c>wind_speed</c> for each <c>month</c> separately. We do this
-      by adding <c>facet_wrap(~ month)</c> layer. Note the <c>~</c> is a
-      <q>tilde</q> and can generally be found on the key next to the <q>1</q> key on US
-      keyboards. The tilde is required and you'll receive the error
-      <c>Error in as.quoted(facets) : object 'month' not found</c> if you don't include
-      it here.
+      by clicking the "Facet" option on the dialog, which adds a new layer into our plot.
+      This is done in <>. But we see an issue first! We cannot see "month" as an option to facet by.
+      This is simply because "month" is not a factor in our data set. We can easily fix this by closing the
+      dialog, and right clicking on the "month" variable on the Data View.
+      Here, we can convert the month to a factor variable.
+      If we reopen our histogram dialog, we can now see the option to facet by month.
     </p>
 
-    <program language="r">
-      <input>
-ggplot(data = weather, mapping = aes(x = wind_speed)) +
-  geom_histogram(binwidth = 5, color = "white") +
-  facet_wrap(~ month)
-      </input>
-    </program>
+      <figure xml:id="facet-1">
+        <caption>Adding a Facet Wrap</caption>
+        <image source="images/facet-1.png" width="90%">
+        </image>
+      </figure>
+      <figure xml:id="facet-2">
+        <caption>Converting "month" to a factor by right-clicking on that variable</caption>
+        <image source="images/facet-2.png" width="90%">
+        </image>
+      </figure>
+      <figure xml:id="facet-3">
+        <caption>Adding a Facet Wrap (again!)</caption>
+        <image source="images/facet-3.png" width="90%">
+        </image>
+      </figure>
 
     <figure xml:id="fig-facethistogram">
       <caption>Faceted histogram of hourly wind speeds by month.</caption>
@@ -1088,21 +1090,24 @@ ggplot(data = weather, mapping = aes(x = wind_speed)) +
     </figure>
 
     <p>
-      We can also specify the number of rows and columns in the grid by using the
-      <c>nrow</c> and <c>ncol</c> arguments inside of
-      <idx><h>R packages</h><h>ggplot2</h><h>facet_wrap()</h></idx>
-      <c>facet_wrap()</c>. For example, say we would like our faceted histogram to have
-      4 rows instead of 3. We simply add an <c>nrow = 4</c> argument to
-      <c>facet_wrap(~ month)</c>.
+      We can also specify if we want to have these facets as rows or columns, and if we want an 
+      overall (O) plot too by using the down arrow on the facets option (<xref ref = "facet-4"/>).
+      Furthermore, we can specify the number of rows and columns in the grid by going to the
+      "Plot Options" dialog, and checking the option to "Include Facets". 
+      There is an option here that says "Fixed Number of Rows". For example, say we would like our faceted histogram to have
+      4 rows instead of 3. We simply add set this to be 3.
     </p>
 
-    <program language="r">
-      <input>
-ggplot(data = weather, mapping = aes(x = wind_speed)) +
-  geom_histogram(binwidth = 5, color = "white") +
-  facet_wrap(~ month, nrow = 4)
-      </input>
-    </program>
+      <figure xml:id="facet-4">
+        <caption>Adding other facetting options (rows and columns, and overall!)</caption>
+        <image source="images/facet-4.png" width="90%">
+        </image>
+      </figure>
+      <figure xml:id="facet-5">
+        <caption>Specifying the number of facet rows.</caption>
+        <image source="images/facet-5.png" width="90%">
+        </image>
+      </figure>
 
     <figure xml:id="fig-facethistogram2">
       <caption>Faceted histogram with 4 instead of 3 rows.</caption>
@@ -1120,6 +1125,7 @@ ggplot(data = weather, mapping = aes(x = wind_speed)) +
       lower wind speeds are more common than higher wind speeds.
     </p>
 
+<exercises>
     <exercise xml:id="lc2-18">
       <title>Learning Check 2.18</title>
       <statement>
@@ -1152,6 +1158,7 @@ ggplot(data = weather, mapping = aes(x = wind_speed)) +
         of variability? Why do you say that?</p>
       </statement>
     </exercise>
+</exercises>
   </section>
 
 
