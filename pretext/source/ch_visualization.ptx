@@ -1253,57 +1253,12 @@ individually.
       <title>Boxplots via <c>geom_boxplot</c></title>
 
       <p>
-        Let's now create a side-by-side boxplot
-        <idx><h>boxplots</h><h>side-by-side</h></idx> of hourly wind speeds split by the
-        12 months as we did previously with the faceted histograms. We do this by mapping
-        the <c>month</c> variable to the x-position aesthetic, the <c>wind_speed</c>
-        variable to the y-position aesthetic, and by adding a <c>geom_boxplot()</c>
-        layer:
+        Let's now create a side-by-side boxplot of hourly wind speeds split by the
+        12 months as we did previously with the faceted histograms. We do this by selecting 
+        <alert>Describe > Graphs > Boxplot</alert>, and mapping
+        the <c>month</c> variable to the x-position, the <c>wind_speed</c>
+        variable to the y-position:
       </p>
-
-            <program language="r">
-        <input>
-ggplot(data = weather, mapping = aes(x = month, y = wind_speed)) +
-  geom_boxplot()
-        </input>
-      </program>
-
-      <console prompt="> ">
-        <output>
-Warning message:
-1: Continuous x aesthetic -- did you forget aes(group=...)?
-        </output>
-      </console>
-
-      <figure xml:id="fig-badbox">
-        <caption>Invalid boxplot specification.</caption>
-        <image source="images/fig-badbox.png" width="90%">
-          <description>An incorrectly specified boxplot where month is treated as a continuous variable, resulting in a single wide box rather than 12 separate boxes.</description>
-        </image>
-      </figure>
-
-      <p>
-        Observe in <xref ref="fig-badbox"/> that this plot does not provide information
-        about wind speed separated by month. The first warning message tells us why. It
-        says that we have a <q>continuous</q> (or numerical variable) on the x-position
-        aesthetic. Boxplots, however, require a categorical variable to be mapped to the
-        x-position aesthetic.
-      </p>
-      <p>
-        We can convert the numerical variable <c>month</c> into a <c>factor</c>
-        categorical variable by using the <c>factor()</c>
-        <idx><h>factors</h></idx> function. After applying <c>factor(month)</c>,
-        <c>month</c> goes from having just the numerical values 1, 2, ..., and 12 to
-        having an associated ordering. With this ordering, <c>ggplot()</c> now knows how
-        to work with this variable to produce the plot.
-      </p>
-
-      <program language="r">
-        <input>
-ggplot(data = weather, mapping = aes(x = factor(month), y = wind_speed)) +
-  geom_boxplot()
-        </input>
-      </program>
 
       <figure xml:id="fig-monthtempbox">
         <caption>Side-by-side boxplot of wind speed split by month.</caption>
@@ -1312,12 +1267,36 @@ ggplot(data = weather, mapping = aes(x = factor(month), y = wind_speed)) +
         </image>
       </figure>
 
+<note>
+      <p>
+        If you did not convert your "month" variable to a factor in the last section, you may
+        see a different plot!
+        Observe in <xref ref="fig-badbox"/> that this plot does not provide information
+        about wind speed separated by month. The first warning message tells us why. It
+        says that we have a <q>continuous</q> (or numerical variable) on the x-position
+        aesthetic. Boxplots, however, require a categorical variable to be mapped to the
+        x-position aesthetic.
+      </p>
+      <figure xml:id="fig-badbox">
+        <caption>Invalid boxplot specification.</caption>
+        <image source="images/fig-badbox.png" width="90%">
+          <description>An incorrectly specified boxplot where month is treated as a continuous variable, resulting in a single wide box rather than 12 separate boxes.</description>
+        </image>
+      </figure>
+      <p>
+        By setting <c>month</c> to be a factor, it goes from having just the numerical values 1, 2, ..., and 12 to
+        having an associated ordering. With this ordering, our plot now knows how
+        to work with this variable to produce the plot.
+      </p>
+</note>
+
       <p>
         The resulting <xref ref="fig-monthtempbox"/> shows 12 separate
         <q>box and whiskers</q> plots similar to the rightmost plot of
         <xref ref="fig-apr2"/> of only April wind speeds. Thus the different boxplots are
         shown <q>side-by-side.</q>
       </p>
+
       <p>
         <ul>
           <li><p>The <q>box</q> portions of the visualization represent the 1st quartile,
@@ -1351,6 +1330,7 @@ ggplot(data = weather, mapping = aes(x = factor(month), y = wind_speed)) +
         tell us about variability, or spread, of wind speeds recorded in a given month.
       </p>
 
+<exercises>
       <exercise xml:id="lc2-22">
         <title>Learning Check 2.22</title>
         <statement>
@@ -1371,8 +1351,8 @@ ggplot(data = weather, mapping = aes(x = factor(month), y = wind_speed)) +
         <title>Learning Check 2.24</title>
         <statement>
           <p>We looked at the distribution of the numerical variable <c>wind_speed</c>
-          split by the numerical variable <c>month</c> that we converted using the
-          <c>factor()</c> function in order to make a side-by-side boxplot. Why would a
+          split by the numerical variable <c>month</c> that we converted by setting as a 
+          factor in order to make a side-by-side boxplot. Why would a
           boxplot of <c>wind_speed</c> split by the numerical variable <c>pressure</c>
           similarly converted to a categorical variable using the <c>factor()</c> not be
           informative?</p>
@@ -1387,6 +1367,7 @@ ggplot(data = weather, mapping = aes(x = factor(month), y = wind_speed)) +
           histogram?</p>
         </statement>
       </exercise>
+</exercises>
     </subsection>
 
 
