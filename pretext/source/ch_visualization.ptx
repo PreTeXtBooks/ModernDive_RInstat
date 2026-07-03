@@ -875,31 +875,20 @@ individually.
       <title>Histograms via <c>geom_histogram</c></title>
 
       <p>
-        Let's now present the <c>ggplot()</c> code to plot your first histogram! Unlike
-        with scatterplots and linegraphs, there is now only one variable being mapped in
-        <c>aes()</c>: the single numerical variable <c>wind_speed</c>. The y-aesthetic
+        Let's now plot your first histogram in R-Instat! Unlike
+        with scatterplots and linegraphs, there is now only one variable being mapped:
+        the single numerical variable <c>wind_speed</c>. The y-aesthetic
         of a histogram, the count of the observations in each bin, gets computed for you
-        automatically. Furthermore, the geometric object layer is now a
-        <c>geom_histogram()</c>.
-        <idx><h>R packages</h><h>ggplot2</h><h>geom_histogram()</h></idx> After running
-        the following code, you'll see the histogram in
-        <xref ref="fig-weather-histogram"/> as well as warning messages. We'll discuss
-        the warning messages first.
+        automatically. Furthermore, the geometric object layer is now a Histogram.
+        After running the following dialog, you'll see the histogram in
+        <xref ref="fig-weather-histogram"/>.
       </p>
 
-            <program language="r">
-        <input>
-ggplot(data = weather, mapping = aes(x = wind_speed)) +
-  geom_histogram()
-        </input>
-      </program>
-
-      <console prompt="> ">
-        <output>
-`stat_bin()` using `bins=30`. Pick better value with `binwidth`.
-Warning: Removed 1033 rows containing non-finite outside the scale range (`stat_bin()`).
-        </output>
-      </console>
+      <figure xml:id="histogram-dlg-1">
+        <caption>A simple filled in Histogram Dialog.</caption>
+        <image source="images/histogram-dlg-1.png" width="90%">
+        </image>
+      </figure>
 
       <figure xml:id="fig-weather-histogram">
         <caption>Histogram of hourly wind speeds at three NYC airports.</caption>
@@ -909,35 +898,28 @@ Warning: Removed 1033 rows containing non-finite outside the scale range (`stat_
       </figure>
 
       <p>
-        The first message is telling us that the histogram was constructed using
+        Warning: Note that this histogram was constructed using
         <c>bins = 30</c> for 30 equally spaced bins. This is known in computer
         programming as a default value; unless you override this default number of bins
         with a number you specify, R will choose 30 by default. We'll see in the next
         section how to change the number of bins to another value than the default.
       </p>
-      <p>
-        The second warning message is telling us something similar to the warning message
-        we received when we ran the code to create a scatterplot of departure and arrival
-        delays for Envoy Air flights in <xref ref="fig-noalpha"/>: that because some rows
-        have missing <c>NA</c> value for <c>wind_speed</c>, they were omitted from the
-        histogram. R is just giving us a friendly heads-up that this was the case.
-      </p>
+
       <p>
         Now let's unpack the resulting histogram in <xref ref="fig-weather-histogram"/>.
         Observe that values above 30 mph are rather rare. However, because of the large
         number of bins, it's hard to get a sense for which range of wind speeds is spanned
         by each bin; everything is one giant amorphous blob. So let's add white vertical
-        borders demarcating the bins by adding a <c>color = "white"</c> argument to
-        <c>geom_histogram()</c> and ignore the warning about setting the number of bins
-        to a better value:
+        borders demarcating the bins by clicking on "Plot Options > Histogram Options", similar
+        to how we did in <xref ref = "scatterplot-dlg-2"/>, and setting "Colour" as "White"
+        (<xref ref = "histogram-dlg-2"/>).
       </p>
 
-      <program language="r">
-        <input>
-ggplot(data = weather, mapping = aes(x = wind_speed)) +
-  geom_histogram(color = "white")
-        </input>
-      </program>
+      <figure xml:id="histogram-dlg-2">
+        <caption>Setting "Colour" as "White" for borders in the Histogram Dialog</caption>
+        <image source="images/histogram-dlg-2.png" width="90%">
+        </image>
+      </figure>
 
       <figure xml:id="fig-weather-histogram-2">
         <caption>Histogram of hourly wind speeds at three NYC airports with white borders.</caption>
@@ -949,10 +931,16 @@ ggplot(data = weather, mapping = aes(x = wind_speed)) +
       <p>
         We now have an easier time associating ranges of wind speeds to each of the bins
         in <xref ref="fig-weather-histogram-2"/>. We can also vary the color of the bars
-        by setting the <idx><h>R packages</h><h>ggplot2</h><h>fill</h></idx>
-        <c>fill</c> argument. For example, you can set the bin colors to be
+        by setting the <c>fill</c> argument in the Plot Options (<xref ref = "histogram-dlg-3"/>).
+        For example, you can set the bin colors to be
         <q>blue steel</q> by setting <c>fill = "steelblue"</c>:
       </p>
+
+      <figure xml:id="histogram-dlg-3">
+        <caption>Setting "Colour" as "White" for borders, and "Fill" as "steelblue" in the Histogram Dialog</caption>
+        <image source="images/histogram-dlg-3.png" width="90%">
+        </image>
+      </figure>
 
       <program language="r">
         <input>
@@ -962,11 +950,9 @@ ggplot(data = weather, mapping = aes(x = wind_speed)) +
       </program>
 
       <p>
-        If you're curious, run <c>colors()</c>
-        <idx><h>colors()</h></idx> to see all possible choices of colors in R!
+        You can click "Pick Colour..." on the drop down, instead of typing in "steelblue" to choose any colour in R!
       </p>
     </subsection>
-
 
     <subsection xml:id="sec-adjust-bins">
       <title>Adjusting the bins</title>
@@ -980,25 +966,21 @@ ggplot(data = weather, mapping = aes(x = wind_speed)) +
       <p>
         <ol>
           <li><p>By adjusting the number of bins via the
-          <idx><h>R packages</h><h>ggplot2</h><h>geom_histogram()!bins</h></idx>
-          <c>bins</c> argument to <c>geom_histogram()</c>.</p></li>
-          <li><p>By adjusting the width of the bins via the
-          <idx><h>R packages</h><h>ggplot2</h><h>geom_histogram()!binwidth</h></idx>
-          <c>binwidth</c> argument to <c>geom_histogram()</c>.</p></li>
+          <c>bins</c> argument on the sub dialog under "Layer Parameters".</p></li>
+          <li><p>By adjusting the width of the bins via the "Binwidth" option
+          on the main dialog (<xref ref = "histogram-dlg-4"/>).</p></li>
         </ol>
       </p>
+      <figure xml:id="histogram-dlg-4">
+        <caption>Choosing the "Binwidth" Option in the Histogram Dialog</caption>
+        <image source="images/histogram-dlg-4.png" width="90%">
+        </image>
+      </figure>
       <p>
         Using the first method, we have the power to specify how many bins we would like
         to cut the x-axis up in. As mentioned in the previous section, the default number
         of bins is 20. We can override this default, to say 20 bins, as follows:
       </p>
-
-      <program language="r">
-        <input>
-ggplot(data = weather, mapping = aes(x = wind_speed)) +
-  geom_histogram(bins = 20, color = "white")
-        </input>
-      </program>
 
       <p>
         Using the second method, instead of specifying the number of bins, we specify the
@@ -1006,13 +988,6 @@ ggplot(data = weather, mapping = aes(x = wind_speed)) +
         <c>geom_histogram()</c> layer. For example, let's set the width of each bin to
         be five mph.
       </p>
-
-      <program language="r">
-        <input>
-ggplot(data = weather, mapping = aes(x = wind_speed)) +
-  geom_histogram(binwidth = 5, color = "white")
-        </input>
-      </program>
 
       <p>
         We compare both resulting histograms side-by-side in
@@ -1026,6 +1001,7 @@ ggplot(data = weather, mapping = aes(x = wind_speed)) +
         </image>
       </figure>
 
+<exercises>
       <exercise xml:id="lc2-14">
         <title>Learning Check 2.14</title>
         <statement>
@@ -1057,6 +1033,7 @@ ggplot(data = weather, mapping = aes(x = wind_speed)) +
           Why?</p>
         </statement>
       </exercise>
+</exercises>
     </subsection>
 
 
