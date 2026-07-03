@@ -1889,118 +1889,41 @@ Place your "fruits" column into the "Single Variable" receiver as shown in <xref
             <cell></cell>
             <cell>Named graph</cell>
             <cell>Shows</cell>
-            <cell>Geometric object</cell>
             <cell>Notes</cell>
           </row>
           <row>
             <cell>1</cell>
             <cell>Scatterplot</cell>
             <cell>Relationship between 2 numerical variables</cell>
-            <cell><c>geom_point()</c></cell>
             <cell></cell>
           </row>
           <row>
             <cell>2</cell>
             <cell>Linegraph</cell>
             <cell>Relationship between 2 numerical variables</cell>
-            <cell><c>geom_line()</c></cell>
             <cell>Used when there is a sequential order to x-variable, e.g., time</cell>
           </row>
           <row>
             <cell>3</cell>
             <cell>Histogram</cell>
             <cell>Distribution of 1 numerical variable</cell>
-            <cell><c>geom_histogram()</c></cell>
             <cell>Facetted histograms show the distribution of 1 numerical variable split by the values of another variable</cell>
           </row>
           <row>
             <cell>4</cell>
             <cell>Boxplot</cell>
             <cell>Distribution of 1 numerical variable split by the values of another variable</cell>
-            <cell><c>geom_boxplot()</c></cell>
             <cell></cell>
           </row>
           <row>
             <cell>5</cell>
             <cell>Barplot</cell>
             <cell>Distribution of 1 categorical variable</cell>
-            <cell><c>geom_bar()</c> when counts are not pre-counted, <c>geom_col()</c> when counts are pre-counted</cell>
             <cell>Stacked, side-by-side, and faceted barplots show the joint distribution of 2 categorical variables</cell>
           </row>
         </tabular>
       </table>
     </subsection>
-
-
-    <subsection xml:id="sec-function-args">
-      <title>Function argument specification</title>
-
-      <p>
-        Let's go over some important points about specifying the arguments (i.e., inputs)
-        to functions. Run the following two segments of code:
-      </p>
-
-      <program language="r">
-        <input>
-# Segment 1:
-ggplot(data = flights, mapping = aes(x = carrier)) +
-  geom_bar()
-
-# Segment 2:
-ggplot(flights, aes(x = carrier)) +
-  geom_bar()
-        </input>
-      </program>
-
-      <p>
-        You'll notice that both code segments create the same barplot, even though in the
-        second segment we omitted the <c>data = </c> and <c>mapping = </c> code argument
-        names. This is because the <c>ggplot()</c> function by default assumes that the
-        <c>data</c> argument comes first and the <c>mapping</c> argument comes second.
-        <idx><h>functions</h><h>argument order</h></idx> As long as you specify the data
-        frame in question first and the <c>aes()</c> mapping second, you can omit the
-        explicit statement of the argument names <c>data = </c> and <c>mapping = </c>.
-      </p>
-      <p>
-        Going forward for the rest of this book, all <c>ggplot()</c> code will be like
-        the second segment: with the <c>data = </c> and <c>mapping = </c> explicit naming
-        of the argument omitted with the default ordering of arguments respected. We'll do
-        this for brevity's sake; it's common to see this style when reviewing other R
-        users' code.
-      </p>
-    </subsection>
-
-
-    <subsection xml:id="sec-viz-additional-resources">
-      <title>Additional resources</title>
-
-      <p>
-        An R script file of all R code used in this chapter is available
-        <url href="https://moderndive.com/v2/scripts/02-visualization.R">here</url>.
-      </p>
-
-      <p>
-        If you want to further unlock the power of the <c>ggplot2</c> package for data
-        visualization, we suggest that you check out RStudio's <q>Data Visualization with
-        ggplot2</q> cheatsheet. This cheatsheet summarizes much more than what we've
-        discussed in this chapter. In particular, it presents many more than the 5
-        <c>geom</c>etric objects we covered in this chapter while providing quick and
-        easy-to-read visual descriptions. For all the <c>geom</c>etric objects, it also
-        lists all the possible aesthetic attributes one can tweak. In the current version
-        of RStudio in mid-2025, you can access this cheatsheet by going to the RStudio
-        Menu Bar <m>	o</m> Help <m>	o</m> Cheatsheets <m>	o</m> <q>Data Visualization
-        with ggplot2.</q> Alternatively, you can download the cheat sheet by going to the
-        <url href="https://rstudio.github.io/cheatsheets/">Posit Cheatsheets page</url>.
-      </p>
-
-      <figure xml:id="fig-ggplot-cheatsheet">
-        <caption>Data Visualization with ggplot2 cheatsheet (first page).</caption>
-        <image source="images/cheatsheets/ggplot_cheatsheet-1.png" width="100%">
-          <description>The first page of the ggplot2 Data Visualization cheatsheet, showing a reference grid of geometric objects, aesthetic mappings, and other key ggplot2 features.</description>
-        </image>
-      </figure>
-    </subsection>
-
 
     <subsection xml:id="sec-whats-to-come-viz">
       <title>What's to come</title>
@@ -2015,71 +1938,15 @@ ggplot(flights, aes(x = carrier)) +
         In reality, the <c>envoy_flights</c> data frame is merely a subset of the
         <c>flights</c> data frame from the <c>nycflights23</c> package consisting of
         <em>all</em> flights that left NYC in 2023. We created <c>envoy_flights</c> using
-        the following code that uses the <c>dplyr</c> package for data wrangling:
-      </p>
-
-      <program language="r">
-        <input>
-library(dplyr)
-
-envoy_flights &lt;- flights |> 
-  filter(carrier == "MQ")
-
-ggplot(data = envoy_flights, mapping = aes(x = dep_delay, y = arr_delay)) + 
-  geom_point()
-        </input>
-      </program>
-
-      <p>
-        This code takes the <c>flights</c> data frame and <c>filter()</c>s it to only
-        return the rows where <c>carrier</c> is equal to <c>"MQ"</c>, Envoy Air's carrier
-        code. (Recall from <xref ref="sec-code"/> that testing for equality is specified
-        with <idx><h>using == instead of =</h></idx> <c>==</c> and not <c>=</c>.) The
-        code then cycles back to save the output in a new data frame called
-        <c>envoy_flights</c> using the <c>&lt;-</c> <em>assignment</em>
-        operator<idx><h>operators</h><h>assignment (&lt;-)</h></idx>.
+        data wrangling.
       </p>
       <p>
-        Similarly, recall in <xref ref="fig-hourlytemp"/> in
-        <xref ref="sec-linegraphs"/> we visualized hourly wind speed recordings at Newark
-        airport only for the first 15 days of January 2023. This data is saved in the
-        <c>early_january_2023_weather</c> data frame from the <c>moderndive</c> package.
-      </p>
-      <p>
-        In reality, the <c>early_january_2023_weather</c> data frame is merely a subset
-        of the <c>weather</c> data frame from the <c>nycflights23</c> package consisting
-        of <em>all</em> hourly weather observations in 2023 for <em>all</em> three NYC
-        airports. We created <c>early_january_2023_weather</c> using the following
-        <c>dplyr</c> code:
-      </p>
-
-      <program language="r">
-        <input>
-early_january_2023_weather &lt;- weather |> 
-  filter(origin == "EWR" &amp; month == 1 &amp; day &lt;= 15)
-
-ggplot(data = early_january_2023_weather, mapping = aes(x = time_hour, y = temp)) +
-  geom_line()
-        </input>
-      </program>
-
-      <p>
-        This code pares down the <c>weather</c> data frame to a new data frame
-        <c>early_january_2023_weather</c> consisting of hourly wind speed recordings only
-        for <c>origin == "EWR"</c>, <c>month == 1</c>, and day less than or equal to
-        <c>15</c>.
-      </p>
-      <p>
-        These two code segments are a preview of <xref ref="ch-wrangling"/> on data wrangling using
-        the <c>dplyr</c> package. Data wrangling is the process of transforming and
+        Data Wrangling is covered in detail in <xref ref="ch-wrangling"/> on data wrangling.
+        Data wrangling is the process of transforming and
         modifying existing data with the intent of making it more appropriate for analysis
-        purposes. For example, these two code segments used the <c>filter()</c> function
-        to create new data frames (<c>envoy_flights</c> and
-        <c>early_january_2023_weather</c>) by choosing only a subset of rows of existing
-        data frames (<c>flights</c> and <c>weather</c>). In the next chapter, we'll
-        formally introduce the <c>filter()</c> and other data-wrangling functions as well
-        as the <em>pipe operator</em> <c>|&gt;</c> which allows you to combine multiple
-        data-wrangling actions into a single sequential <em>chain</em> of actions. On to
+        purposes. For example, we earlier used <alert>Prepare &gt; Data Reshape
+        &gt; Column Summaries</alert> to summarise our data. In the next chapter, we'll
+        formally introduce data-wrangling in R-Instat. On to
         <xref ref="ch-wrangling"/> on data wrangling!
       </p>
     </subsection>
