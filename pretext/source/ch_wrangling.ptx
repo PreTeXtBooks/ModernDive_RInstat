@@ -4,9 +4,9 @@
   <introduction>
   <p>
     So far in our journey, we've seen how to look at data saved in data frames using
-    the <c>glimpse()</c> and <c>View()</c> functions in
+    the <alert>Describe &gt; One Variable &gt; Summarise</alert> dialog, and the Data Frame viewer
     <xref ref="ch-getting-started"/>, and how to create data visualizations using the
-    <c>ggplot2</c> package in <xref ref="ch-visualization"/>. In particular, we
+    <alert>Describe &gt; Graph...</alert> dialogs in <xref ref="ch-visualization"/>. In particular, we
     studied what we term the <q>five named graphs</q> (5NG):
   </p>
   <p>
@@ -26,204 +26,47 @@
     <xref ref="fig-gapminder"/>.
   </p>
   <p>
-    In this chapter, we'll introduce a series of functions from the <c>dplyr</c>
-    package for data wrangling that will allow you to take a data frame and
-    <q>wrangle</q> it (transform it) to suit your needs. Such functions include:
+    In this chapter, we'll introduce a series of functions for data wrangling that
+    will allow you to take a data frame and <q>wrangle</q> it (transform it) to
+    suit your needs. Such options include:
   </p>
   <p>
     <ol>
-      <li><p><c>filter()</c> a data frame's existing rows to only pick out a subset
+      <li><p><c>Filter</c> a data frame's existing rows to only pick out a subset
       of them. For example, the <c>alaska_flights</c> data frame.
-      <idx><h>R packages</h><h>dplyr</h><h>filter()</h></idx></p></li>
-      <li><p><c>summarize()</c> one or more of its columns/variables with a
+      <li><p><c>Summarise</c> one or more of its columns/variables with a
       <em>summary statistic</em>. Examples of summary statistics include the median
       and interquartile range of temperatures as we saw in <xref ref="sec-boxplots"/>
       on boxplots.</p></li>
-      <li><p><c>group_by()</c> its rows. In other words, assign different rows to be
-      part of the same <em>group</em>. We can then combine <c>group_by()</c> with
-      <c>summarize()</c> to report summary statistics for each group
+      <li><p><c>Group by</c> its rows. In other words, assign different rows to be
+      part of the same <em>group</em>. We can then combine this grouping with
+      summarising to report summary statistics for each group
       <em>separately</em>. For example, say you don't want a single overall average
       departure delay <c>dep_delay</c> for all three <c>origin</c> airports combined,
       but rather three separate average departure delays, one computed for each of the
       three <c>origin</c> airports.</p></li>
-      <li><p><c>mutate()</c> its existing columns/variables to create new ones. For
+      <li><p><c>Adding</c> to its existing columns/variables to create new ones. For
       example, convert hourly temperature readings from Fahrenheit to
       Celsius.</p></li>
-      <li><p><c>arrange()</c> its rows. For example, sort the rows of <c>weather</c>
+      <li><p><c>Arranging</c> its rows. For example, sort the rows of <c>weather</c>
       in ascending or descending order of <c>temp</c>.</p></li>
-      <li><p><c>join()</c> it with another data frame by matching along a <q>key</q>
+      <li><p><c>Join</c> it with another data frame by matching along a <q>key</q>
       variable. In other words, merge these two data frames together.</p></li>
     </ol>
   </p>
+
   <p>
-    Notice how we used <c>computer_code</c> font to describe the actions we want to
-    take on our data frames. This is because the <c>dplyr</c> package for data
-    wrangling has intuitively verb-named functions that are easy to remember.
-  </p>
-  <p>
-    There is a further benefit to learning to use the <c>dplyr</c> package for data
-    wrangling: its similarity to the database querying language
-    <url href="https://en.wikipedia.org/wiki/SQL">SQL</url> (pronounced <q>sequel</q>
-    or spelled out as <q>S-Q-L</q>). SQL (which stands for <q>Structured Query
-    Language</q>) is used to manage large databases quickly and efficiently and is
-    widely used by many institutions with a lot of data. While SQL is a topic left for
-    a book or a course on database management, keep in mind that once you learn
-    <c>dplyr</c>, you can learn SQL easily. We'll talk more about their similarities
-    in <xref ref="sec-normal-forms"/>.
-  </p>
-
-  <assemblage>
-    <title>Needed packages</title>
-    <p>
-      Let's load all the packages needed for this chapter (this assumes you've
-      already installed them). If needed, read <xref ref="sec-packages"/> for
-      information on how to install and load R packages.
-    </p>
-    <program language="r">
-      <input>
-library(dplyr)
-library(ggplot2)
-library(nycflights23)
-      </input>
-    </program>
-  </assemblage>
-  </introduction>
-
-  <!-- ============================================================ -->
-  <section xml:id="sec-piping">
-    <title>The pipe operator: <c>|&gt;</c></title>
-
-    <p>
-      Before we start data wrangling, let's first introduce a nifty tool that has
-      been a part of R since May 2021: the
-      <idx><h>operators</h><h>pipe</h></idx> native pipe operator <c>|&gt;</c>. The
-      pipe operator allows us to combine multiple operations in R into a single
-      sequential <em>chain</em> of actions. In modern R, the native pipe operator
-      <c>|&gt;</c> is now the default for chaining functions, replacing the previously
-      common tidyverse pipe (<c>%&gt;%</c>) that was loaded with the <c>dplyr</c>
-      package. Introduced in R 4.1.0 in May 2021, <c>|&gt;</c> offers a more
-      intuitive and readable syntax for data wrangling and other tasks, eliminating
-      the need for additional package dependencies.
-    </p>
-    <p>
-      You'll still often see R code using <c>%&gt;%</c> in older scripts or searches
-      online, but we'll use <c>|&gt;</c> in this book. The tidyverse pipe still
-      works, so don't worry if you see it in other code.
-    </p>
-    <p>
-      Let's start with a hypothetical example. Say you would like to perform a
-      hypothetical sequence of operations on a hypothetical data frame <c>x</c> using
-      hypothetical functions <c>f()</c>, <c>g()</c>, and <c>h()</c>:
-    </p>
-    <p>
-      <ol>
-        <li><p>Take <c>x</c> <em>then</em></p></li>
-        <li><p>Use <c>x</c> as an input to a function <c>f()</c>
-        <em>then</em></p></li>
-        <li><p>Use the output of <c>f(x)</c> as an input to a function <c>g()</c>
-        <em>then</em></p></li>
-        <li><p>Use the output of <c>g(f(x))</c> as an input to a function
-        <c>h()</c></p></li>
-      </ol>
-    </p>
-    <p>
-      One way to achieve this sequence of operations is by using nesting parentheses
-      as follows:
-    </p>
-
-    <program language="r">
-      <input>
-h(g(f(x)))
-      </input>
-    </program>
-
-    <p>
-      This code isn't so hard to read since we are applying only three functions:
-      <c>f()</c>, then <c>g()</c>, then <c>h()</c> and each of the functions is short
-      in its name. Further, each of these functions also only has one argument.
-      However, you can imagine that this will get progressively harder to read as the
-      number of functions applied in your sequence increases and the arguments in each
-      function increase as well. This is where the pipe operator <c>|&gt;</c> comes in
-      handy. <c>|&gt;</c> takes the output of one function and then <q>pipes</q> it
-      to be the input of the next function. Furthermore, a helpful trick is to read
-      <c>|&gt;</c> as <q>then</q> or <q>and then.</q> For example, you can obtain the
-      same output as the hypothetical sequence of functions as follows:
-    </p>
-
-    <program language="r">
-      <input>
-x |&gt;
-  f() |&gt;
-  g() |&gt;
-  h()
-      </input>
-    </program>
-
-    <p>
-      You would read this sequence as:
-    </p>
-    <p>
-      <ol>
-        <li><p>Take <c>x</c> <em>then</em></p></li>
-        <li><p>Use this output as the input to the next function <c>f()</c>
-        <em>then</em></p></li>
-        <li><p>Use this output as the input to the next function <c>g()</c>
-        <em>then</em></p></li>
-        <li><p>Use this output as the input to the next function
-        <c>h()</c></p></li>
-      </ol>
-    </p>
-    <p>
-      So while both approaches achieve the same goal, the latter is much more
-      human-readable because you can clearly read the sequence of operations
-      line-by-line. But what are the hypothetical <c>x</c>, <c>f()</c>, <c>g()</c>,
-      and <c>h()</c>? Throughout this chapter on data wrangling:
-    </p>
-    <p>
-      <ol>
-        <li><p>The starting value <c>x</c> will be a data frame. For example, the
-        <idx><h>R packages</h><h>nycflights23</h></idx> <c>flights</c> data frame we
-        explored in <xref ref="sec-nycflights"/>.</p></li>
-        <li><p>The sequence of functions, here <c>f()</c>, <c>g()</c>, and
-        <c>h()</c>, will mostly be a sequence of any number of the six
-        data-wrangling verb-named functions we listed in the introduction to this
-        chapter. For example, the <c>filter(carrier == "MQ")</c> function and
-        argument specified we previewed earlier.</p></li>
-        <li><p>The result will be the transformed/modified data frame that you want.
-        In our example, we'll save the result in a new data frame by using the
-        <c>&lt;-</c> assignment operator with the name <c>alaska_flights</c> via
-        <c>alaska_flights &lt;-</c>.</p></li>
-      </ol>
-    </p>
-
-    <program language="r">
-      <input>
-envoy_flights &lt;- flights |&gt;
-  filter(carrier == "AS")
-      </input>
-    </program>
-
-    <p>
-      Much like when adding layers to a <c>ggplot()</c> using the <c>+</c> sign, you
-      form a single <em>chain</em> of data wrangling operations by combining
-      verb-named functions into a single sequence using the pipe operator
-      <c>|&gt;</c>. Furthermore, much like how the <c>+</c> sign has to come at the
-      end of lines when constructing plots, the pipe operator <c>|&gt;</c> has to
-      come at the end of lines as well.
-    </p>
-    <p>
       Keep in mind, there are many more advanced data-wrangling functions than just
-      the six listed in the introduction to this chapter; you'll see some examples of
-      these in <xref ref="sec-other-verbs"/>. However, just with these six verb-named
-      functions you'll be able to perform a broad array of data-wrangling tasks for
+      the six listed here; you'll see some examples of
+      these in <xref ref="sec-other-verbs"/>. However, with these six ideas
+      you'll be able to perform a broad array of data-wrangling tasks for
       the rest of this book.
     </p>
-  </section>
-
-
+  </introduction>
+ 
   <!-- ============================================================ -->
   <section xml:id="sec-filter">
-    <title><c>filter</c> rows</title>
+    <title><c>Filter</c> rows</title>
 
     <figure xml:id="fig-filter">
       <caption>Diagram of <c>filter()</c> rows operation.</caption>
@@ -235,8 +78,7 @@ envoy_flights &lt;- flights |&gt;
     </figure>
 
     <p>
-      The <idx><h>R packages</h><h>dplyr</h><h>filter()</h></idx> <c>filter()</c>
-      function here works much like the <q>Filter</q> option in Microsoft Excel; it
+      The filter function here works much like the <q>Filter</q> option in Microsoft Excel; it
       allows you to specify criteria about the values of a variable in your dataset
       and then filters out only the rows that match that criteria.
     </p>
@@ -248,13 +90,8 @@ envoy_flights &lt;- flights |&gt;
       here:
     </p>
 
-    <program language="r">
-      <input>
-phoenix_flights &lt;- flights |&gt;
-  filter(dest == "PHX")
-View(phoenix_flights)
-      </input>
-    </program>
+    TODO: A box here which is a descriptive box or something (see that book of the person who 
+    gave the really nice comment) and outline in this box the approach to filter.
 
     <p>
       Note the order of the code. First, take the <c>flights</c> data frame
@@ -445,7 +282,7 @@ View(many_airports)
 
   <!-- ============================================================ -->
   <section xml:id="sec-summarize">
-    <title><c>summarize</c> variables</title>
+    <title><c>Summarise</c> variables</title>
 
     <p>
       The next common task when working with data frames is to compute
@@ -464,8 +301,8 @@ View(many_airports)
       the <c>weather</c> data frame: the mean and standard deviation (recall from
       <xref ref="sec-nycflights"/> that the <c>weather</c> data frame is included in
       the <c>nycflights23</c> package). To compute these summary statistics, we need
-      the <c>mean()</c> and <c>sd()</c> <em>summary functions</em> in R. Summary
-      functions in R take in many values and return a single value, as shown in
+      the <c>mean</c> and <c>sd</c> <em>summary functions</em> in R-Instat. Summary
+      functions in R-Instat take in many values and return a single value, as shown in
       <xref ref="fig-summary-function"/>.
     </p>
 
@@ -479,14 +316,13 @@ View(many_airports)
     </figure>
 
     <p>
-      More precisely, we'll use the <c>mean()</c> and <c>sd()</c> summary functions
-      within the <c>summarize()</c>
-      <idx><h>R packages</h><h>dplyr</h><h>summarize()</h></idx> function from the
-      <c>dplyr</c> package. Note you can also use the British English spelling of
-      <c>summarise()</c>. As shown in <xref ref="fig-sum1"/>, the
+      More precisely, we'll use the <c>mean</c> and <c>sd</c> summaries.
+      As shown in <xref ref="fig-sum1"/>, the
       <c>summarize()</c> function takes in a data frame and returns a data frame with
       only one row corresponding to the summary statistics.
     </p>
+
+    TODO: box here outlining how to do this (Describe One Variable Summmarise to get general summaries, and then specific summaries.)
 
     <figure xml:id="fig-sum1">
       <caption>Diagram of <c>summarize()</c> rows.</caption>
@@ -521,7 +357,7 @@ summary_windspeed
     </console>
 
     <p>
-      Why are the values returned <c>NA</c>? <c>NA</c> is how R encodes
+      Why are the values returned <c>NA</c>? <c>NA</c> is how R-Instat encodes
       <em>missing values</em> <idx><h>missing values</h></idx> where <c>NA</c>
       indicates <q>not available</q> or <q>not applicable.</q> If a value for a
       particular row and a particular column does not exist, <c>NA</c> is stored
@@ -535,10 +371,12 @@ summary_windspeed
       Going back to our <c>summary_windspeed</c> output, by default any time you try
       to calculate a summary statistic of a variable that has one or more <c>NA</c>
       missing values in R, <c>NA</c> is returned. To work around this fact, you can
-      set the <c>na.rm</c> argument to <c>TRUE</c>, where <c>rm</c> is short for
-      <q>remove</q>; this will ignore any <c>NA</c> missing values and only return
+      simply select the option in the dialog to ignore NA values. This will only return
       the summary value for all non-missing values.
     </p>
+
+    TODO: what is the option -- outline how to do this.
+
     <p>
       The code that follows computes the mean and standard deviation of all
       non-missing values of <c>wind_speed</c>:
@@ -563,43 +401,39 @@ summary_windspeed
     </console>
 
     <p>
-      Notice how the <c>na.rm = TRUE</c>
-      <idx><h>functions</h><h>na.rm argument</h></idx> are used as arguments to the
-      <c>mean()</c> <idx><h>mean()</h></idx> and <c>sd()</c> <idx><h>sd()</h></idx>
-      summary functions individually, and not to the <c>summarize()</c> function.
-    </p>
-    <p>
       However, one needs to be cautious whenever ignoring missing values as we've
       just done. In the upcoming <em>Learning checks</em> questions, we'll consider
       the possible ramifications of blindly sweeping rows with missing values
-      <q>under the rug.</q> This is in fact why the <c>na.rm</c> argument to any
-      summary statistic function in R is set to <c>FALSE</c> by default. In other
-      words, R does not ignore rows with missing values by default. R is alerting you
+      <q>under the rug.</q> This is in fact why we do not ignore rows with missing
+      values by default in R-Instat. R-Instat is alerting you
       to the presence of missing data and you should be mindful of this missingness
       and any potential causes of this missingness throughout your analysis.
     </p>
     <p>
-      What are other summary functions we can use inside the <c>summarize()</c> verb
-      to compute summary statistics? As seen in the diagram in
-      <xref ref="fig-summary-function"/>, you can use any function in R that takes
-      many values and returns just one. Here are just a few:
+      What are other summary functions we can use
+      to compute summary statistics? As seen in the sub-dialog in R-Instat and in the
+      diagram in <xref ref="fig-summary-function"/> we can take many values and
+      return just one. Here are just a few:
     </p>
     <p>
       <ul>
-        <li><p><c>mean()</c>: the average</p></li>
-        <li><p><c>sd()</c>: the standard deviation, which is a measure of
+        <li><p><c>mean</c>: the average</p></li>
+        <li><p><c>sd</c>: the standard deviation, which is a measure of
         spread</p></li>
-        <li><p><c>min()</c> and <c>max()</c>: the minimum and maximum values,
+        <li><p><c>min</c> and <c>max()</c>: the minimum and maximum values,
         respectively</p></li>
-        <li><p><c>IQR()</c>: interquartile range</p></li>
-        <li><p><c>sum()</c>: the total amount when adding multiple
+        <li><p><c>IQR</c>: interquartile range</p></li>
+        <li><p><c>sum</c>: the total amount when adding multiple
         numbers</p></li>
-        <li><p><c>n()</c>: a count of the number of rows in each group. This
+        <li><p><c>n</c>: a count of the number of rows in each group. This
         particular summary function will make more sense when <c>group_by()</c> is
         covered in <xref ref="sec-groupby"/>.</p></li>
       </ul>
     </p>
 
+    TODO: Screenshot of the summaries sdg of different options.
+
+    <exercises>
     <exercise xml:id="lc3-2">
       <title>Learning Check 3.2</title>
       <statement>
@@ -617,43 +451,23 @@ summary_windspeed
       <title>Learning Check 3.3</title>
       <statement>
         <p>
-          Modify the earlier <c>summarize()</c> function code that creates the
-          <c>summary_windspeed</c> data frame to also use the <c>n()</c> summary
-          function: <c>summarize(... , count = n())</c>. What does the returned value
-          correspond to?
+          Modify the earlier summary that creates to also use the "total" summary
+          function. What does the returned value correspond to?
         </p>
       </statement>
     </exercise>
-
-    <exercise xml:id="lc3-4">
-      <title>Learning Check 3.4</title>
-      <statement>
-        <p>
-          Why doesn't the following code work? Run the code line-by-line instead of
-          all at once, and then look at the data. In other words, select and then run
-          <c>summary_windspeed &lt;- weather |&gt; summarize(mean = mean(wind_speed,
-          na.rm = TRUE))</c> first.
-        </p>
-        <program language="r">
-          <input>
-summary_windspeed &lt;- weather |&gt;
-  summarize(mean = mean(wind_speed, na.rm = TRUE)) |&gt;
-  summarize(std_dev = sd(wind_speed, na.rm = TRUE))
-          </input>
-        </program>
-      </statement>
-    </exercise>
+  </exercises>
   </section>
 
 
   <!-- ============================================================ -->
   <section xml:id="sec-groupby">
-    <title><c>group_by</c> rows</title>
+    <title><c>Grouping by</c> rows</title>
 
     <figure xml:id="fig-groupsummarize">
-      <caption>Diagram of <c>group_by()</c> and <c>summarize()</c>.</caption>
+      <caption>Diagram of <c>grouping by</c> and <c>summarising</c>.</caption>
       <image source="images/cheatsheets/group_summary.png" width="90%">
-        <description>Diagram showing how group_by() assigns rows into groups based
+        <description>Diagram showing how grouping by assigns rows into groups based
         on a categorical variable, and then summarize() computes summary statistics
         separately for each group, returning one row per group.</description>
       </image>
