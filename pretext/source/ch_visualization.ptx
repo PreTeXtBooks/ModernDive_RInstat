@@ -1505,6 +1505,7 @@ Place your "fruits" column into the "Single Variable" receiver as shown in <xref
 <li>Press Return</li>
 <li>Press "OK"</li>
 </ul>
+      </p>
 
       <figure xml:id="barchart-dlg-4">
         <caption>The Summarised Fruits Data Frame</caption>
