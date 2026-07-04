@@ -1059,11 +1059,11 @@ individually.
       this histogram by the 12 possible months in a given year. In other words, we would
       plot histograms of <c>wind_speed</c> for each <c>month</c> separately. We do this
       by clicking the "Facet" option on the dialog, which adds a new layer into our plot.
-      This is done in <>. But we see an issue first! We cannot see "month" as an option to facet by.
+      This is done in <xref ref = "facet-1"/>. But we see an issue first! We cannot see "month" as an option to facet by.
       This is simply because "month" is not a factor in our data set. We can easily fix this by closing the
-      dialog, and right clicking on the "month" variable on the Data View.
+      dialog, and right clicking on the "month" variable on the Data View (<xref ref = "facet-2"/>)
       Here, we can convert the month to a factor variable.
-      If we reopen our histogram dialog, we can now see the option to facet by month.
+      If we reopen our histogram dialog, we can now see the option to facet by month (<xref ref = "facet-3"/>).
     </p>
 
       <figure xml:id="facet-1">
