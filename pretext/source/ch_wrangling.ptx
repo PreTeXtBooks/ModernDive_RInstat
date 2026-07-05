@@ -392,18 +392,18 @@ dataset is never modified. You can remove or change the filter at any time.
         </figure>
 
         <p>
-            More precisely, we'll use the <alert>mean</alert> and <alert>sd</alert> summary
-            functions within the <alert>summarise</alert> dialog
+            More precisely, we'll look at the <alert>mean</alert> and <alert>sd</alert>
+            in the <alert>summarise</alert> dialog.
             As shown in <xref ref="fig-sum1"/>, the <alert>summarise</alert> function
             takes in a data frame and returns a data frame with only one row
             corresponding to the summary statistics.
         </p>
 
         <figure xml:id="fig-sum1">
-            <caption>Diagram of <alert>summarize</alert> rows.</caption>
-            <image source="images/cheatsheets/summarize1.png" width="80%">
+            <caption>Diagram of <alert>summarise</alert> rows.</caption>
+            <image source="images/cheatsheets/summarise1.png" width="80%">
                 <description>
-                    Diagram showing how the summarize() function collapses a
+                    Diagram showing how the summarise function collapses a
                     data frame with many rows into a single-row data frame
                     containing the computed summary statistics.
                 </description>
@@ -413,25 +413,36 @@ dataset is never modified. You can remove or change the filter at any time.
         <p>
             We'll save the results in a new data frame called
             <alert>summary_windspeed</alert> that will have two columns/variables: the
-            <alert>mean</alert> and the <alert>std_dev</alert>:
+            <alert>mean</alert> and the <alert>sd</alert>:
         </p>
 
-        <program language="r">
-            <input>
-summary_windspeed &lt;- weather |&gt;
-  summarize(mean = mean(wind_speed), std_dev = sd(wind_speed))
-summary_windspeed
-            </input>
-        </program>
+        <assemblage xml:id="howto-filter-rows">
+          <title>How to Summarise Data in R-Instat</title>
+        <p>
+          Go to <alert>Describe &gt; One Variable &gt; Summarise</alert>
+          Click "Customised" tab
+          Then input wind_speed into receiver
+          Uncheck checkd options, check "mean" and "sd"
+          We can get it in the output window, or as a new data frame. 
+          click Store Table, name it summary_windspeed, press OK.
+        </p>
+          
+        <figure xml:id="fig-one-var-summarise-dlg">
+            <caption>
+                TODO
+            </caption>
+            <image source="images/TODO.png" width="90%">
+            </image>
+        </figure>
+      </assemblage>
 
-        <console prompt="> ">
-            <output>
-# A tibble: 1 × 2
-   mean std_dev
-  &lt;dbl&gt;   &lt;dbl&gt;
-1    NA      NA
-            </output>
-        </console>
+        <figure xml:id="fig-summarise-table">
+            <caption>
+                Summary table output showing the mean and standard deviation.
+            </caption>
+            <image source="images/summary-table-output.png" width="90%">
+            </image>
+        </figure>
 
         <p>
             Why are the values returned <alert>NA</alert>?
@@ -461,34 +472,9 @@ summary_windspeed
         </p>
 
         <p>
-            The code that follows computes the mean and standard deviation of
-            all non-missing values of <alert>wind_speed</alert>:
-        </p>
-
-        <program language="r">
-            <input>
-summary_windspeed &lt;- weather |&gt;
-  summarize(mean = mean(wind_speed, na.rm = TRUE),
-            std_dev = sd(wind_speed, na.rm = TRUE))
-summary_windspeed
-            </input>
-        </program>
-
-        <console prompt="> ">
-            <output>
-# A tibble: 1 × 2
-   mean std_dev
-  &lt;dbl&gt;   &lt;dbl&gt;
-1  9.43    5.27
-            </output>
-        </console>
-
-        <p>
-            Notice how the <alert>na.rm = TRUE</alert>
-            <idx><h>functions</h><h>na.rm argument</h></idx> are used as
-            arguments to the <alert>mean</alert> <idx><h>mean()</h></idx> and
-            <alert>sd</alert> <idx><h>sd()</h></idx> summary functions individually,
-            and not to the <alert>summarize</alert> function.
+            Reopen the dialog, and this time check "Omit Missing Values". This then
+            computes the mean and standard deviation of all non-missing values of
+            <alert>wind_speed</alert>:
         </p>
 
         <p>
@@ -507,7 +493,7 @@ summary_windspeed
         </p>
 
         <p>
-            What are other summary functions we can use inside the
+            What are other summaries we can use inside the
             <alert>summarize</alert> verb to compute summary statistics?
             As seen in the diagram in <xref ref="fig-summary-function"/>, you
             can use any function in R that takes many values and returns just
@@ -552,15 +538,16 @@ summary_windspeed
 
                 <li>
                     <p>
-                        <alert>n</alert>: a count of the number of rows in each group.
+                        <alert>N total</alert>: a count of the number of rows in each group.
                         This particular summary function will make more sense
-                        when <alert>group_by</alert> is covered in
+                        when <alert>grouping</alert> is covered in
                         <xref ref="sec-groupby"/>.
                     </p>
                 </li>
             </ul>
         </p>
 
+      <exercises>
         <exercise xml:id="lc3-2">
             <title>Learning Check 3.2</title>
 
@@ -582,52 +569,28 @@ summary_windspeed
 
             <statement>
                 <p>
-                    Modify the earlier <alert>summarize</alert> function code that
+                    Modify the earlier <alert>summarise</alert> approach that
                     creates the <alert>summary_windspeed</alert> data frame to also use
-                    the <alert>n</alert> summary function:
-                    <alert>summarize(... , count = n())</alert>.
+                    the <alert>n total</alert> option.
                     What does the returned value correspond to?
                 </p>
             </statement>
         </exercise>
-
-        <exercise xml:id="lc3-4">
-            <title>Learning Check 3.4</title>
-
-            <statement>
-                <p>
-                    Why doesn't the following code work?
-                    Run the code line-by-line instead of all at once, and then
-                    look at the data.
-                    In other words, select and then run
-                    <alert>summary_windspeed &lt;- weather |&gt; summarize(mean = mean(wind_speed,
-          na.rm = TRUE))</alert>
-                    first.
-                </p>
-
-                <program language="r">
-                    <input>
-summary_windspeed &lt;- weather |&gt;
-  summarize(mean = mean(wind_speed, na.rm = TRUE)) |&gt;
-  summarize(std_dev = sd(wind_speed, na.rm = TRUE))
-                    </input>
-                </program>
-            </statement>
-        </exercise>
+      </exercises>
     </section>
     <!-- ============================================================ -->
     <section xml:id="sec-groupby">
-        <title><alert>group_by</alert> rows</title>
+        <title><alert>Grouping by</alert> rows</title>
 
         <figure xml:id="fig-groupsummarize">
             <caption>
-                Diagram of <alert>group_by</alert> and <alert>summarize</alert>.
+                Diagram of <alert>grouping</alert> and <alert>summarising</alert>.
             </caption>
 
             <image source="images/cheatsheets/group_summary.png" width="90%">
                 <description>
-                    Diagram showing how group_by() assigns rows into groups
-                    based on a categorical variable, and then summarize()
+                    Diagram showing how grouping assigns rows into groups
+                    based on a categorical variable, and then summarising
                     computes summary statistics separately for each group,
                     returning one row per group.
                 </description>
@@ -635,28 +598,10 @@ summary_windspeed &lt;- weather |&gt;
         </figure>
 
         <p>
-            We can modify our code above to look at the average wind speed and
-            its spread, keeping the <alert>na.rm = TRUE</alert> set just in case any
-            missing values are stored in the column:
+            We can modify our approach above to look at the average wind speed and
+            its spread, keeping the option to remove missing values just in case any
+            missing values are stored in the column.
         </p>
-
-        <program language="r">
-            <input>
-summary_temp &lt;- weather |&gt;
-  summarize(mean = mean(wind_speed, na.rm = TRUE),
-            std_dev = sd(wind_speed, na.rm = TRUE))
-summary_temp
-            </input>
-        </program>
-
-        <console prompt="> ">
-            <output>
-# A tibble: 1 × 2
-   mean std_dev
-  &lt;dbl&gt;   &lt;dbl&gt;
-1  9.43    5.27
-            </output>
-        </console>
 
         <p>
             Say instead of a single mean wind speed for the whole year, we would
@@ -669,40 +614,91 @@ summary_temp
             variable <alert>month</alert>:
         </p>
 
-        <program language="r">
-            <input>
-summary_monthly_windspeed &lt;- weather |&gt;
-  group_by(month) |&gt;
-  summarize(mean = mean(wind_speed, na.rm = TRUE),
-            std_dev = sd(wind_speed, na.rm = TRUE))
-summary_monthly_windspeed
-            </input>
-        </program>
-
-        <console prompt="> ">
-            <output>
-# A tibble: 12 × 3
-   month  mean std_dev
-   &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt;
- 1     1 10.3     6.01
- 2     2 10.9     6.60
- 3     3 12.4     6.36
- 4     4 10.0     5.02
- 5     5  8.88    4.45
- 6     6  8.52    4.42
- 7     7  7.96    4.36
- 8     8  8.83    4.34
- 9     9  8.92    4.66
-10    10  8.21    4.71
-11    11  9.48    4.81
-12    12  8.77    5.03
-            </output>
-        </console>
+      <assemblage xml:id="howto-filter-rows">
+          <title>How to Group and Summarise Data in R-Instat</title>
+        <p>
+          Set month as a factor
+          Go to <alert>Describe &gt; Two/Three Variables &gt; Summarise</alert>
+          Stay on "Two Variables" tab
+          Then input month into multiple (top) receiver
+          Then input wind_speed into second, single, receiver.
+          Check Omit Missing Values
+          Check Store TAble, and save as summary_temp
+          Open sdg (Click "Choose Summaries...").
+          Uncheck checkd options, check "mean" and "sd", click return, adn then OK
+        </p>
+          
+        <figure xml:id="fig-two-var-summarise-dlg">
+            <caption>
+                TODO
+            </caption>
+            <image source="images/TODO.png" width="90%">
+            </image>
+        </figure>
+      </assemblage>
 
         <p>
-            This code is identical to the previous code that created
-            <alert>summary_windspeed</alert>, but with an extra <alert>group_by(month)</alert>
-            added before the <alert>summarize</alert>.
+            We look at another dialog to achieve this, which instead returns a new
+            data frame instead of summary table:
+        </p>
+        
+        <assemblage xml:id="assemblage-howto-column-summaries">
+          <title>How to Create Column Summaries in R-Instat</title>
+          <p>
+            Go to 
+            <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert> and
+            input <alert>wind_speed</alert> as the variable to summarise.
+            Click on "Summaries" and uncheck the selected default options. Check
+            "mean" and "sd" instead to get the mean and standard deviation
+            Click return
+            Check "Omit Missing Values" on main dialog
+            Press OK
+          </p>
+
+          <figure>
+            <caption>
+                dialog screenshot of column summaries
+            </caption>
+            <image source="images/column-summaries-summarise-dlg.png" width="90%">
+            </image>
+        </figure>
+            
+        </assemblage>
+
+        <assemblage xml:id="assemblage-howto-column-summaries-group-by">
+          <title>How to Create Column Summaries with "Group by" in R-Instat</title>
+          <p>
+            Go to 
+            <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert> and
+            input <alert>wind_speed</alert> as the variable to summarise.
+            Input <alert>month</alert> into "Summarise By"
+            Click on "Summaries" and uncheck the selected default options. Check
+            "mean" and "sd" instead to get the mean and standard deviation
+            Click return
+            Check "Omit Missing Values" on main dialog
+            Press OK
+          </p>
+
+          <figure>
+            <caption>
+                dialog screenshot of column summaries with a group by
+            </caption>
+            <image source="images/column-summaries-group-by-dlg.png" width="90%">
+            </image>
+        </figure>
+        </assemblage>
+
+        <figure>
+            <caption>
+                screenshot of new data frame output from column summaries
+            </caption>
+            <image source="images/column-summaries-output-dlg.png" width="90%">
+            </image>
+        </figure>
+                    
+        <p>
+            These two approaches are similar, but when grouping by we have
+            an extra receiver filled.
             Grouping the <alert>weather</alert> dataset by <alert>month</alert> and then
             applying the <alert>summarize</alert> functions yields a data frame that
             displays the mean and standard deviation wind speed split by the 12
@@ -710,187 +706,44 @@ summary_monthly_windspeed
         </p>
 
         <p>
-            It is important to note that the
-            <idx><h>R packages</h><h>dplyr</h><h>group_by()</h></idx>
-            <alert>group_by</alert> function doesn't change data frames by itself.
-            Rather it changes the <em>meta-data</em>
-            <idx><h>meta-data</h></idx>, or data about the data, specifically
-            the grouping structure.
-            Only after applying the <alert>summarize</alert> function does the data
-            frame change.
-        </p>
-
-        <p>
-            As another example, consider the
-            <idx><h>R packages</h><h>ggplot2</h><h>diamonds</h></idx>
-            <alert>diamonds</alert> data frame included in the <alert>ggplot2</alert> package:
-        </p>
-
-        <program language="r">
-            <input>
-diamonds
-            </input>
-        </program>
-
-        <console prompt="> ">
-            <output>
-# A tibble: 53,940 × 10
-   carat cut       color clarity depth table price     x     y     z
-   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
- 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
- 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
- 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
- 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
- 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
- 7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
- 8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
- 9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
-10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
-# ℹ 53,930 more rows
-            </output>
-        </console>
-
-        <p>
-            Observe that the first line of the output reads
-            <alert># A tibble: 53940 x 10</alert>.
-            This is an example of meta-data, in this case the number of
-            observations/rows and variables/columns in <alert>diamonds</alert>.
-            The actual data itself are the subsequent table of values.
-            Now let's pipe the <alert>diamonds</alert> data frame into
-            <alert>group_by(cut)</alert>:
-        </p>
-
-        <program language="r">
-            <input>
-diamonds |&gt;
-  group_by(cut)
-            </input>
-        </program>
-
-        <console prompt="> ">
-            <output>
-# A tibble: 53,940 × 10
-# Groups:   cut [5]
-   carat cut       color clarity depth table price     x     y     z
-   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
- 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
- 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
- 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
- 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
- 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
- 7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
- 8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
- 9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
-10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
-# ℹ 53,930 more rows
-            </output>
-        </console>
-
-        <p>
-            Observe that now there is additional meta-data:
-            <alert># Groups: cut [5]</alert> indicating that the grouping structure
-            meta-data has been set based on the 5 possible levels of the
-            categorical variable <alert>cut</alert>: <alert>"Fair"</alert>, <alert>"Good"</alert>,
-            <alert>"Very Good"</alert>, <alert>"Premium"</alert>, and <alert>"Ideal"</alert>.
-            On the other hand, observe that the data has not changed: it is
-            still a table of <m>53940 	imes 10</m> values.
-            Only by combining a <alert>group_by</alert> with another data-wrangling
-            operation, in this case <alert>summarize</alert>, will the data actually
-            be transformed.
-        </p>
-
-        <program language="r">
-            <input>
-diamonds |&gt;
-  group_by(cut) |&gt;
-  summarize(avg_price = mean(price))
-            </input>
-        </program>
-
-        <console prompt="> ">
-            <output>
-# A tibble: 5 × 2
-  cut       avg_price
-  &lt;ord&gt;         &lt;dbl&gt;
-1 Fair          4359.
-2 Good          3929.
-3 Very Good     3982.
-4 Premium       4584.
-5 Ideal         3458.
-            </output>
-        </console>
-
-        <p>
-            If you would like to remove this grouping structure meta-data, we
-            can pipe the resulting data frame into the
-            <idx><h>R packages</h><h>dplyr</h><h>ungroup()</h></idx>
-            <alert>ungroup</alert> function:
-        </p>
-
-        <program language="r">
-            <input>
-diamonds |&gt;
-  group_by(cut) |&gt;
-  ungroup()
-            </input>
-        </program>
-
-        <console prompt="> ">
-            <output>
-# A tibble: 53,940 × 10
-   carat cut       color clarity depth table price     x     y     z
-   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
- 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
- 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
- 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
- 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
- 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
- 7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
- 8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
- 9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
-10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39
-# ℹ 53,930 more rows
-            </output>
-        </console>
-
-        <p>
-            Observe how the <alert># Groups: cut [5]</alert> meta-data is no longer
-            present.
-        </p>
-
-        <p>
-            Let's now revisit the <alert>n</alert>
-            <idx><h>R packages</h><h>dplyr</h><h>n()</h></idx> counting summary
-            function we briefly introduced previously.
-            Recall that the <alert>n</alert> function counts rows.
-            This is opposed to the <alert>sum</alert> summary function that returns
+            Let's now revisit the <alert>n total</alert>
+            counting summary option we briefly introduced previously.
+            Recall that <alert>n total</alert> counts rows.
+            This is opposed to the <alert>sum</alert> summary that returns
             the sum of a numerical variable.
             For example, suppose we'd like to count how many flights departed
             each of the three airports in New York City:
         </p>
 
-        <program language="r">
-            <input>
-by_origin &lt;- flights |&gt;
-  group_by(origin) |&gt;
-  summarize(count = n())
-by_origin
-            </input>
-        </program>
+        <assemblage xml:id="assemblage-howto-count-with-group-by">
+          <title>How to Create Column Summaries with "Group by" in R-Instat</title>
+          <p>
+            Go to 
+            <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert> and
+            input <alert>origin</alert> as the variable to summarise.
+            Input <alert>origin</alert> into "Summarise By" as well.
+            Click on "Summaries" and uncheck the selected default options. Check
+            "N Total" instead to get the count of rows
+            Click return
+            Press OK
+          </p>
 
-        <console prompt="> ">
-            <output>
-# A tibble: 3 × 2
-  origin  count
-  &lt;chr&gt;   &lt;int&gt;
-1 EWR    138578
-2 JFK    133048
-3 LGA    163726
-            </output>
-        </console>
+          <figure>
+            <caption>
+                dialog screenshot of column summaries with a group by
+            </caption>
+            <image source="images/column-summaries-dlg-1.png" width="90%">
+            </image>
+        </figure>
+        </assemblage>
+
+        <figure>
+            <caption>
+                dialog screenshot of column summaries output
+            </caption>
+            <image source="images/column-summaries-output-1.png" width="90%">
+            </image>
+        </figure>
 
         <p>
             We see that LaGuardia ( <alert>"LGA"</alert> ) had the most flights
@@ -910,142 +763,32 @@ by_origin
                 Say you want to know the number of flights leaving each of the
                 three New York City airports <em>for
         each month</em>.
-                We can also group by a second variable <alert>month</alert> using
-                <alert>group_by(origin, month)</alert>:
+                We can also group by a second variable <alert>month</alert> by putting
+                <alert>origin</alert> and <alert>month</alert> in the "Summarise By" field
+                (<xref ref = "fig-dlg-column-summaries-2"/>).
             </p>
 
-            <program language="r">
-                <input>
-by_origin_monthly &lt;- flights |&gt;
-  group_by(origin, month) |&gt;
-  summarize(count = n())
-                </input>
-            </program>
+          <figure xml:id = "fig-dlg-column-summaries-2">
+            <caption>
+                dialog screenshot of column summaries with two grouping variables (month and origin)
+            </caption>
+            <image source="images/column-summaries-dlg-2.png" width="90%">
+            </image>
+        </figure>
+        </assemblage>
 
-            <console prompt="> ">
-                <output>
-`summarise()` has grouped output by 'origin'. You can override using the
-`.groups` argument.
-                </output>
-            </console>
-
-            <p>
-                Note that an additional message appears here specifying the
-                grouping done.
-                The <alert>.groups</alert> argument to <alert>summarize</alert> has four
-                options: <alert>drop_last</alert>, <alert>drop</alert>, <alert>keep</alert>, and
-                <alert>rowwise</alert>:
-            </p>
-
-            <p>
-                <ul>
-                    <li>
-                        <p>
-                            <alert>drop_last</alert> drops the last grouping variable,
-                        </p>
-                    </li>
-
-                    <li>
-                        <p>
-                            <alert>drop</alert> drops all grouping variables,
-                        </p>
-                    </li>
-
-                    <li>
-                        <p>
-                            <alert>keep</alert> keeps all grouping variables, and
-                        </p>
-                    </li>
-
-                    <li>
-                        <p>
-                            <alert>rowwise</alert> turns each row into a group.
-                        </p>
-                    </li>
-                </ul>
-            </p>
-
-            <p>
-                In most circumstances, the default is <alert>drop_last</alert> which
-                drops the last grouping variable.
-                The message is informing us that the default behavior is to drop
-                the last grouping variable, which in this case is <alert>month</alert>.
-            </p>
-
-            <program language="r">
-                <input>
-by_origin_monthly
-                </input>
-            </program>
-
-            <console prompt="> ">
-                <output>
-# A tibble: 36 × 3
-# Groups:   origin [3]
-   origin month count
-   &lt;chr&gt;  &lt;int&gt; &lt;int&gt;
- 1 EWR        1 11623
- 2 EWR        2 10991
- 3 EWR        3 12593
- 4 EWR        4 12022
- 5 EWR        5 12371
- 6 EWR        6 11339
- 7 EWR        7 11646
- 8 EWR        8 11561
- 9 EWR        9 11373
-10 EWR       10 11805
-# ℹ 26 more rows
-                </output>
-            </console>
+        <figure>
+            <caption>
+                dialog screenshot of column summaries output when grouping by two variables (month and origin).
+            </caption>
+            <image source="images/column-summaries-output-2.png" width="90%">
+            </image>
+        </figure>
 
             <p>
                 Observe that there are 36 rows to <alert>by_origin_monthly</alert>
                 because there are 12 months for 3 airports ( <alert>EWR</alert>,
                 <alert>JFK</alert>, and <alert>LGA</alert> ).
-                Why do we <alert>group_by(origin, month)</alert> and not
-                <alert>group_by(origin)</alert> and then <alert>group_by(month)</alert>?
-                Let's investigate:
-            </p>
-
-            <program language="r">
-                <input>
-by_origin_monthly_incorrect &lt;- flights |&gt;
-  group_by(origin) |&gt;
-  group_by(month) |&gt;
-  summarize(count = n())
-by_origin_monthly_incorrect
-                </input>
-            </program>
-
-            <console prompt="> ">
-                <output>
-# A tibble: 12 × 2
-   month count
-   &lt;int&gt; &lt;int&gt;
- 1     1 36020
- 2     2 34761
- 3     3 39514
- 4     4 37476
- 5     5 38710
- 6     6 35921
- 7     7 36211
- 8     8 36765
- 9     9 35505
-10    10 36586
-11    11 34521
-12    12 33362
-                </output>
-            </console>
-
-            <p>
-                What happened here is that the second <alert>group_by(month)</alert>
-                overwrote the grouping structure meta-data of the earlier
-                <alert>group_by(origin)</alert>, so that in the end we are only grouping
-                by <alert>month</alert>.
-                The lesson here is if you want to <alert>group_by</alert> two or more
-                variables, you should include all the variables at the same time
-                in the same <alert>group_by</alert> adding a comma between the
-                variable names.
             </p>
 
             <exercise xml:id="lc3-5">
@@ -1078,10 +821,9 @@ by_origin_monthly_incorrect
 
                 <statement>
                     <p>
-                        Recreate <alert>by_monthly_origin</alert>, but instead of
-                        grouping via <alert>group_by(origin, month)</alert>, group
+                        Recreate <xref ref = "fig-dlg-column-summaries-2"/>, but instead of
+                        grouping via <alert>origin</alert> then <alert>month</alert>, group
                         variables in a different order
-                        <alert>group_by(month, origin)</alert>.
                         What differs in the resulting dataset?
                     </p>
                 </statement>
@@ -1112,13 +854,13 @@ by_origin_monthly_incorrect
     </section>
     <!-- ============================================================ -->
     <section xml:id="sec-mutate">
-        <title><alert>mutate</alert> existing variables</title>
+        <title><alert>Adding ("mutate")</alert> existing variables</title>
 
         <figure xml:id="fig-mutatevars">
             <caption>Diagram of <alert>mutate</alert> columns.</caption>
             <image source="images/cheatsheets/mutate.png" width="40%">
                 <description>
-                    Diagram showing how the mutate() function adds new columns
+                    Diagram showing how mutate adds new columns
                     to a data frame by computing them from existing columns,
                     returning the original data frame with one or more new
                     variables appended.
@@ -1137,37 +879,55 @@ by_origin_monthly_incorrect
             to <m>{}^{\circ}\text{C}</m> is
         </p>
         <me>
-            \text{temp in C} = \frac{\text{temp in F} - 32}{1.8}
+            \text{temp in C} = \frac{\text{temp in F} - 32}
         </me>
 
         <p>
-            We can apply this formula to the <alert>temp</alert> variable using the
-            <alert>mutate</alert>
-            <idx><h>R packages</h><h>dplyr</h><h>mutate()</h></idx> function
-            from the <alert>dplyr</alert> package, which takes existing variables and
-            mutates them to create new ones.
+            We can apply this formula to the <alert>temp</alert> variable using
+            <alert>mutate</alert>, which takes existing variables and
+            <alert>mutates</alert> them to create new ones.
         </p>
 
-        <program language="r">
-            <input>
-weather &lt;- weather |&gt;
-  mutate(temp_in_C = (temp - 32) / 1.8)
-            </input>
-        </program>
+        <assemblage xml:id="howto-mutate-variables">
+          <title>How to Mutate Variables in R-Instat</title>
+
+          outline -- "Prepare > Calculator"
+          Calculator dialog appears
+          Expression: (temp - 32) / 1.8
+          Click "Try" to check it works (e.g., no typos)
+          Click "store result" and input new name: temp_in_C. Click "Position" to decide the position where you can say for it to be "After" temp.
+          that's the position of the new temp_in_C variable in your df.
+          <figure>
+            <caption>Screenshot of <alert>Calculation</alert> dialog.</caption>
+            <image source="images/calculator-dlg-1.png" width="40%">
+                <description>
+                    Screenshot of the Calculation dialog where the expression is entered.
+                </description>
+            </image>
+        </figure>
+        <figure>
+            <caption>Screenshot of <alert>Column Position</alert> sub-dialog.</caption>
+            <image source="images/column-position-1.png" width="40%">
+                <description>
+                    Screenshot of the Column Position sub-dialog where the position of the
+                    new variable is specified.
+                    There are four options at the top: Start, End, Before, and After. If "Start" 
+                    is checked, then the new column will go in the start of the data frame. Similarly,
+                    if "End" is checked, then the new column will go at the end of the data frame.
+                    If "Before" or "After" is checked, then a selector and receiver come up where you
+                    specify the column relative to which the new column will be placed.
+                </description>
+            </image>
+        </figure>
+        </assemblage>
 
         <p>
-            In this code, we <alert>mutate</alert> the <alert>weather</alert> data frame by
-            creating a new variable <alert>temp_in_C = (temp - 32) / 1.8</alert>, and
-            then we <em>overwrite</em> the original <alert>weather</alert> data frame.
-            Why did we overwrite the data frame <alert>weather</alert>, instead of
-            assigning the result to a new data frame like <alert>weather_new</alert>?
+            In this dialog, we <alert>mutate</alert> the <alert>weather</alert> data frame by
+            creating a new variable <alert>temp_in_C = (temp - 32) / 1.8</alert>.
         </p>
 
         <p>
-            As a rough rule of thumb, as long as you are not losing original
-            information that you might need later, it's acceptable practice to
-            overwrite existing data frames with updated ones, as we did here.
-            On the other hand, why did we not overwrite the variable
+            Why did we not overwrite the variable
             <alert>temp</alert>, but instead created a new variable called
             <alert>temp_in_C</alert>?
             Because if we did this, we would have erased the original
@@ -1176,41 +936,86 @@ weather &lt;- weather |&gt;
         </p>
 
         <p>
+          Let's now rename our <alert>temp</alert> variable to <alert>temp_in_F</alert>
+          to make it clear that this variable is in Fahrenheit.
+        </p>
+
+        <assemblage xml:id="howto-rename-variables">
+          <title>How to Rename Variables in R-Instat</title>
+<p>
+          Either: Right click on the variable you wish to rename, and click "Rename Column..." 
+          Or: Go to "Prepare > Data Frame > Rename Columns.."
+          Rename dialog appears
+          Stay on "Single"
+          In Current Name receiver -- put the variable temp that we want to rename
+          New Name: input in here your new name. we put temp_in_F
+          Column Label - this is for metadata/labelling purposes. Covered elsewhere.
+</p>
+          <figure>
+            <caption>Screenshot of <alert>Rename</alert> dialog.</caption>
+            <image source="images/rename-dlg-1.png" width="40%">
+                <description>
+                    Screenshot of the Rename dialog where the new variable name is entered.
+                    Option "Single" is selected on the top.
+                    Current Name: receiver that takes the variable temp that we want to rename
+                    New Name: input in here your new name. we put temp_in_F
+                </description>
+            </image>
+        </figure>
+        </assemblage>
+
+        <p>
             Let's now compute monthly average temperatures in both
             <m>{}^{\circ}\text{F}</m> and <m>{}^{\circ}\text{C}</m> using the
-            <alert>group_by</alert> and <alert>summarize</alert> code we saw in
+            <alert>grouping</alert> and <alert>summarising</alert> approach we saw in
             <xref ref="sec-groupby"/>:
         </p>
 
-        <program language="r">
-            <input>
-summary_monthly_temp &lt;- weather |&gt;
-  group_by(month) |&gt;
-  summarize(mean_temp_in_F = mean(temp, na.rm = TRUE),
-            mean_temp_in_C = mean(temp_in_C, na.rm = TRUE))
-summary_monthly_temp
-            </input>
-        </program>
+         <assemblage xml:id="howto-column-summaries-3">
+          <title>How to Summarise Columns in R-Instat</title>
+<p>
+          Go to Prepare &gt; Data Reshape &gt; Column Summaries
+                    Put <alert>temp_in_F</alert> and <alert>temp_in_C</alert> as Variables to Summarise
+                    Put <alert>month</alert> in Summarise By
+                    Summaries: -- click and select to get mean.
+                    Press Return
+                    Press OK
+</p>
+         <figure>
+            <caption>Screenshot of <alert>Column Summaries</alert> dialog.</caption>
+            <image source="images/column-summaries-dlg-3.png" width="40%">
+                <description>
+                    Screenshot of the Column Summaries dialog.
+                    temp_in_F and temp_in_C as Variables to Summarise
+                    month in Summarise By
+                    Store Results, Omit Missing Values checked.
+                </description>
+            </image>
+        </figure>
+        </assemblage>
 
-        <console prompt="> ">
-            <output>
-# A tibble: 12 × 3
-   month mean_temp_in_F mean_temp_in_C
-   &lt;int&gt;          &lt;dbl&gt;          &lt;dbl&gt;
- 1     1           42.8           6.02
- 2     2           40.3           4.62
- 3     3           43.9           6.61
- 4     4           56.0          13.3 
- 5     5           62.4          16.9 
- 6     6           69.6          20.9 
- 7     7           79.2          26.2 
- 8     8           75.3          24.1 
- 9     9           70.1          21.2 
-10    10           61.0          16.1 
-11    11           47.0           8.31
-12    12           43.9           6.62
-            </output>
-        </console>
+         <figure xml:id = "fig-combined-data">
+            <caption>Screenshot of <alert>Weather</alert> Summary Data Frame.</caption>
+            <image source="images/column-summaries-output-3.png" width="40%">
+                <description>
+                    Screenshot of the resulting data from the Column Summaries dialog.
+                    five columns, 12 rows - one row per month
+                    columns: month, mean_wind_speed, sd_wind_speed, mean_temp_in_F, mean_temp_in_C
+                </description>
+            </image>
+        </figure>
+
+        <p>
+            What's this? Our output data frame in <xref ref = "fig-combined-data"/> shows the monthly
+            summary statistics for the weather data. We only asked for the mean of the temp_in_C and 
+            temp_in_F columns, so why is sd_wind_speed and mean_wind_speed in there? This is simple!
+            They're in there because we created these in the previous chapter.
+            R-Instat has a feature with it's metadata where it will automatically include previously created variables in new summaries.
+            So we have previously summarised the weather data at the "month" level (each row = 1 month). 
+            R-Instat remembers this. 
+            Clever tool, because, multilevel data. R-Instat is making it easy for you.
+            So it stores it at that level.
+        </p>
 
         <p>
             Let's consider another example.
@@ -1218,15 +1023,31 @@ summary_monthly_temp
             aren't as annoyed if, in the end, pilots can make up some time
             during the flight.
             This is known in the airline industry as <em>gain</em>, and we will
-            create this variable using the <alert>mutate</alert> function:
+            create this variable using the <alert>calculator</alert> dialog:
         </p>
 
-        <program language="r">
-            <input>
-flights &lt;- flights |&gt;
-  mutate(gain = dep_delay - arr_delay)
-            </input>
-        </program>
+         <assemblage xml:id="howto-calculator-1">
+          <title>How to Create a New Variable in R-Instat</title>
+<p>
+          Go to Prepare &gt; Calculator
+                    In Expression, type
+                    <alert>dep_delay - arr_delay</alert>
+                    Try clicked with a preview of the new column values
+                    new column named "Gain"
+                    Press OK
+</p>
+         <figure>
+            <caption>Screenshot of <alert>Calculator</alert> dialog.</caption>
+            <image source="images/calculator-dlg-2.png" width="40%">
+                <description>
+                    Screenshot of the Calculator dialog.
+                    Expression: dep_delay - arr_delay
+                    Try clicked with a preview of the new column values
+                    new column named "Gain"
+                </description>
+            </image>
+        </figure>
+        </assemblage>
 
         <p>
             Let's take a look at only the <alert>dep_delay</alert>, <alert>arr_delay</alert>,
@@ -1293,29 +1114,31 @@ flights &lt;- flights |&gt;
         <p>
             Let's look at some summary statistics of the <alert>gain</alert> variable by
             considering multiple summary functions at once in the same
-            <alert>summarize</alert> code:
+            <alert>summarize</alert> option:
         </p>
 
-        <program language="r">
-            <input>
-gain_summary &lt;- flights |&gt;
-  summarize(
-    min = min(gain, na.rm = TRUE),
-    q1 = quantile(gain, 0.25, na.rm = TRUE),
-    median = quantile(gain, 0.5, na.rm = TRUE),
-    q3 = quantile(gain, 0.75, na.rm = TRUE),
-    max = max(gain, na.rm = TRUE),
-    mean = mean(gain, na.rm = TRUE),
-    sd = sd(gain, na.rm = TRUE),
-    missing = sum(is.na(gain))
-  )
-gain_summary
-            </input>
-        </program>
+         <assemblage xml:id="howto-summary-1">
+          <title>How to Summarise a Variable in R-Instat</title>
+<p>
+          Go to Describe &gt; One Variable &gt; Summarise
+          Select "Default" on top of the buttons
+          Input "gain" in "Variables to Summarise" receiver
+          Store summary checked, with new data frame name: summary_table
+</p>
+         <figure>
+            <caption>Screenshot of <alert>One Variable Summarise</alert> dialog.</caption>
+            <image source="images/describe-dlg-1.png" width="40%">
+                <description>
+                  Default selected on top of the buttons
+                  One variable in "Variables to Summarise" receiver
+                  Store summary checked, with new data frame name: summary_table
+                </description>
+            </image>
+        </figure>
+        </assemblage>
 
         <console prompt="> ">
             <output>
-# A tibble: 1 × 8
     min    q1 median    q3   max  mean    sd missing
   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;int&gt;
 1  -321     1     11    20   101  9.35  18.4   12534
@@ -1328,9 +1151,7 @@ gain_summary
             -321 minutes!
             However, this code would take some time to type out in practice.
             We'll see later on in <xref ref="model1EDA"/> that there is a much
-            more succinct way to compute a variety of common summary statistics
-            using the <alert>tidy_summary</alert> function from the <alert>moderndive</alert>
-            package.
+            more succinct way to compute a variety of common summary statistics.
         </p>
 
         <p>
@@ -1338,13 +1159,40 @@ gain_summary
             numerical variable, we can visualize its distribution using a
             histogram.
         </p>
+        
+        <assemblage xml:id="howto-histogram-5">
+          <title>How to Create a Histogram of the "Gain" Variable in R-Instat</title>
+            <p>
+          Go to Describe &gt; Graph &gt; Histogram
+          Select "Histogram" tab on top of the buttonsh
+          Input under "Single Variable" the variable "Gain"
+          Click the arrow by "Plot Options", and select "Histogram Option"
+          On sdg - click "Layer Parameters (Geom Parameters)". Check "bins" and put 20. Check "colour" and put "White"
+        </p>
+<figure xml:id="fig-histogram-dialogs">
+    <caption>Histogram dialog and Layer Parameters sub-dialog.</caption>
 
-        <program language="r">
-            <input>
-ggplot(data = flights, mapping = aes(x = gain)) +
-  geom_histogram(color = "white", bins = 20)
-            </input>
-        </program>
+    <sidebyside widths="45% 45%" margins="5%">
+        <figure>
+            <image source="images/histogram-dlg-5.png">
+                <description>
+                    Histogram tab with the variable <alert>Gain</alert> selected.
+                </description>
+            </image>
+        </figure>
+
+        <figure>
+            <image source="images/histogram-dlg-6.png">
+                <description>
+                    Layer Parameters (Geom Parameters) sub-dialog with
+                    <alert>bins</alert> set to 20 and
+                    <alert>colour</alert> set to White.
+                </description>
+            </image>
+        </figure>
+    </sidebyside>
+</figure>
+        </assemblage>
 
         <figure xml:id="fig-gain-hist">
             <caption>Histogram of gain variable.</caption>
@@ -1367,30 +1215,7 @@ ggplot(data = flights, mapping = aes(x = gain)) +
             0.
         </p>
 
-        <p>
-            To close out our discussion on the <alert>mutate</alert> function to
-            create new variables, note that we can create multiple new variables
-            at once in the same <alert>mutate</alert> code.
-            Furthermore, within the same <alert>mutate</alert> code we can refer to
-            new variables we just created.
-            As an example, consider the <alert>mutate</alert> code Hadley Wickham
-            <idx><h>Wickham, Hadley</h></idx> and Garrett Grolemund
-            <idx><h>Grolemund, Garrett</h></idx> show in
-            <em>R for Data Science</em> <xref ref="bib-rds2016"/>:
-        </p>
-
-        <program language="r">
-            <input>
-flights &lt;- flights |&gt;
-  mutate(
-    gain = dep_delay - arr_delay,
-    hours = air_time / 60,
-    gain_per_hour = gain / hours
-  )
-            </input>
-        </program>
-
-        <exercise xml:id="lc3-10">
+         <exercise xml:id="lc3-10">
             <title>Learning Check 3.10</title>
 
             <statement>
@@ -1411,7 +1236,7 @@ flights &lt;- flights |&gt;
                     Could we create the <alert>dep_delay</alert> and <alert>arr_delay</alert>
                     columns by simply subtracting <alert>dep_time</alert> from
                     <alert>sched_dep_time</alert> and similarly for arrivals?
-                    Try the code out and explain any differences between the
+                    Try this out and explain any differences between the
                     result and what actually appears in <alert>flights</alert>.
                 </p>
             </statement>
@@ -1434,9 +1259,10 @@ flights &lt;- flights |&gt;
         <title><alert>arrange</alert> and sort rows</title>
 
         <p>
+          TODO: Go from here!
             One of the most commonly performed data-wrangling tasks is to sort a
             data frame's rows in the alphanumeric order of one of the variables.
-            The <idx><h>R packages</h><h>dplyr</h><h>arrange()</h></idx>
+            The <idx><h>R packages</h><h>dplyr</h><h>arrange</h></idx>
             <alert>arrange</alert> function allows us to sort/reorder a data frame's
             rows according to the values of the specified variable.
         </p>
@@ -1451,7 +1277,7 @@ flights &lt;- flights |&gt;
             <input>
 freq_dest &lt;- flights |&gt;
   group_by(dest) |&gt;
-  summarize(num_flights = n())
+  summarize(num_flights = n)
 freq_dest
             </input>
         </program>
@@ -1515,7 +1341,7 @@ freq_dest |&gt;
             This is because <alert>arrange</alert> always returns rows sorted in
             ascending order by default.
             To switch the ordering to be in <q>descending</q> order instead, we
-            use the <idx><h>R packages</h><h>dplyr</h><h>desc()</h></idx>
+            use the <idx><h>R packages</h><h>dplyr</h><h>desc</h></idx>
             <alert>desc</alert> function as so:
         </p>
 
@@ -1623,7 +1449,7 @@ View(airlines)
                 key variable we want to join/merge/match the rows by has the
                 same name: <alert>carrier</alert>.
                 Let's use the
-                <idx><h>R packages</h><h>dplyr</h><h>inner_join()</h></idx>
+                <idx><h>R packages</h><h>dplyr</h><h>inner_join</h></idx>
                 <alert>inner_join</alert> function to join the two data frames, where
                 the rows will be matched by the variable <alert>carrier</alert>, and
                 then compare the resulting data frames:
@@ -1736,7 +1562,7 @@ View(flights_with_airport_names)
                 <input>
 named_dests &lt;- flights |&gt;
   group_by(dest) |&gt;
-  summarize(num_flights = n()) |&gt;
+  summarize(num_flights = n) |&gt;
   arrange(desc(num_flights)) |&gt;
   inner_join(airports, by = c("dest" = "faa")) |&gt;
   rename(airport_name = name)
@@ -1946,7 +1772,7 @@ View(joined_flights)
                 <caption>Diagram of <alert>select</alert> columns.</caption>
                 <image source="images/cheatsheets/select.png" width="70%">
                     <description>
-                        Diagram showing how the select() function keeps only the
+                        Diagram showing how the select function keeps only the
                         specified columns from a data frame, returning a new
                         data frame with only those variables.
                     </description>
@@ -1998,7 +1824,7 @@ $ gain_per_hour  &lt;dbl&gt; -0.3269755, 13.8888889, 4.1052632, 3.8888889, 12.75
             <p>
                 However, say you only need two of these variables, say
                 <alert>carrier</alert> and <alert>flight</alert>.
-                You can <idx><h>R packages</h><h>dplyr</h><h>select()</h></idx>
+                You can <idx><h>R packages</h><h>dplyr</h><h>select</h></idx>
                 <alert>select</alert> these two variables:
             </p>
 
@@ -2168,7 +1994,7 @@ flights |&gt; select(contains("time"))
             <program language="r">
                 <input>
 flights_reorder &lt;- flights |&gt;
-  select(year, month, day, hour, minute, time_hour, everything())
+  select(year, month, day, hour, minute, time_hour, everything)
 glimpse(flights_reorder)
                 </input>
             </program>
@@ -2208,7 +2034,7 @@ $ gain_per_hour  &lt;dbl&gt; -0.3269755, 13.8888889, 4.1052632, 3.8888889, 12.75
 
             <p>
                 Another (usually shorter) way to reorder variables is by using
-                the <idx><h>R packages</h><h>dplyr</h><h>relocate()</h></idx>
+                the <idx><h>R packages</h><h>dplyr</h><h>relocate</h></idx>
                 <alert>relocate</alert> function.
                 This function allows you to move variables to a new position in
                 the data frame.
@@ -2261,7 +2087,7 @@ $ gain_per_hour  &lt;dbl&gt; -0.3269755, 13.8888889, 4.1052632, 3.8888889, 12.75
 
             <p>
                 One more useful function is
-                <idx><h>R packages</h><h>dplyr</h><h>rename()</h></idx>
+                <idx><h>R packages</h><h>dplyr</h><h>rename</h></idx>
                 <alert>rename</alert>, which as you may have guessed changes the name
                 of variables.
                 Suppose we want to only focus on <alert>dep_time</alert> and
@@ -2309,7 +2135,7 @@ $ arrival_time   &lt;int&gt; 328, 228, 500, 238, 223, 808, 948, 645, 926, 845, 9
 
             <p>
                 We can also return the top <m>n</m> values of a variable using
-                the <idx><h>R packages</h><h>dplyr</h><h>top_n()</h></idx>
+                the <idx><h>R packages</h><h>dplyr</h><h>top_n</h></idx>
                 <alert>top_n</alert> function.
                 For example, we can return a data frame of the top 10
                 destination airports using the example from
