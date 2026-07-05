@@ -431,7 +431,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <caption>
                 TODO
             </caption>
-            <image source="images/TODO.png" width="90%">
+            <image source="TODO.png" width="90%">
             </image>
         </figure>
       </assemblage>
@@ -440,7 +440,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <caption>
                 Summary table output showing the mean and standard deviation.
             </caption>
-            <image source="images/summary-table-output.png" width="90%">
+            <image source="summary-table-output.png" width="90%">
             </image>
         </figure>
 
@@ -632,7 +632,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <caption>
                 TODO
             </caption>
-            <image source="images/TODO.png" width="90%">
+            <image source="TODO.png" width="90%">
             </image>
         </figure>
       </assemblage>
@@ -659,7 +659,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <caption>
                 dialog screenshot of column summaries
             </caption>
-            <image source="images/column-summaries-summarise-dlg.png" width="90%">
+            <image source="column-summaries-summarise-dlg.png" width="90%">
             </image>
         </figure>
             
@@ -683,7 +683,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <caption>
                 dialog screenshot of column summaries with a group by
             </caption>
-            <image source="images/column-summaries-group-by-dlg.png" width="90%">
+            <image source="column-summaries-group-by-dlg.png" width="90%">
             </image>
         </figure>
         </assemblage>
@@ -692,7 +692,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <caption>
                 screenshot of new data frame output from column summaries
             </caption>
-            <image source="images/column-summaries-output-dlg.png" width="90%">
+            <image source="column-summaries-output-dlg.png" width="90%">
             </image>
         </figure>
                     
@@ -732,7 +732,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <caption>
                 dialog screenshot of column summaries with a group by
             </caption>
-            <image source="images/column-summaries-dlg-1.png" width="90%">
+            <image source="column-summaries-dlg-1.png" width="90%">
             </image>
         </figure>
         </assemblage>
@@ -741,7 +741,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <caption>
                 dialog screenshot of column summaries output
             </caption>
-            <image source="images/column-summaries-output-1.png" width="90%">
+            <image source="column-summaries-output-1.png" width="90%">
             </image>
         </figure>
 
@@ -772,7 +772,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <caption>
                 dialog screenshot of column summaries with two grouping variables (month and origin)
             </caption>
-            <image source="images/column-summaries-dlg-2.png" width="90%">
+            <image source="column-summaries-dlg-2.png" width="90%">
             </image>
         </figure>
         </assemblage>
@@ -781,7 +781,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <caption>
                 dialog screenshot of column summaries output when grouping by two variables (month and origin).
             </caption>
-            <image source="images/column-summaries-output-2.png" width="90%">
+            <image source="column-summaries-output-2.png" width="90%">
             </image>
         </figure>
 
@@ -899,7 +899,7 @@ dataset is never modified. You can remove or change the filter at any time.
           that's the position of the new temp_in_C variable in your df.
           <figure>
             <caption>Screenshot of <alert>Calculation</alert> dialog.</caption>
-            <image source="images/calculator-dlg-1.png" width="40%">
+            <image source="calculator-dlg-1.png" width="40%">
                 <description>
                     Screenshot of the Calculation dialog where the expression is entered.
                 </description>
@@ -907,7 +907,7 @@ dataset is never modified. You can remove or change the filter at any time.
         </figure>
         <figure>
             <caption>Screenshot of <alert>Column Position</alert> sub-dialog.</caption>
-            <image source="images/column-position-1.png" width="40%">
+            <image source="column-position-1.png" width="40%">
                 <description>
                     Screenshot of the Column Position sub-dialog where the position of the
                     new variable is specified.
@@ -953,7 +953,7 @@ dataset is never modified. You can remove or change the filter at any time.
 </p>
           <figure>
             <caption>Screenshot of <alert>Rename</alert> dialog.</caption>
-            <image source="images/rename-dlg-1.png" width="40%">
+            <image source="rename-dlg-1.png" width="40%">
                 <description>
                     Screenshot of the Rename dialog where the new variable name is entered.
                     Option "Single" is selected on the top.
@@ -983,7 +983,7 @@ dataset is never modified. You can remove or change the filter at any time.
 </p>
          <figure>
             <caption>Screenshot of <alert>Column Summaries</alert> dialog.</caption>
-            <image source="images/column-summaries-dlg-3.png" width="40%">
+            <image source="column-summaries-dlg-3.png" width="40%">
                 <description>
                     Screenshot of the Column Summaries dialog.
                     temp_in_F and temp_in_C as Variables to Summarise
@@ -996,7 +996,7 @@ dataset is never modified. You can remove or change the filter at any time.
 
          <figure xml:id = "fig-combined-data">
             <caption>Screenshot of <alert>Weather</alert> Summary Data Frame.</caption>
-            <image source="images/column-summaries-output-3.png" width="40%">
+            <image source="column-summaries-output-3.png" width="40%">
                 <description>
                     Screenshot of the resulting data from the Column Summaries dialog.
                     five columns, 12 rows - one row per month
@@ -1038,7 +1038,7 @@ dataset is never modified. You can remove or change the filter at any time.
 </p>
          <figure>
             <caption>Screenshot of <alert>Calculator</alert> dialog.</caption>
-            <image source="images/calculator-dlg-2.png" width="40%">
+            <image source="calculator-dlg-2.png" width="40%">
                 <description>
                     Screenshot of the Calculator dialog.
                     Expression: dep_delay - arr_delay
@@ -1127,7 +1127,7 @@ dataset is never modified. You can remove or change the filter at any time.
 </p>
          <figure>
             <caption>Screenshot of <alert>One Variable Summarise</alert> dialog.</caption>
-            <image source="images/describe-dlg-1.png" width="40%">
+            <image source="describe-dlg-1.png" width="40%">
                 <description>
                   Default selected on top of the buttons
                   One variable in "Variables to Summarise" receiver
@@ -1174,7 +1174,7 @@ dataset is never modified. You can remove or change the filter at any time.
 
     <sidebyside widths="45% 45%" margins="5%">
         <figure>
-            <image source="images/histogram-dlg-5.png">
+            <image source="histogram-dlg-5.png">
                 <description>
                     Histogram tab with the variable <alert>Gain</alert> selected.
                 </description>
@@ -1182,7 +1182,7 @@ dataset is never modified. You can remove or change the filter at any time.
         </figure>
 
         <figure>
-            <image source="images/histogram-dlg-6.png">
+            <image source="histogram-dlg-6.png">
                 <description>
                     Layer Parameters (Geom Parameters) sub-dialog with
                     <alert>bins</alert> set to 20 and
@@ -1196,7 +1196,7 @@ dataset is never modified. You can remove or change the filter at any time.
 
         <figure xml:id="fig-gain-hist">
             <caption>Histogram of gain variable.</caption>
-            <image source="images/fig-gain-hist.png" width="90%">
+            <image source="fig-gain-hist.png" width="90%">
                 <description>
                     Histogram of the gain variable (departure delay minus
                     arrival delay) for all NYC flights in 2023.
@@ -1430,7 +1430,7 @@ View(airlines)
                 <em>R for Data Science</em> <xref ref="bib-rds2016"/>.
             </caption>
 
-            <image source="images/r4ds/relational-nycflights.png" width="65%">
+            <image source="r4ds/relational-nycflights.png" width="65%">
                 <description>
                     Entity-relationship diagram showing the connections between
                     the flights, airlines, airports, planes, and weather data

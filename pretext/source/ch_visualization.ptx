@@ -148,7 +148,9 @@
       <figure xml:id="fig-gapminder">
         <caption>Life expectancy over GDP per capita in 2007.</caption>
         <image source="images/fig-gapminder.png" width="90%">
-          <description>Scatterplot of life expectancy (y-axis) versus GDP per capita (x-axis) for 142 countries in 2007, with point size representing population and color representing continent.</description>
+          <description>
+            <p>Scatterplot of life expectancy (y-axis) versus GDP per capita (x-axis) for 142 countries in 2007, with point size representing population and color representing continent.</p>
+          </description>
         </image>
       </figure>
 
@@ -295,7 +297,7 @@
     </p>
       <figure xml:id="fig-5ng-menu">
         <caption>The Five Named Graphs in the R-Instat Menu.</caption>
-        <image source="images/5ng.png" width="90%">
+        <image source="5ng.png" width="90%">
         </image>
       </figure>
   </section>
@@ -356,7 +358,7 @@
 
       <figure xml:id="scatterplot-dlg-1">
         <caption>A simple filled in Scatter Plot Dialog.</caption>
-        <image source="images/scatterplot-dlg-1.png" width="90%">
+        <image source="scatterplot-dlg-1.png" width="90%">
         </image>
       </figure>
 
@@ -505,7 +507,7 @@
 
       <figure xml:id="scatterplot-dlg-4">
         <caption>Adding "Jitter" option for our points in our Scatter Plot.</caption>
-        <image source="images/scatterplot-dlg-4.png" width="90%">
+        <image source="scatterplot-dlg-4.png" width="90%">
         </image>
       </figure>
 
@@ -541,12 +543,12 @@
 
       <figure xml:id="scatterplot-dlg-2">
         <caption>Selecting "Plot Options" on the Scatter Plot Dialog.</caption>
-        <image source="images/scatterplot-dlg-2.png" width="90%">
+        <image source="scatterplot-dlg-2.png" width="90%">
         </image>
       </figure>
       <figure xml:id="scatterplot-dlg-3">
         <caption>Filling in alpha as 0.2 for transparency in the Scatter Plot Dialog.</caption>
-        <image source="images/scatterplot-dlg-3.png" width="90%">
+        <image source="scatterplot-dlg-3.png" width="90%">
         </image>
       </figure>
 
@@ -704,7 +706,7 @@ individually.
 
       <figure xml:id="fig-lineplot-dlg-1">
         <caption>A simple filled in Line Plot Dialog.</caption>
-        <image source="images/lineplot-dlg-1.png" width="90%">
+        <image source="lineplot-dlg-1.png" width="90%">
         <description>Lineplot dialog filled in with "wind_speed"
         in the "Single Variable", and "time_hour" in the "X Variable" receiver.</description>
         </image>
@@ -886,7 +888,7 @@ individually.
 
       <figure xml:id="histogram-dlg-1">
         <caption>A simple filled in Histogram Dialog.</caption>
-        <image source="images/histogram-dlg-1.png" width="90%">
+        <image source="histogram-dlg-1.png" width="90%">
         </image>
       </figure>
 
@@ -917,7 +919,7 @@ individually.
 
       <figure xml:id="histogram-dlg-2">
         <caption>Setting "Colour" as "White" for borders in the Histogram Dialog</caption>
-        <image source="images/histogram-dlg-2.png" width="90%">
+        <image source="histogram-dlg-2.png" width="90%">
         </image>
       </figure>
 
@@ -938,7 +940,7 @@ individually.
 
       <figure xml:id="histogram-dlg-3">
         <caption>Setting "Colour" as "White" for borders, and "Fill" as "steelblue" in the Histogram Dialog</caption>
-        <image source="images/histogram-dlg-3.png" width="90%">
+        <image source="histogram-dlg-3.png" width="90%">
         </image>
       </figure>
 
@@ -966,7 +968,7 @@ individually.
       </p>
       <figure xml:id="histogram-dlg-4">
         <caption>Choosing the "Binwidth" Option in the Histogram Dialog</caption>
-        <image source="images/histogram-dlg-4.png" width="90%">
+        <image source="histogram-dlg-4.png" width="90%">
         </image>
       </figure>
       <p>
@@ -1068,17 +1070,17 @@ individually.
 
       <figure xml:id="facet-1">
         <caption>Adding a Facet Wrap</caption>
-        <image source="images/facet-1.png" width="90%">
+        <image source="facet-1.png" width="90%">
         </image>
       </figure>
       <figure xml:id="facet-2">
         <caption>Converting "month" to a factor by right-clicking on that variable</caption>
-        <image source="images/facet-2.png" width="90%">
+        <image source="facet-2.png" width="90%">
         </image>
       </figure>
       <figure xml:id="facet-3">
         <caption>Adding a Facet Wrap (again!)</caption>
-        <image source="images/facet-3.png" width="90%">
+        <image source="facet-3.png" width="90%">
         </image>
       </figure>
 
@@ -1100,12 +1102,12 @@ individually.
 
       <figure xml:id="facet-4">
         <caption>Adding other facetting options (rows and columns, and overall!)</caption>
-        <image source="images/facet-4.png" width="90%">
+        <image source="facet-4.png" width="90%">
         </image>
       </figure>
       <figure xml:id="facet-5">
         <caption>Specifying the number of facet rows.</caption>
-        <image source="images/facet-5.png" width="90%">
+        <image source="facet-5.png" width="90%">
         </image>
       </figure>
 
@@ -1460,7 +1462,7 @@ After this, a blank data frame will appear where you can manually type in "apple
       </p>
       <figure xml:id="fig-create-df">
         <caption>Create data frame with 5 rows and 1 column called "Fruit"</caption>
-        <image source="images/create-df.png" width="70%">
+        <image source="create-df.png" width="70%">
         </image>
       </figure>
 
@@ -1470,7 +1472,7 @@ Place your "fruits" column into the "Single Variable" receiver as shown in <xref
 </p>
       <figure xml:id="barchat-dlg-1">
         <caption>A simple filled in Bar Chart Dialog.</caption>
-        <image source="images/barchat-dlg-1.png" width="70%">
+        <image source="barchat-dlg-1.png" width="70%">
         </image>
       </figure>
 
@@ -1490,7 +1492,7 @@ Place your "fruits" column into the "Single Variable" receiver as shown in <xref
 <li>Insert "fruit" into "Summarise By"
       <figure xml:id="barchart-dlg-2">
         <caption>Filling in the Column Summaries Dialog</caption>
-        <image source="images/barchart-dlg-2.png" width="70%">
+        <image source="barchart-dlg-2.png" width="70%">
         </image>
       </figure>
 </li>
@@ -1498,7 +1500,7 @@ Place your "fruits" column into the "Single Variable" receiver as shown in <xref
 <li>On the sub-dialog, select "N Total", and uncheck any other options that are checked
       <figure xml:id="barchart-dlg-3">
         <caption>Selecting "N Total" in the Column Summaries Sub-Dialog</caption>
-        <image source="images/barchart-dlg-3.png" width="70%">
+        <image source="barchart-dlg-3.png" width="70%">
         </image>
       </figure>
 </li>
@@ -1509,7 +1511,7 @@ Place your "fruits" column into the "Single Variable" receiver as shown in <xref
 
       <figure xml:id="barchart-dlg-4">
         <caption>The Summarised Fruits Data Frame</caption>
-        <image source="images/barchart-dlg-4.png" width="70%">
+        <image source="barchart-dlg-4.png" width="70%">
         </image>
       </figure>
 
@@ -1521,7 +1523,7 @@ Place your "fruits" column into the "Single Variable" receiver as shown in <xref
 
       <figure xml:id="barchart-dlg-5">
         <caption>The Bar Chart Dialog with the "Value" Tab Selected</caption>
-        <image source="images/barchart-dlg-5.png" width="70%">
+        <image source="barchart-dlg-5.png" width="70%">
         </image>
       </figure>
 
@@ -1736,7 +1738,7 @@ Place your "fruits" column into the "Single Variable" receiver as shown in <xref
 
       <figure xml:id="barchart-dlg-6">
         <caption>The Bar Chart Dialog with the "Frequency" Tab Selected, and an additional "Factor" given</caption>
-        <image source="images/barchart-dlg-6.png" width="70%">
+        <image source="barchart-dlg-6.png" width="70%">
         </image>
       </figure>
 
