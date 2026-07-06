@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <chapter xml:id="ch-getting-started" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <title>Getting Started with Data in R</title>
+    <title>Getting Started with Data in R-Instat</title>
 
     <introduction>
         <p>
-            Before we can start exploring data in R, there are some key concepts
+            Before we can start exploring data in R-Instat, there are some key concepts
             to understand first:
         </p>
 
