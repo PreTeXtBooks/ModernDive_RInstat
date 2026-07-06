@@ -287,6 +287,11 @@
             <image source=""/>
         </figure>
 
+       <figure xml:id="fig-filter-dialog-numeric">
+            <caption>Filtering using numeric values.</caption>
+            <image source=""/>
+        </figure>
+
         <p>
             If we did not set dest as a factor, we would filter by setting
             <alert>== "PHX"</alert> (see <xref ref="fig-filter-dialog-numeric"/>
