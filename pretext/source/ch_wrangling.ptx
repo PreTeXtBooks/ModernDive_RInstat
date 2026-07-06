@@ -2253,7 +2253,7 @@
       </sidebyside>
     </figure>
 
-    <figure xml:id="fig-dest-click-sort">
+    <figure xml:id="fig-dest-unsorted-sorted">
       <caption>The Data Frame in default order.</caption>
       <sidebyside widths="45% 45%" margins="5%">
         <image source="dest-unsorted.png">
