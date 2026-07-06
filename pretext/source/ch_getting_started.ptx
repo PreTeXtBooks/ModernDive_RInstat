@@ -113,6 +113,11 @@
         <p>To do</p>
     </section>
     <!-- ============================================================ -->
+    <section xml:id="sec-packages">
+        <title>What are R-Instat packages?</title>
+        <p>To do</p>
+    </section>
+    <!-- ============================================================ -->
     <section xml:id="sec-nycflights">
         <title>Explore your first datasets</title>
         <introduction>
@@ -125,7 +130,7 @@
             <q>spreadsheet</q>-type format.
             This is probably the most common way data are collected and saved in
             many fields.
-            Remember from <xref ref="sec-programming-concepts"/> that these
+            Remember from <xref ref="sec-code"/> that these
             <q>spreadsheet</q>-type datasets are called <em>data frames</em> in
             R.
             <idx><h>data frame</h></idx> We'll focus on working with data saved
@@ -387,14 +392,14 @@
                     <q>thing</q> is being measured or described by each of the
                     variables.
                     We'll talk more about observational units in
-                    <xref ref="subsec-identification-vs-measurement-variables"/>
+                    <xref ref="sec-identification-variables"/>
                     on <em>identification</em> and <em>measurement</em>
                     variables.
                 </p>
 
                 <p>
                     The <em>data type</em> (see
-                    <xref ref="sec-programming-concepts"/> ) of the variable is
+                    <xref ref="sec-code"/> ) of the variable is
                     given immediately after each variable's name in the data
                     viewer.
                     If there is no letter symbol, then it is a numerical

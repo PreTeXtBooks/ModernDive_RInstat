@@ -3,7 +3,7 @@
   <title>Data Importing and Tidy Data</title>
   <introduction>
   <p>
-    In <xref ref="sec-programming-concepts"/>, we introduced the concept of a
+    In <xref ref="sec-nycflights"/>, we introduced the concept of a
     <term>data frame</term><idx><h>data frame</h></idx> in R: a rectangular
     spreadsheet-like representation of data where the rows correspond to
     observations and the columns correspond to variables describing each

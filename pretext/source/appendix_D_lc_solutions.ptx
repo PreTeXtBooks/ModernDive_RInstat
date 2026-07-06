@@ -27,8 +27,8 @@
       </row>
       <row>
         <cell>Chapter 1 (Getting Started)</cell>
-        <cell>LC1.1–LC1.7</cell>
-        <cell><xref ref="lc1-1"/>–<xref ref="lc1-7"/> in <xref ref="ch-getting-started"/></cell>
+        <cell>LC1.3–LC1.7</cell>
+        <cell><xref ref="lc1-3"/>–<xref ref="lc1-7"/> in <xref ref="ch-getting-started"/></cell>
       </row>
       <row>
         <cell>Chapter 2 (Data Visualization)</cell>
@@ -37,8 +37,8 @@
       </row>
       <row>
         <cell>Chapter 3 (Data Wrangling)</cell>
-        <cell>LC3.1–LC3.20</cell>
-        <cell><xref ref="lc3-1"/>–<xref ref="lc3-20"/> in <xref ref="ch-wrangling"/></cell>
+        <cell>LC3.2–LC3.20</cell>
+        <cell><xref ref="lc3-2"/>–<xref ref="lc3-20"/> in <xref ref="ch-wrangling"/></cell>
       </row>
       <row>
         <cell>Chapter 4 (Tidy Data)</cell>

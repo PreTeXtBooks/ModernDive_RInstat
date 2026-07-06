@@ -18,31 +18,31 @@
             <ol>
                 <li>
                     <p>
-                        scatterplots</alert>
+                        scatterplots
                     </p>
                 </li>
 
                 <li>
                     <p>
-                        linegraphs</alert>
+                        linegraphs
                     </p>
                 </li>
 
                 <li>
                     <p>
-                        boxplots</alert>
+                        boxplots
                     </p>
                 </li>
 
                 <li>
                     <p>
-                        histograms</alert>
+                        histograms
                     </p>
                 </li>
 
                 <li>
                     <p>
-                        barplots</alert>
+                        barplots
                     </p>
                 </li>
             </ol>
@@ -416,7 +416,7 @@ dataset is never modified. You can remove or change the filter at any time.
             <alert>mean</alert> and the <alert>sd</alert>:
         </p>
 
-        <assemblage xml:id="howto-filter-rows">
+        <assemblage xml:id="howto-summarise-data">
           <title>How to Summarise Data in R-Instat</title>
         <p>
           Go to <alert>Describe &gt; One Variable &gt; Summarise</alert>
@@ -614,7 +614,7 @@ dataset is never modified. You can remove or change the filter at any time.
             variable <alert>month</alert>:
         </p>
 
-      <assemblage xml:id="howto-filter-rows">
+      <assemblage xml:id="howto-group-summarise-data">
           <title>How to Group and Summarise Data in R-Instat</title>
         <p>
           Set month as a factor
@@ -775,7 +775,6 @@ dataset is never modified. You can remove or change the filter at any time.
             <image source="column-summaries-dlg-2.png" width="90%">
             </image>
         </figure>
-        </assemblage>
 
         <figure>
             <caption>
@@ -1415,7 +1414,7 @@ View(airlines)
             <em>key variable</em> to match the rows of the two data frames.
             Key variables are almost always <em>identification variables</em>
             that uniquely identify the observational units as we saw in
-            <xref ref="subsec-identification-vs-measurement-variables"/>.
+            <xref ref="sec-identification-variables"/>.
             This ensures that rows in both data frames are appropriately matched
             during the join.
             Hadley and Garrett <xref ref="bib-rds2016"/> created the diagram in
@@ -1618,7 +1617,7 @@ named_dests
                 We achieve this by specifying a <em>vector</em>
                 <idx><h>vectors</h></idx> of key variables to join by using the
                 <alert>c</alert> function.
-                Recall from <xref ref="sec-programming-concepts"/> that
+                Recall from <xref ref="sec-code"/> that
                 <alert>c</alert> is short for <q>combine</q> or <q>concatenate.</q>
             </p>
 
@@ -2265,8 +2264,8 @@ named_dests |&gt;
             <p>
                 Let's recap our data-wrangling verbs in
                 <xref ref="tab-wrangle-summary-table"/>.
-                Using these verbs and the pipe <alert>|&gt;</alert> operator from
-                <xref ref="sec-piping"/>, you'll be able to write easily legible
+                Using these verbs and the pipe <alert>|&gt;</alert> operator,
+                you'll be able to write easily legible
                 code to perform almost all the data wrangling and data
                 transformation necessary for the rest of this book.
             </p>

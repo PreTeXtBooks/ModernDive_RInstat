@@ -495,7 +495,7 @@
     This book is intended for instructors of traditional introductory statistics classes
     using RStudio, who would like to inject more data science topics into their
     syllabus. RStudio can be used in either the server version or the desktop version.
-    (This is discussed further in <xref ref="sec-installing"/>.)
+    (This is discussed further in <xref ref="sec-install-rinstat"/>.)
     We assume that students taking the class will have no prior algebra, no calculus,
     nor programming/coding experience.
   </p>
