@@ -48,9 +48,10 @@
             <p>
                 We start with a discussion of a theoretical framework for data
                 visualization known as <q>the grammar of graphics.</q> This
-                framework serves as the foundation for the <c>ggplot2</c>
-                package <idx><h>R packages</h><h>ggplot2</h></idx> which we'll
-                use extensively in this chapter.
+                framework serves as the foundation for the
+                <alert>ggplot2</alert> package
+                <idx><h>R packages</h><h>ggplot2</h></idx> which we'll use
+                extensively in this chapter.
                 <idx><h>Grammar of Graphics, The</h></idx> Think of how we
                 construct and form sentences in English by combining different
                 elements, like nouns, verbs, articles, subjects, objects, etc.
@@ -79,9 +80,9 @@
 
             <blockquote>
                 <p>
-                    A statistical graphic is a <c>mapping</c> of <c>data</c>
-                    variables to <c>aes</c> thetic attributes of <c>geom</c>
-                    etric objects.
+                    A statistical graphic is a <alert>mapping</alert> of
+                    <alert>data</alert> variables to <alert>aes</alert> thetic
+                    attributes of <alert>geom</alert> etric objects.
                 </p>
             </blockquote>
 
@@ -94,14 +95,15 @@
                 <ol>
                     <li>
                         <p>
-                            <c>data</c>: the dataset containing the variables of
-                            interest.
+                            <alert>data</alert>: the dataset containing the
+                            variables of interest.
                         </p>
                     </li>
 
                     <li>
                         <p>
-                            <c>geom</c>: the geometric object in question.
+                            <alert>geom</alert>: the geometric object in
+                            question.
                             This refers to the type of object we can observe in
                             a plot.
                             For example: points, lines, and bars.
@@ -110,8 +112,8 @@
 
                     <li>
                         <p>
-                            <c>aes</c>: aesthetic attributes of the geometric
-                            object.
+                            <alert>aes</alert>: aesthetic attributes of the
+                            geometric object.
                             For example, x/y position, color, shape, and size.
                             Aesthetic attributes are <em>mapped</em> to
                             variables in the dataset.
@@ -121,8 +123,9 @@
             </p>
 
             <p>
-                You might be wondering why we wrote the terms <c>data</c>,
-                <c>geom</c>, and <c>aes</c> in a computer code type font.
+                You might be wondering why we wrote the terms
+                <alert>data</alert>, <alert>geom</alert>, and <alert>aes</alert>
+                in a computer code type font.
                 We'll see very shortly that we'll specify the elements of the
                 grammar in R-Instat using these terms.
                 However, let's first break down the grammar with an example.
@@ -255,9 +258,9 @@
                 <ol>
                     <li>
                         <p>
-                            The <c>data</c> variable
+                            The <alert>data</alert> variable
                             <alert>GDP per Capita</alert> gets mapped to the
-                            <c>x</c>-position <c>aes</c> thetic
+                            <alert>x</alert>-position <alert>aes</alert> thetic
                             <idx><h>R packages</h><h>ggplot2</h><h>aes()</h></idx>
                             of the points.
                         </p>
@@ -265,26 +268,28 @@
 
                     <li>
                         <p>
-                            The <c>data</c>
+                            The <alert>data</alert>
                             <idx><h>R packages</h><h>ggplot2</h><h>data</h></idx>
                             variable <alert>Life Expectancy</alert> gets mapped
-                            to the <c>y</c>-position <c>aes</c> thetic of the
+                            to the <alert>y</alert>-position <alert>aes</alert>
+                            thetic of the points.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            The <alert>data</alert> variable
+                            <alert>Population</alert> gets mapped to the
+                            <alert>size</alert> <alert>aes</alert> thetic of the
                             points.
                         </p>
                     </li>
 
                     <li>
                         <p>
-                            The <c>data</c> variable <alert>Population</alert>
-                            gets mapped to the <c>size</c> <c>aes</c> thetic of
-                            the points.
-                        </p>
-                    </li>
-
-                    <li>
-                        <p>
-                            The <c>data</c> variable <alert>Continent</alert>
-                            gets mapped to the <c>color</c> <c>aes</c> thetic of
+                            The <alert>data</alert> variable
+                            <alert>Continent</alert> gets mapped to the
+                            <alert>color</alert> <alert>aes</alert> thetic of
                             the points.
                         </p>
                     </li>
@@ -292,11 +297,11 @@
             </p>
 
             <p>
-                We'll see shortly that <c>data</c> corresponds to the particular
-                data frame where our data is saved and that
+                We'll see shortly that <alert>data</alert> corresponds to the
+                particular data frame where our data is saved and that
                 <q>data variables</q> correspond to particular columns in the
                 data frame.
-                Furthermore, the type of <c>geom</c> etric object
+                Furthermore, the type of <alert>geom</alert> etric object
                 <idx><h>R packages</h><h>ggplot2</h><h>geom</h></idx> considered
                 in this plot are points.
                 That being said, while in this example we are considering
@@ -362,16 +367,16 @@
                 <ul>
                     <li>
                         <p>
-                            <c>facet</c> ing breaks up a plot into several plots
-                            split by the values of another variable (
-                            <xref ref="sec-facets"/> )
+                            <alert>facet</alert> ing breaks up a plot into
+                            several plots split by the values of another
+                            variable ( <xref ref="sec-facets"/> )
                             <idx><h>R packages</h><h>ggplot2</h><h>facet</h></idx>
                         </p>
                     </li>
 
                     <li>
                         <p>
-                            <c>position</c> adjustments for barplots (
+                            <alert>position</alert> adjustments for barplots (
                             <xref ref="sec-barplots"/> )
                             <idx><h>R packages</h><h>ggplot2</h><h>position</h></idx>
                         </p>
@@ -380,9 +385,9 @@
             </p>
 
             <p>
-                Other more complex components like <c>scales</c> and
-                <c>coord</c> inate systems are left for a more advanced text
-                such as
+                Other more complex components like <alert>scales</alert> and
+                <alert>coord</alert> inate systems are left for a more advanced
+                text such as
                 <url href="http://r4ds.had.co.nz/data-visualisation.html#aesthetic-mappings"><em>R for Data Science</em></url>
                 <xref ref="bib-rds2016"/>.
                 Generally speaking, the grammar of graphics allows for a high
@@ -395,15 +400,15 @@
             <title>ggplot2 package [Advanced]</title>
 
             <p>
-                R-Instat uses the <c>ggplot2</c> package for data visualization,
-                which is an implementation of the <em>g</em> rammar of
-                <em>g</em> raphics for R <xref ref="bib-R-ggplot2"/>.
+                R-Instat uses the <alert>ggplot2</alert> package for data
+                visualization, which is an implementation of the <em>g</em>
+                rammar of <em>g</em> raphics for R <xref ref="bib-R-ggplot2"/>.
                 As we noted earlier, a lot of the previous section was written
                 in a computer code type font.
                 This is because the various components of the grammar of
-                graphics are specified in the <c>ggplot()</c>
+                graphics are specified in the <alert>ggplot()</alert>
                 <idx><h>R packages</h><h>ggplot2</h><h>ggplot()</h></idx>
-                function included in the <c>ggplot2</c> package.
+                function included in the <alert>ggplot2</alert> package.
                 In R-Instat, we'll always provide our graphics with the
                 following at a minimum:
             </p>
@@ -419,8 +424,8 @@
                     <li>
                         <p>
                             The variables to plot from the data, and how.
-                            This argument specifies the <c>aes</c> thetic
-                            attributes involved.
+                            This argument specifies the <alert>aes</alert>
+                            thetic attributes involved.
                         </p>
                     </li>
                 </ul>
@@ -429,8 +434,8 @@
             <p>
                 We then add <em>layers</em> to the plot.
                 The most essential layer to add to a plot is the layer that
-                specifies which type of <c>geom</c> etric object we want the
-                plot to involve: points, lines, bars, and others.
+                specifies which type of <alert>geom</alert> etric object we want
+                the plot to involve: points, lines, bars, and others.
                 Other layers we can add to a plot include the plot title, axes
                 labels, visual themes for the plots, and facets (which we'll see
                 in <xref ref="sec-facets"/> ).
@@ -531,25 +536,25 @@
                 them through the lens of the grammar of graphics we presented in
                 <xref ref="sec-grammar-of-graphics"/>.
                 Specifically, we will visualize the relationship between the
-                following two numerical variables in the <c>envoy_flights</c>
-                data frame included in the
-                <idx><h>R packages</h><h>moderndive</h></idx> <c>moderndive</c>
-                package:
+                following two numerical variables in the
+                <alert>envoy_flights</alert> data frame included in the
+                <idx><h>R packages</h><h>moderndive</h></idx>
+                <alert>moderndive</alert> package:
             </p>
 
             <p>
                 <ol>
                     <li>
                         <p>
-                            <c>dep_delay</c>: departure delay on the horizontal
-                            <q>x</q> axis and
+                            <alert>dep_delay</alert>: departure delay on the
+                            horizontal <q>x</q> axis and
                         </p>
                     </li>
 
                     <li>
                         <p>
-                            <c>arr_delay</c>: arrival delay on the vertical
-                            <q>y</q> axis
+                            <alert>arr_delay</alert>: arrival delay on the
+                            vertical <q>y</q> axis
                         </p>
                     </li>
                 </ol>
@@ -557,33 +562,30 @@
 
             <p>
                 for Envoy Airlines flights leaving NYC in 2023.
-                In other words, <c>envoy_flights</c> does not consist of
+                In other words, <alert>envoy_flights</alert> does not consist of
                 <em>all</em> flights that left NYC in 2023, but rather only
-                those flights where <c>carrier</c> is <c>MQ</c> (which is Envoy
-                Airlines' carrier code).
+                those flights where <alert>carrier</alert> is <alert>MQ</alert>
+                (which is Envoy Airlines' carrier code).
             </p>
 
             <exercise xml:id="lc2-1">
                 <title>Learning Check 2.1</title>
 
-                <statement>
-                    <p>
-                        Take a look at both the <c>flights</c> data frame from
-                        the <c>nycflights23</c> package and the
-                        <c>envoy_flights</c> data frame from the
-                        <c>moderndive</c> package.
-                        You can import these in R-Instat through the
-                        <alert>File &gt; Import From Library</alert> menu.
-                        In what respect do these data frames differ?
-                        For example, think about the number of rows in each
-                        dataset.
-                    </p>
-                </statement>
+                <p>
+                    Take a look at both the <alert>flights</alert> data frame
+                    from the <alert>nycflights23</alert> package and the
+                    <alert>envoy_flights</alert> data frame from the
+                    <alert>moderndive</alert> package.
+                    You can import these in R-Instat through the
+                    <alert>File &gt; Import From Library</alert> menu.
+                    In what respect do these data frames differ?
+                    For example, think about the number of rows in each dataset.
+                </p>
             </exercise>
         </introduction>
 
         <subsection xml:id="sec-geom-point">
-            <title>Scatterplots via <c>geom_point</c></title>
+            <title>Scatterplots</title>
 
             <p>
                 Let's now go over how to create the desired scatterplot, while
@@ -607,16 +609,17 @@
                 <ol>
                     <li>
                         <p>
-                            The <c>data</c> as the <c>envoy_flights</c> data
-                            frame via the selector seen on the left hand side.
+                            The <alert>data</alert> as the
+                            <alert>envoy_flights</alert> data frame via the
+                            selector seen on the left hand side.
                         </p>
                     </li>
 
                     <li>
                         <p>
-                            The aesthetic mappings by placing <c>arr_delay</c>
-                            as the single variable and <c>dep_delay</c> as the X
-                            variable.
+                            The aesthetic mappings by placing
+                            <alert>arr_delay</alert> as the single variable and
+                            <alert>dep_delay</alert> as the X variable.
                         </p>
                     </li>
                 </ol>
@@ -653,8 +656,8 @@
             <p>
                 Let's first unpack the graphic in <xref ref="fig-noalpha"/>.
                 Observe that a <em>positive relationship</em> exists between
-                <c>dep_delay</c> and <c>arr_delay</c>: as departure delays
-                increase, arrival delays tend to also increase.
+                <alert>dep_delay</alert> and <alert>arr_delay</alert>: as
+                departure delays increase, arrival delays tend to also increase.
                 Observe also the large mass of points clustered near (0, 0), the
                 point indicating flights that neither departed nor arrived late.
             </p>
@@ -664,8 +667,10 @@
 
                     <statement>
                         <p>
-                            What are practical reasons why <c>dep_delay</c> and
-                            <c>arr_delay</c> have a positive relationship?
+                            What are practical reasons why
+                            <alert>dep_delay</alert> and
+                            <alert>arr_delay</alert> have a positive
+                            relationship?
                         </p>
                     </statement>
                 </exercise>
@@ -675,15 +680,15 @@
 
                     <statement>
                         <p>
-                            What variables in the <c>weather</c> data frame
-                            would you expect to have a negative correlation
-                            (i.e., a negative relationship) with
-                            <c>dep_delay</c>?
+                            What variables in the <alert>weather</alert> data
+                            frame would you expect to have a negative
+                            correlation (i.e., a negative relationship) with
+                            <alert>dep_delay</alert>?
                             Why?
                             Remember that we are focusing on numerical variables
                             here.
-                            Hint: Explore the <c>weather</c> dataset by looking
-                            at it in the Data View.
+                            Hint: Explore the <alert>weather</alert> dataset by
+                            looking at it in the Data View.
                         </p>
                     </statement>
                 </exercise>
@@ -718,8 +723,8 @@
                     <statement>
                         <p>
                             Create a new scatterplot using different variables
-                            in the <c>envoy_flights</c> data frame by modifying
-                            the example given.
+                            in the <alert>envoy_flights</alert> data frame by
+                            modifying the example given.
                         </p>
                     </statement>
                 </exercise>
@@ -813,19 +818,69 @@
             </p>
 
             <p>
-                To create a jittered scatterplot, we simply check the "Jitter"
-                option on the dialog instead of "Points".
                 In order to specify how much jitter to add, we can adjusted the
                 Width and Height.
                 This corresponds to how hard you'd like to shake the plot in
                 horizontal x-axis units and vertical y-axis units, respectively.
                 In this case, both axes are in minutes.
-                How much jitter should we add using the <c>width</c> and
-                <c>height</c> arguments?
+                How much jitter should we add using the <alert>width</alert> and
+                <alert>height</alert> arguments?
                 On the one hand, it is important to add just enough jitter to
                 break any overlap in points, but on the other hand, not so much
                 that we completely alter the original pattern in points.
             </p>
+
+            <assemblage xml:id="howto-jitter-scatterplot">
+                <title>How to Create a Jittered Scatterplot in R-Instat</title>
+
+                <p>
+                    Here we look at how to create a jittered scatterplot:
+                    <ol>
+                        <li>
+                            <p>
+                                Reopen the scatterplot dialog.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Check the <alert>Jitter</alert> option instead
+                                of <alert>Points</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Adjust the <alert>Width</alert> and
+                                <alert>Height</alert> settings to control how
+                                much jitter is added.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                These values determine how much horizontal
+                                (x-axis) and vertical (y-axis) variation is
+                                added to the points.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                In this case, both axes are measured in minutes.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Choose values that are large enough to reduce
+                                overplotting, but not so large that the
+                                underlying pattern in the data is distorted.
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </assemblage>
 
             <figure xml:id="scatterplot-dlg-4">
                 <caption>
@@ -864,24 +919,78 @@
 
             <p>
                 The second way of addressing overplotting is to change the
-                transparency/opacity of the points by setting the <c>alpha</c>
-                argument in <c>geom_point()</c>.
-                We can change the <c>alpha</c> argument to be any value between
-                <c>0</c> and <c>1</c>, where <c>0</c> sets the points to be 100%
-                transparent and <c>1</c> sets the points to be 100% opaque.
-                By default, <c>alpha</c> is set to <c>1</c>.
-                In other words, if we don't explicitly set an <c>alpha</c>
-                value, the points will not be transparent.
+                transparency/opacity of the points.
+                Transparency is called <alert>alpha</alert> in R-Instat.
+                We can change the <alert>alpha</alert> argument to be any value
+                between <alert>0</alert> and <alert>1</alert>, where
+                <alert>0</alert> sets the points to be 100% transparent and
+                <alert>1</alert> sets the points to be 100% opaque.
+                By default, <alert>alpha</alert> is set to <alert>1</alert>.
+                In other words, if we don't explicitly set an
+                <alert>alpha</alert> value, the points will not be transparent.
             </p>
 
-            <p>
-                To change the transparency, click on the downwards arrow next to
-                "Plot Options", and select "Point Options".
-                This brings up a new dialog.
-                Click under "Layer Parameters", and select "alpha".
-                An option comes up, where you can fill in a value from 0 to 1.
-                We put in 0.2 in our example.
-            </p>
+            <assemblage xml:id="howto-change-transparency">
+                <title>How to Change Point Transparency in R-Instat</title>
+
+                <p>
+                    Here we look at how to change the transparency of points in
+                    a plot:
+                    <ol>
+                        <li>
+                            <p>
+                                Reopen the plot dialog.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Click the downwards arrow next to
+                                <alert>Plot Options</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Select <alert>Point Options</alert> from the
+                                menu.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                In the new dialog, go to
+                                <alert>Layer Parameters</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Select <alert>alpha</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Enter a value between <alert>0</alert> and
+                                <alert>1</alert> to set transparency.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                In this example, use <alert>0.2</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Click <alert>OK</alert> to apply the changes.
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </assemblage>
 
             <figure xml:id="scatterplot-dlg-2">
                 <caption>
@@ -944,8 +1053,8 @@
 
                     <statement>
                         <p>
-                            Why is setting the <c>alpha</c> argument value
-                            useful with scatterplots?
+                            Why is setting the <alert>alpha</alert> argument
+                            value useful with scatterplots?
                             What further information does it give you that a
                             regular scatterplot cannot?
                         </p>
@@ -961,8 +1070,9 @@
                             approximate range of arrival delays and departure
                             delays that occur most frequently.
                             How has that region changed compared to when you
-                            observed the same plot without <c>alpha = 0.2</c>
-                            set in <xref ref="fig-noalpha"/>?
+                            observed the same plot without
+                            <alert>alpha = 0.2</alert> set in
+                            <xref ref="fig-noalpha"/>?
                         </p>
                     </statement>
                 </exercise>
@@ -999,78 +1109,85 @@
     <section xml:id="sec-linegraphs">
         <title>5NG#2: Linegraphs</title>
 
-        <p>
-            The next of the five named graphs are linegraphs.
-            Linegraphs <idx><h>linegraphs</h></idx> show the relationship
-            between two numerical variables when the variable on the x-axis,
-            also called the <em>explanatory</em> variable
-            <idx><h>explanatory variable</h></idx>, is of a sequential nature.
-            In other words, there is an inherent ordering to the variable.
-        </p>
+        <introduction>
+            <p>
+                The next of the five named graphs are linegraphs.
+                Linegraphs <idx><h>linegraphs</h></idx> show the relationship
+                between two numerical variables when the variable on the x-axis,
+                also called the <em>explanatory</em> variable
+                <idx><h>explanatory variable</h></idx>, is of a sequential
+                nature.
+                In other words, there is an inherent ordering to the variable.
+            </p>
 
-        <p>
-            The most common examples of linegraphs have some notion of time on
-            the x-axis: hours, days, weeks, years, etc.
-            Since time is sequential, we connect consecutive observations of the
-            variable on the y-axis with a line.
-            Linegraphs that have some notion of time on the x-axis are also
-            called <em>time series</em> plots
-            <idx><h>time series plots</h></idx>.
-            Let's illustrate linegraphs using another dataset in the
-            <c>nycflights23</c> <idx><h>R packages</h><h>nycflights23</h></idx>
-            package: the <c>weather</c> data frame.
-        </p>
+            <p>
+                The most common examples of linegraphs have some notion of time
+                on the x-axis: hours, days, weeks, years, etc.
+                Since time is sequential, we connect consecutive observations of
+                the variable on the y-axis with a line.
+                Linegraphs that have some notion of time on the x-axis are also
+                called <em>time series</em> plots
+                <idx><h>time series plots</h></idx>.
+                Let's illustrate linegraphs using another dataset in the
+                <alert>nycflights23</alert>
+                <idx><h>R packages</h><h>nycflights23</h></idx> package: the
+                <alert>weather</alert> data frame.
+            </p>
 
-        <p>
-            Let's explore the <c>weather</c> data frame from the
-            <c>nycflights23</c> package.
-            We can read the associated help file by clicking "R Help" on the
-            Import from Library dialog to bring up the help file (
-            <xref ref="fig-r-help-weather"/> ).
-            Furthermore, we can look in the View Data window.
-            We can explore further by going to the
-            <alert>Describe &gt; One Variable &gt; Summarise</alert> dialog to
-            look at each variable individually.
-        </p>
+            <p>
+                Let's explore the <alert>weather</alert> data frame from the
+                <alert>nycflights23</alert> package.
+                We can read the associated help file by clicking "R Help" on the
+                Import from Library dialog to bring up the help file (
+                <xref ref="fig-r-help-weather"/> ).
+                Furthermore, we can look in the View Data window.
+                We can explore further by going to the
+                <alert>Describe &gt; One Variable &gt; Summarise</alert> dialog
+                to look at each variable individually.
+            </p>
 
-        <figure xml:id="fig-r-help-weather">
-            <caption>
-                Viewing the Help File for a Data Set in the Library
-            </caption>
+            <figure xml:id="fig-r-help-weather">
+                <caption>
+                    Viewing the Help File for a Data Set in the Library
+                </caption>
 
-            <image source="images/r-help-weather.png" width="90%"/>
-        </figure>
+                <image source="r-help-weather.png" width="90%"/>
+            </figure>
 
-        <p>
-            Observe that there is a variable called <c>wind_speed</c> of hourly
-            wind speed recordings in miles per hour at weather stations near all
-            three major airports in New York City: Newark ( <c>origin</c> code
-            <c>EWR</c> ), John F.
-            Kennedy International ( <c>JFK</c> ), and LaGuardia ( <c>LGA</c> ).
-        </p>
+            <p>
+                Observe that there is a variable called
+                <alert>wind_speed</alert> of hourly wind speed recordings in
+                miles per hour at weather stations near all three major airports
+                in New York City: Newark ( <alert>origin</alert> code
+                <alert>EWR</alert> ), John F.
+                Kennedy International ( <alert>JFK</alert> ), and LaGuardia (
+                <alert>LGA</alert> ).
+            </p>
 
-        <p>
-            However, instead of considering hourly wind speeds for all days in
-            2023 for all three airports, for simplicity let's only consider
-            hourly wind speeds at Newark airport for the first 15 days in
-            January.
-            This data is accessible in the <c>early_january_2023_weather</c>
-            data frame included in the <c>moderndive</c> package.
-            In other words, <c>early_january_2023_weather</c> contains hourly
-            weather observations for <c>origin</c> equal to <c>EWR</c> (Newark's
-            airport code), <c>month</c> equal to <c>1</c>, and <c>day</c> less
-            than or equal to <c>15</c>.
-        </p>
-        <exercises>
+            <p>
+                However, instead of considering hourly wind speeds for all days
+                in 2023 for all three airports, for simplicity let's only
+                consider hourly wind speeds at Newark airport for the first 15
+                days in January.
+                This data is accessible in the
+                <alert>early_january_2023_weather</alert> data frame included in
+                the <alert>moderndive</alert> package.
+                In other words, <alert>early_january_2023_weather</alert>
+                contains hourly weather observations for <alert>origin</alert>
+                equal to <alert>EWR</alert> (Newark's airport code),
+                <alert>month</alert> equal to <alert>1</alert>, and
+                <alert>day</alert> less than or equal to <alert>15</alert>.
+            </p>
+
             <exercise xml:id="lc2-9">
                 <title>Learning Check 2.9</title>
 
                 <statement>
                     <p>
-                        Take a look at both the <c>weather</c> data frame from
-                        the <c>nycflights23</c> package and the
-                        <c>early_january_2023_weather</c> data frame from the
-                        <c>moderndive</c> package.
+                        Take a look at both the <alert>weather</alert> data
+                        frame from the <alert>nycflights23</alert> package and
+                        the <alert>early_january_2023_weather</alert> data frame
+                        from the <alert>moderndive</alert> package.
                         In what respect do these data frames differ?
                     </p>
                 </statement>
@@ -1081,24 +1198,24 @@
 
                 <statement>
                     <p>
-                        View the <c>flights</c> data frame again.
-                        Why does the <c>time_hour</c> variable uniquely identify
-                        the hour of the measurement, whereas the <c>hour</c>
-                        variable does not?
+                        View the <alert>flights</alert> data frame again.
+                        Why does the <alert>time_hour</alert> variable uniquely
+                        identify the hour of the measurement, whereas the
+                        <alert>hour</alert> variable does not?
                     </p>
                 </statement>
             </exercise>
-        </exercises>
+        </introduction>
 
         <subsection xml:id="sec-geom-line">
-            <title>Linegraphs via <c>geom_line</c></title>
+            <title>Linegraphs</title>
 
             <p>
                 Let's create a time series plot (as seen in
                 <xref ref="fig-hourlytemp"/> ) of the hourly wind speeds saved
-                in the <c>early_january_2023_weather</c> data frame by using the
-                Line Plot dialog to create a linegraph, instead of using the
-                Scatter Plot dialog like we used previously to create
+                in the <alert>early_january_2023_weather</alert> data frame by
+                using the Line Plot dialog to create a linegraph, instead of
+                using the Scatter Plot dialog like we used previously to create
                 scatterplots:
             </p>
 
@@ -1145,17 +1262,18 @@
                 <ol>
                     <li>
                         <p>
-                            The <c>data</c> as the
-                            <c>early_january_2023_weather</c> data frame via the
-                            selector seen on the left hand side of the dialog.
+                            The <alert>data</alert> as the
+                            <alert>early_january_2023_weather</alert> data frame
+                            via the selector seen on the left hand side of the
+                            dialog.
                         </p>
                     </li>
 
                     <li>
                         <p>
-                            The aesthetic mappings by placing <c>wind_speed</c>
-                            as the single variable and <c>time_hour</c> as the X
-                            variable.
+                            The aesthetic mappings by placing
+                            <alert>wind_speed</alert> as the single variable and
+                            <alert>time_hour</alert> as the X variable.
                         </p>
                     </li>
                 </ol>
@@ -1196,10 +1314,10 @@
                     <statement>
                         <p>
                             Plot a time series of a variable other than
-                            <c>wind_speed</c> for Newark Airport in the first 15
-                            days of January 2023.
+                            <alert>wind_speed</alert> for Newark Airport in the
+                            first 15 days of January 2023.
                             Try to select a variable that doesn't have a lot of
-                            missing ( <c>NA</c> ) values.
+                            missing ( <alert>NA</alert> ) values.
                         </p>
                     </statement>
                 </exercise>
@@ -1222,192 +1340,234 @@
     <section xml:id="sec-histograms">
         <title>5NG#3: Histograms</title>
 
-        <p>
-            Let's consider the <c>wind_speed</c> variable in the <c>weather</c>
-            data frame once again, but unlike with the linegraphs in
-            <xref ref="sec-linegraphs"/>, let's say we don't care about its
-            relationship with time, but rather we only care about how the values
-            of <c>wind_speed</c> <em>distribute</em>.
-            In other words:
-        </p>
+        <introduction>
+            <p>
+                Let's consider the <alert>wind_speed</alert> variable in the
+                <alert>weather</alert> data frame once again, but unlike with
+                the linegraphs in <xref ref="sec-linegraphs"/>, let's say we
+                don't care about its relationship with time, but rather we only
+                care about how the values of <alert>wind_speed</alert>
+                <em>distribute</em>.
+                In other words:
+            </p>
 
-        <p>
-            <ol>
-                <li>
-                    <p>
-                        What are the smallest and largest values?
-                    </p>
-                </li>
+            <p>
+                <ol>
+                    <li>
+                        <p>
+                            What are the smallest and largest values?
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        What is the <q>center</q> or <q>most typical</q> value?
-                    </p>
-                </li>
+                    <li>
+                        <p>
+                            What is the <q>center</q> or <q>most typical</q>
+                            value?
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        How do the values spread out?
-                    </p>
-                </li>
+                    <li>
+                        <p>
+                            How do the values spread out?
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        What are frequent and infrequent values?
-                    </p>
-                </li>
-            </ol>
-        </p>
+                    <li>
+                        <p>
+                            What are frequent and infrequent values?
+                        </p>
+                    </li>
+                </ol>
+            </p>
 
-        <p>
-            One way to visualize this <em>distribution</em>
-            <idx><h>distribution</h></idx> of this single variable
-            <c>wind_speed</c> is to plot them on a horizontal line as we do in
-            <xref ref="fig-windspeed-on-line"/>:
-        </p>
+            <p>
+                One way to visualize this <em>distribution</em>
+                <idx><h>distribution</h></idx> of this single variable
+                <alert>wind_speed</alert> is to plot them on a horizontal line
+                as we do in <xref ref="fig-windspeed-on-line"/>:
+            </p>
 
-        <figure xml:id="fig-windspeed-on-line">
-            <caption>
-                Plot of hourly wind speed recordings from NYC in 2023.
-            </caption>
+            <figure xml:id="fig-windspeed-on-line">
+                <caption>
+                    Plot of hourly wind speed recordings from NYC in 2023.
+                </caption>
 
-            <image source="images/fig-windspeed-on-line.png" width="90%">
-                <description>
-                    <p>
-                        A dot plot showing all hourly wind speed values from the
-                        NYC weather dataset plotted along a single horizontal
-                        axis, illustrating overplotting of the many values
-                        between 0 and 40 mph.
-                    </p>
-                </description>
-            </image>
-        </figure>
+                <image source="images/fig-windspeed-on-line.png" width="90%">
+                    <description>
+                        <p>
+                            A dot plot showing all hourly wind speed values from
+                            the NYC weather dataset plotted along a single
+                            horizontal axis, illustrating overplotting of the
+                            many values between 0 and 40 mph.
+                        </p>
+                    </description>
+                </image>
+            </figure>
 
-        <p>
-            This gives us a general idea of how the values of <c>wind_speed</c>
-            distribute: observe that wind speeds vary from around 0 miles per
-            hour up to around 61 miles per hour (approximately 61 kilometers per
-            hour).
-            There appear to be more recorded wind speeds between 0 and 20 miles
-            per hour (mph) than outside this range.
-            However, because of the high degree of overplotting in the points,
-            it's hard to get a sense of exactly how many values are between,
-            say, 10 mph and 15 mph.
-        </p>
+            <p>
+                This gives us a general idea of how the values of
+                <alert>wind_speed</alert> distribute: observe that wind speeds
+                vary from around 0 miles per hour up to around 61 miles per hour
+                (approximately 61 kilometers per hour).
+                There appear to be more recorded wind speeds between 0 and 20
+                miles per hour (mph) than outside this range.
+                However, because of the high degree of overplotting in the
+                points, it's hard to get a sense of exactly how many values are
+                between, say, 10 mph and 15 mph.
+            </p>
 
-        <p>
-            What is commonly produced instead of
-            <xref ref="fig-windspeed-on-line"/> is known as a
-            <idx><h>histograms</h></idx> <em>histogram</em>.
-            A histogram is a plot that visualizes the <em>distribution</em> of a
-            numerical value as follows:
-        </p>
+            <p>
+                What is commonly produced instead of
+                <xref ref="fig-windspeed-on-line"/> is known as a
+                <idx><h>histograms</h></idx> <em>histogram</em>.
+                A histogram is a plot that visualizes the <em>distribution</em>
+                of a numerical value as follows:
+            </p>
 
-        <p>
-            <ol>
-                <li>
-                    <p>
-                        We first cut up the x-axis into a series of
-                        <idx><h>histograms</h><h>bins</h></idx> <em>bins</em>,
-                        where each bin represents a range of values.
-                    </p>
-                </li>
+            <p>
+                <ol>
+                    <li>
+                        <p>
+                            We first cut up the x-axis into a series of
+                            <idx><h>histograms</h><h>bins</h></idx>
+                            <em>bins</em>, where each bin represents a range of
+                            values.
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        For each bin, we count the number of observations that
-                        fall in the range corresponding to that bin.
-                    </p>
-                </li>
+                    <li>
+                        <p>
+                            For each bin, we count the number of observations
+                            that fall in the range corresponding to that bin.
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        Then for each bin, we draw a bar whose height marks the
-                        corresponding count.
-                    </p>
-                </li>
-            </ol>
-        </p>
+                    <li>
+                        <p>
+                            Then for each bin, we draw a bar whose height marks
+                            the corresponding count.
+                        </p>
+                    </li>
+                </ol>
+            </p>
 
-        <p>
-            Let's drill-down on an example of a histogram, shown in
-            <xref ref="fig-histogramexample"/>.
-        </p>
+            <p>
+                Let's drill-down on an example of a histogram, shown in
+                <xref ref="fig-histogramexample"/>.
+            </p>
 
-        <figure xml:id="fig-histogramexample">
-            <caption>Example histogram.</caption>
-            <image source="images/fig-histogramexample.png" width="90%">
-                <description>
-                    <p>
-                        Histogram of hourly wind speeds with binwidth of 5 mph
-                        and white borders between bars, showing the distribution
-                        is right-skewed with most recordings between 0 and 20
-                        mph.
-                    </p>
-                </description>
-            </image>
-        </figure>
+            <figure xml:id="fig-histogramexample">
+                <caption>Example histogram.</caption>
+                <image source="images/fig-histogramexample.png" width="90%">
+                    <description>
+                        <p>
+                            Histogram of hourly wind speeds with binwidth of 5
+                            mph and white borders between bars, showing the
+                            distribution is right-skewed with most recordings
+                            between 0 and 20 mph.
+                        </p>
+                    </description>
+                </image>
+            </figure>
 
-        <p>
-            Let's focus only on wind speeds between 10 mph and 25 mph for now.
-            Observe that there are three bins of equal width between 10 mph and
-            25 mph.
-            Thus we have three bins of width 5 mph each: one bin for the 10–15
-            mph range, another bin for the 15–20 mph range, and another bin for
-            the 20–25 mph range.
-            Since:
-        </p>
+            <p>
+                Let's focus only on wind speeds between 10 mph and 25 mph for
+                now.
+                Observe that there are three bins of equal width between 10 mph
+                and 25 mph.
+                Thus we have three bins of width 5 mph each: one bin for the
+                10–15 mph range, another bin for the 15–20 mph range, and
+                another bin for the 20–25 mph range.
+                Since:
+            </p>
 
-        <p>
-            <ol>
-                <li>
-                    <p>
-                        The bin for the 10–15 mph range has a height of around
-                        8000.
-                        In other words, around 8000 of the hourly wind speed
-                        recordings are between 10 mph and 15 mph.
-                    </p>
-                </li>
+            <p>
+                <ol>
+                    <li>
+                        <p>
+                            The bin for the 10–15 mph range has a height of
+                            around 8000.
+                            In other words, around 8000 of the hourly wind speed
+                            recordings are between 10 mph and 15 mph.
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        The bin for the 15–20 mph range has a height of around
-                        2400.
-                        In other words, around 2400 of the hourly wind speed
-                        recordings are between 15 mph and 20 mph.
-                    </p>
-                </li>
+                    <li>
+                        <p>
+                            The bin for the 15–20 mph range has a height of
+                            around 2400.
+                            In other words, around 2400 of the hourly wind speed
+                            recordings are between 15 mph and 20 mph.
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        The bin for the 20–25 mph range has a height of around
-                        700.
-                        In other words, around 700 of the hourly wind speed
-                        recordings are between 20 mph and 25 mph.
-                    </p>
-                </li>
-            </ol>
-        </p>
+                    <li>
+                        <p>
+                            The bin for the 20-25 mph range has a height of
+                            around 700.
+                            In other words, around 700 of the hourly wind speed
+                            recordings are between 20 mph and 25 mph.
+                        </p>
+                    </li>
+                </ol>
+            </p>
 
-        <p>
-            All eight bins spanning 0 mph to 40 mph on the x-axis have this
-            interpretation.
-        </p>
+            <p>
+                All eight bins spanning 0 mph to 40 mph on the x-axis have this
+                interpretation.
+            </p>
+        </introduction>
 
         <subsection xml:id="sec-geom-histogram">
-            <title>Histograms via <c>geom_histogram</c></title>
+            <title>Histograms</title>
 
             <p>
                 Let's now plot your first histogram in R-Instat!
                 Unlike with scatterplots and linegraphs, there is now only one
                 variable being mapped: the single numerical variable
-                <c>wind_speed</c>.
+                <alert>wind_speed</alert>.
                 The y-aesthetic of a histogram, the count of the observations in
                 each bin, gets computed for you automatically.
                 Furthermore, the geometric object layer is now a Histogram.
                 After running the following dialog, you'll see the histogram in
                 <xref ref="fig-weather-histogram"/>.
             </p>
+
+            <assemblage xml:id="howto-histogram">
+                <title>How to Create a Histogram in R-Instat</title>
+
+                <p>
+                    Here we look at how to create a histogram:
+                    <ol>
+                        <li>
+                            <p>
+                                Go to
+                                <alert>Describe &gt; Graphs &gt; Histogram</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Open the dialog and ensure you are using the
+                                correct data set.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Put <alert>wind_speed</alert> into the
+                                <alert>Single Variable</alert> receiver.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Click <alert>OK</alert> to create the histogram.
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </assemblage>
 
             <figure xml:id="histogram-dlg-1">
                 <caption>A simple filled in Histogram Dialog.</caption>
@@ -1432,7 +1592,7 @@
 
             <p>
                 Warning: Note that this histogram was constructed using
-                <c>bins = 30</c> for 30 equally spaced bins.
+                <alert>bins = 30</alert> for 30 equally spaced bins.
                 This is known in computer programming as a default value; unless
                 you override this default number of bins with a number you
                 specify, R will choose 30 by default.
@@ -1450,13 +1610,14 @@
                 So let's add white vertical borders demarcating the bins by
                 clicking on "Plot Options &gt; Histogram Options", similar to
                 how we did in <xref ref="scatterplot-dlg-2"/>, and setting
-                "Colour" as "White" ( <xref ref="histogram-dlg-2"/> ).
+                <alert>Colour</alert> as <alert>Colour</alert> (
+                <xref ref="histogram-dlg-2"/> ).
             </p>
 
             <figure xml:id="histogram-dlg-2">
                 <caption>
-                    Setting "Colour" as "White" for borders in the Histogram
-                    Dialog
+                    Setting <alert>Colour</alert> as <alert>Colour</alert> for
+                    borders in the Histogram Dialog
                 </caption>
 
                 <image source="histogram-dlg-2.png" width="90%"/>
@@ -1484,24 +1645,26 @@
                 We now have an easier time associating ranges of wind speeds to
                 each of the bins in <xref ref="fig-weather-histogram-2"/>.
                 We can also vary the color of the bars by setting the
-                <c>fill</c> argument in the Plot Options (
+                <alert>fill</alert> argument in the Plot Options (
                 <xref ref="histogram-dlg-3"/> ).
                 For example, you can set the bin colors to be <q>blue steel</q>
-                by setting <c>fill = "steelblue"</c>:
+                by setting <alert>fill = steelblue</alert>:
             </p>
 
             <figure xml:id="histogram-dlg-3">
                 <caption>
-                    Setting "Colour" as "White" for borders, and "Fill" as
-                    "steelblue" in the Histogram Dialog
+                    Setting <alert>Colour</alert> as <alert>Colour</alert> for
+                    borders, and <alert>Fill</alert> as <alert>steelblue</alert>
+                    in the Histogram Dialog
                 </caption>
 
                 <image source="histogram-dlg-3.png" width="90%"/>
             </figure>
 
             <p>
-                You can click "Pick Colour..." on the drop down, instead of
-                typing in "steelblue" to choose any colour in R!
+                You can click <alert>Pick Colour...</alert> on the drop down,
+                instead of typing in <alert>steelblue</alert> to choose any
+                colour in R!
             </p>
         </subsection>
 
@@ -1521,8 +1684,9 @@
                 <ol>
                     <li>
                         <p>
-                            By adjusting the number of bins via the <c>bins</c>
-                            argument on the sub dialog under "Layer Parameters".
+                            By adjusting the number of bins via the
+                            <alert>bins</alert> argument on the sub dialog under
+                            "Layer Parameters".
                         </p>
                     </li>
 
@@ -1555,7 +1719,8 @@
             <p>
                 Using the second method, instead of specifying the number of
                 bins, we specify the width of the bins by using the
-                <c>binwidth</c> argument in the <c>geom_histogram()</c> layer.
+                <alert>binwidth</alert> argument in the
+                <alert>geom_histogram()</alert> layer.
                 For example, let's set the width of each bin to be five mph.
             </p>
 
@@ -1656,20 +1821,76 @@
             we saw in <xref ref="fig-histogramexample"/> differed in each month.
             We could <q>split</q> this histogram by the 12 possible months in a
             given year.
-            In other words, we would plot histograms of <c>wind_speed</c> for
-            each <c>month</c> separately.
-            We do this by clicking the "Facet" option on the dialog, which adds
-            a new layer into our plot.
-            This is done in <xref ref="facet-1"/>.
-            But we see an issue first!
-            We cannot see "month" as an option to facet by.
-            This is simply because "month" is not a factor in our data set.
-            We can easily fix this by closing the dialog, and right clicking on
-            the "month" variable on the Data View ( <xref ref="facet-2"/> )
-            Here, we can convert the month to a factor variable.
-            If we reopen our histogram dialog, we can now see the option to
-            facet by month ( <xref ref="facet-3"/> ).
+            In other words, we would plot histograms of
+            <alert>wind_speed</alert> for each <alert>month</alert> separately.
         </p>
+
+        <assemblage xml:id="howto-histogram-facet-month">
+            <title>How to Create Faceted Histograms by Month in R-Instat</title>
+
+            <p>
+                Here we look at how to split a histogram by month using
+                faceting:
+                <ol>
+                    <li>
+                        <p>
+                            Suppose we are interested in how the histogram of
+                            hourly <alert>wind_speed</alert> differs across the
+                            12 months of the year, as shown in
+                            <xref ref="fig-histogramexample"/>.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            We can <q>split</q> the histogram by creating
+                            separate plots for each <alert>month</alert>, i.e.
+                            faceting by month.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Open the histogram dialog and click the
+                            <alert>Facet</alert> option.
+                            This adds a new layer to the plot (
+                            <xref ref="facet-1"/> ).
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Try selecting <alert>month</alert> as the faceting
+                            variable.
+                            We notice that it is not available as an option.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            This happens because <alert>month</alert> is not
+                            currently a factor variable in the data set.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Close the dialog, then right-click on
+                            <alert>month</alert> in the Data View and convert it
+                            to a factor variable ( <xref ref="facet-2"/> ).
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Reopen the histogram dialog.
+                            The <alert>month</alert> variable now appears as an
+                            option for faceting ( <xref ref="facet-3"/> ).
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </assemblage>
 
         <figure xml:id="facet-1">
             <caption>Adding a Facet Wrap</caption>
@@ -1708,13 +1929,6 @@
             We can also specify if we want to have these facets as rows or
             columns, and if we want an overall (O) plot too by using the down
             arrow on the facets option ( <xref ref="facet-4"/> ).
-            Furthermore, we can specify the number of rows and columns in the
-            grid by going to the "Plot Options" dialog, and checking the option
-            to "Include Facets".
-            There is an option here that says "Fixed Number of Rows".
-            For example, say we would like our faceted histogram to have 4 rows
-            instead of 3.
-            We simply add set this to be 3.
         </p>
 
         <figure xml:id="facet-4">
@@ -1724,6 +1938,55 @@
 
             <image source="facet-4.png" width="90%"/>
         </figure>
+
+        <assemblage xml:id="howto-facet-fixed-rows">
+            <title>How to Set the Number of Facet Rows in a Histogram</title>
+
+            <p>
+                Here we look at how to control the layout of faceted histograms
+                by setting a fixed number of rows:
+                <ol>
+                    <li>
+                        <p>
+                            Open the histogram dialog with faceting already
+                            applied.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Click <alert>Plot Options</alert>.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Check <alert>Include Facets</alert>.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Select the option
+                            <alert>Fixed Number of Rows</alert>.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Set the number of rows to <alert>4</alert>.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Click <alert>OK</alert> to update the faceted plot
+                            layout.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </assemblage>
 
         <figure xml:id="facet-5">
             <caption>Specifying the number of facet rows.</caption>
@@ -1795,8 +2058,9 @@
 
                 <statement>
                     <p>
-                        Does the <c>wind_speed</c> variable in the
-                        <c>weather</c> dataset have a lot of variability?
+                        Does the <alert>wind_speed</alert> variable in the
+                        <alert>weather</alert> dataset have a lot of
+                        variability?
                         Why do you say that?
                     </p>
                 </statement>
@@ -1807,185 +2071,225 @@
     <section xml:id="sec-boxplots">
         <title>5NG#4: Boxplots</title>
 
-        <p>
-            While faceted histograms are one type of visualization used to
-            compare the distribution of a numerical variable split by the values
-            of another variable, another type of visualization that achieves
-            this same goal is a <em>side-by-side
+        <introduction>
+            <p>
+                While faceted histograms are one type of visualization used to
+                compare the distribution of a numerical variable split by the
+                values of another variable, another type of visualization that
+                achieves this same goal is a
+                <em>side-by-side
       boxplot</em>.
-            A boxplot <idx><h>boxplots</h></idx> is constructed from the
-            information provided in the <em>five-number summary</em> of a
-            numerical variable.
-            To keep things simple for now, let's only consider the recorded
-            hourly wind speed recordings for the month of April, each
-            represented as a jittered point in <xref ref="fig-apr1"/>.
-        </p>
+                A boxplot <idx><h>boxplots</h></idx> is constructed from the
+                information provided in the <em>five-number summary</em> of a
+                numerical variable.
+                To keep things simple for now, let's only consider the recorded
+                hourly wind speed recordings for the month of April, each
+                represented as a jittered point in <xref ref="fig-apr1"/>.
+            </p>
 
-        <figure xml:id="fig-apr1">
-            <caption>April wind speeds represented as jittered points.</caption>
-            <image source="images/fig-apr1.png" width="90%">
-                <description>
-                    <p>
-                        Jittered dot plot of hourly wind speed values for April
-                        at NYC airports, with all points displayed along a
-                        single vertical strip.
-                    </p>
-                </description>
-            </image>
-        </figure>
+            <figure xml:id="fig-apr1">
+                <caption>
+                    April wind speeds represented as jittered points.
+                </caption>
 
-        <p>
-            These 2057 observations have the following
-            <em>five-number summary</em>:
-        </p>
+                <image source="images/fig-apr1.png" width="90%">
+                    <description>
+                        <p>
+                            Jittered dot plot of hourly wind speed values for
+                            April at NYC airports, with all points displayed
+                            along a single vertical strip.
+                        </p>
+                    </description>
+                </image>
+            </figure>
 
-        <p>
-            <ol>
-                <li>
-                    <p>
-                        Minimum: 0mph
-                    </p>
-                </li>
+            <p>
+                These 2057 observations have the following
+                <em>five-number summary</em>:
+            </p>
 
-                <li>
-                    <p>
-                        First quartile (25th percentile): 5.8 mph
-                    </p>
-                </li>
+            <p>
+                <ol>
+                    <li>
+                        <p>
+                            Minimum: 0mph
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        Median (second quartile, 50th percentile): 9.2 mph
-                    </p>
-                </li>
+                    <li>
+                        <p>
+                            First quartile (25th percentile): 5.8 mph
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        Third quartile (75th percentile): 12.7 mph
-                    </p>
-                </li>
+                    <li>
+                        <p>
+                            Median (second quartile, 50th percentile): 9.2 mph
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        Maximum: 29.92 mph
-                    </p>
-                </li>
-            </ol>
-        </p>
+                    <li>
+                        <p>
+                            Third quartile (75th percentile): 12.7 mph
+                        </p>
+                    </li>
 
-        <p>
-            In <xref ref="fig-apr2"/>, the leftmost plot marks these 5 values
-            with dashed horizontal lines on top of the 2057 points.
-            In the middle plot of <xref ref="fig-apr2"/> let’s add the boxplot.
-            In the rightmost plot of <xref ref="fig-apr2"/>, let’s remove the
-            points and the dashed horizontal lines for clarity’s sake.
-        </p>
+                    <li>
+                        <p>
+                            Maximum: 29.92 mph
+                        </p>
+                    </li>
+                </ol>
+            </p>
 
-        <figure xml:id="fig-apr2">
-            <caption>Building up a boxplot of April wind speeds.</caption>
-            <image source="images/patchwork_boxplot.png" width="90%">
-                <description>
-                    <p>
-                        Three side-by-side plots illustrating how a boxplot is
-                        constructed from April wind speed data: the first shows
-                        jittered points with dashed lines at the five-number
-                        summary values, the second overlays a boxplot, and the
-                        third shows the boxplot alone.
-                    </p>
-                </description>
-            </image>
-        </figure>
+            <p>
+                In <xref ref="fig-apr2"/>, the leftmost plot marks these 5
+                values with dashed horizontal lines on top of the 2057 points.
+                In the middle plot of <xref ref="fig-apr2"/> let’s add the
+                boxplot.
+                In the rightmost plot of <xref ref="fig-apr2"/>, let’s remove
+                the points and the dashed horizontal lines for clarity’s sake.
+            </p>
 
-        <p>
-            What the boxplot does is visually summarize the 2057 points by
-            cutting the wind speed recordings into <em>quartiles</em> at the
-            dashed lines, where each quartile contains roughly
-            <m>2057/4 \approx 514</m> an equal number of observations.
-            Thus
-        </p>
+            <figure xml:id="fig-apr2">
+                <caption>Building up a boxplot of April wind speeds.</caption>
+                <image source="images/patchwork_boxplot.png" width="90%">
+                    <description>
+                        <p>
+                            Three side-by-side plots illustrating how a boxplot
+                            is constructed from April wind speed data: the first
+                            shows jittered points with dashed lines at the
+                            five-number summary values, the second overlays a
+                            boxplot, and the third shows the boxplot alone.
+                        </p>
+                    </description>
+                </image>
+            </figure>
 
-        <p>
-            <ol>
-                <li>
-                    <p>
-                        25% of points fall below the bottom edge of the box,
-                        which is the first quartile.
-                        In other words, 25% of observations were below the first
-                        quartile value.
-                    </p>
-                </li>
+            <p>
+                What the boxplot does is visually summarize the 2057 points by
+                cutting the wind speed recordings into <em>quartiles</em> at the
+                dashed lines, where each quartile contains roughly
+                <m>2057/4 \approx 514</m> an equal number of observations.
+                Thus
+            </p>
 
-                <li>
-                    <p>
-                        25% of points fall between the bottom edge of the box
-                        and the solid middle line, which is the median.
-                        Thus, 25% of observations were between the first
-                        quartile and the median, and 50% of observations were
-                        below the median.
-                    </p>
-                </li>
+            <p>
+                <ol>
+                    <li>
+                        <p>
+                            25% of points fall below the bottom edge of the box,
+                            which is the first quartile.
+                            In other words, 25% of observations were below the
+                            first quartile value.
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        25% of points fall between the solid middle line and the
-                        top edge of the box, which is the third quartile.
-                        It follows that 25% of observations were between the
-                        median and the third quartile, and 75% of observations
-                        were below the third quartile.
-                    </p>
-                </li>
+                    <li>
+                        <p>
+                            25% of points fall between the bottom edge of the
+                            box and the solid middle line, which is the median.
+                            Thus, 25% of observations were between the first
+                            quartile and the median, and 50% of observations
+                            were below the median.
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        25% of points fall above the top edge of the box.
-                        In other words, 25% of observations were above the third
-                        quartile.
-                    </p>
-                </li>
+                    <li>
+                        <p>
+                            25% of points fall between the solid middle line and
+                            the top edge of the box, which is the third
+                            quartile.
+                            It follows that 25% of observations were between the
+                            median and the third quartile, and 75% of
+                            observations were below the third quartile.
+                        </p>
+                    </li>
 
-                <li>
-                    <p>
-                        The middle 50% of points lie within the
-                        <em>interquartile range
+                    <li>
+                        <p>
+                            25% of points fall above the top edge of the box.
+                            In other words, 25% of observations were above the
+                            third quartile.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            The middle 50% of points lie within the
+                            <em>interquartile range
         (IQR)</em>
-                        <idx><h>interquartile range (IQR)</h></idx> between the
-                        first and third quartile.
-                        The interquartile range measures a numerical variable's
-                        <em>spread</em>.
-                    </p>
-                </li>
-            </ol>
-        </p>
+                            <idx><h>interquartile range (IQR)</h></idx> between
+                            the first and third quartile.
+                            The interquartile range measures a numerical
+                            variable's <em>spread</em>.
+                        </p>
+                    </li>
+                </ol>
+            </p>
 
-        <p>
-            Furthermore, in the rightmost plot of <xref ref="fig-apr2"/>, we see
-            the <em>whiskers</em> <idx><h>boxplots</h><h>whiskers</h></idx> of
-            the boxplot.
-            The whiskers stick out from either end of the box all the way to the
-            minimum and maximum observed wind speeds of 0 mph and 29.92 mph,
-            respectively.
-            However, the whiskers don't always extend to the smallest and
-            largest observed values.
-            They in fact extend no more than 1.5 <m>\times</m> the interquartile
-            range from either end of the box, in this case of the April wind
-            speeds, no more than 1.5 <m>\times</m> 6.905 mph = 10.357 mph from
-            either end of the box.
-            Any observed values outside this range get marked with points called
-            <em>outliers</em>, which we'll discuss further in the next section.
-        </p>
+            <p>
+                Furthermore, in the rightmost plot of <xref ref="fig-apr2"/>, we
+                see the <em>whiskers</em>
+                <idx><h>boxplots</h><h>whiskers</h></idx> of the boxplot.
+                The whiskers stick out from either end of the box all the way to
+                the minimum and maximum observed wind speeds of 0 mph and 29.92
+                mph, respectively.
+                However, the whiskers don't always extend to the smallest and
+                largest observed values.
+                They in fact extend no more than 1.5 <m>\times</m> the
+                interquartile range from either end of the box, in this case of
+                the April wind speeds, no more than 1.5 <m>\times</m> 6.905 mph
+                = 10.357 mph from either end of the box.
+                Any observed values outside this range get marked with points
+                called <em>outliers</em>, which we'll discuss further in the
+                next section.
+            </p>
+        </introduction>
 
         <subsection xml:id="sec-geom-boxplot">
-            <title>Boxplots via <c>geom_boxplot</c></title>
+            <title>Boxplots</title>
 
             <p>
                 Let's now create a side-by-side boxplot of hourly wind speeds
                 split by the 12 months as we did previously with the faceted
                 histograms.
-                We do this by selecting
-                <alert>Describe &gt; Graphs &gt; Boxplot</alert>, and mapping
-                the <c>month</c> variable to the x-position, the
-                <c>wind_speed</c> variable to the y-position:
             </p>
+
+            <assemblage xml:id="howto-boxplot-month-wind">
+                <title>How to Create a Boxplot of Wind Speed by Month</title>
+
+                <p>
+                    Here we look at how to create a boxplot of wind speed by
+                    month:
+                    <ol>
+                        <li>
+                            <p>
+                                Go to
+                                <alert>Describe &gt; Graphs &gt; Boxplot</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Put <alert>month</alert> in the x-position.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Put <alert>wind_speed</alert> in the y-position.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Click <alert>OK</alert> to create the boxplot.
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </assemblage>
 
             <figure xml:id="fig-monthtempbox">
                 <caption>
@@ -2032,9 +2336,9 @@
                 </figure>
 
                 <p>
-                    By setting <c>month</c> to be a factor, it goes from having
-                    just the numerical values 1, 2, ..., and 12 to having an
-                    associated ordering.
+                    By setting <alert>month</alert> to be a factor, it goes from
+                    having just the numerical values 1, 2, ..., and 12 to having
+                    an associated ordering.
                     With this ordering, our plot now knows how to work with this
                     variable to produce the plot.
                 </p>
@@ -2145,13 +2449,15 @@
                     <statement>
                         <p>
                             We looked at the distribution of the numerical
-                            variable <c>wind_speed</c> split by the numerical
-                            variable <c>month</c> that we converted by setting
-                            as a factor in order to make a side-by-side boxplot.
-                            Why would a boxplot of <c>wind_speed</c> split by
-                            the numerical variable <c>pressure</c> similarly
-                            converted to a categorical variable using the
-                            <c>factor()</c> not be informative?
+                            variable <alert>wind_speed</alert> split by the
+                            numerical variable <alert>month</alert> that we
+                            converted by setting as a factor in order to make a
+                            side-by-side boxplot.
+                            Why would a boxplot of <alert>wind_speed</alert>
+                            split by the numerical variable
+                            <alert>pressure</alert> similarly converted to a
+                            categorical variable using the
+                            <alert>factor()</alert> not be informative?
                         </p>
                     </statement>
                 </exercise>
@@ -2195,58 +2501,56 @@
     <section xml:id="sec-barplots">
         <title>5NG#5: Barplots</title>
 
-        <p>
-            Both histograms and boxplots are tools to visualize the distribution
-            of numerical variables.
-            Another commonly desired task is to visualize the distribution of a
-            categorical variable.
-            This is a simpler task, as we are simply counting different
-            categories within a categorical variable, also known as the
-            <idx><h>levels</h></idx> <em>levels</em> of the categorical
-            variable.
-            Often the best way to visualize these different counts, also known
-            as <idx><h>frequencies</h></idx> <em>frequencies</em>, is with
-            barplots (also called barcharts).
-        </p>
+        <introduction>
+            <p>
+                Both histograms and boxplots are tools to visualize the
+                distribution of numerical variables.
+                Another commonly desired task is to visualize the distribution
+                of a categorical variable.
+                This is a simpler task, as we are simply counting different
+                categories within a categorical variable, also known as the
+                <idx><h>levels</h></idx> <em>levels</em> of the categorical
+                variable.
+                Often the best way to visualize these different counts, also
+                known as <idx><h>frequencies</h></idx> <em>frequencies</em>, is
+                with barplots (also called barcharts).
+            </p>
 
-        <p>
-            One complication, however, is how your data is represented.
-            Is the categorical variable of interest <q>pre-counted</q> or not?
-            For example, we give two dataframes: <c>fruits</c> and
-            <c>fruits_counted</c>.
-            These data frames represent the same collection of fruit.
-            Whereas <c>fruits</c> just lists the fruit individually...
-        </p>
-
-        <console prompt="> ">
-            <output>
+            <p>
+                One complication, however, is how your data is represented.
+                Is the categorical variable of interest <q>pre-counted</q> or
+                not?
+                For example, we give two dataframes: <alert>fruits</alert> and
+                <alert>fruits_counted</alert>.
+                These data frames represent the same collection of fruit.
+                Whereas <alert>fruits</alert> just lists the fruit
+                individually...
+            </p>
+            <pre>
   fruit 
 1 apple 
 2 apple 
 3 orange
 4 apple 
 5 orange
-            </output>
-        </console>
-
-        <p>
-            ...
-            <c>fruits_counted</c> has a variable <c>count</c> which represents
-            the <q>pre-counted</q> values of each fruit.
-        </p>
-
-        <console prompt="> ">
-            <output>
+            </pre>
+            <p>
+                ...
+                <alert>fruits_counted</alert> has a variable
+                <alert>count</alert> which represents the <q>pre-counted</q>
+                values of each fruit.
+            </p>
+            <pre>
   fruit  number
 1 apple       3
 2 orange      2
-            </output>
-        </console>
-
-        <p>
-            Depending on how your categorical data is represented, you'll need
-            to choose a different tab in your Barplot dialog in R-Instat.
-        </p>
+            </pre>
+            <p>
+                Depending on how your categorical data is represented, you'll
+                need to choose a different tab in your Barplot dialog in
+                R-Instat.
+            </p>
+        </introduction>
 
         <subsection xml:id="sec-geom-bar-col">
             <title>Barplots</title>
@@ -2256,19 +2560,74 @@
                 representations of the same basket of fruit: 3 apples and 2
                 oranges.
                 We first want to create the data frame in R.
-                To do this, go to <alert>File &gt; New Data Frame</alert>
-                <ul>
-                    <li>Ensure that the "New" tab at the top is checked</li>
-                    <li>Set "Columns" to "1"</li>
-                    <li>Set "Rows" to 5</li>
-                    <li>Set "Name" to "fruit"</li>
-                    <li>Set "New Data Frame Name" to "fruits"</li>
-                    <li>Press "OK"</li>
-                </ul>
-                After this, a blank data frame will appear where you can
-                manually type in "apple", "apple", "apple", "orange", "orange"
-                into the five cells.
+                How to do this is outlined below
             </p>
+
+            <assemblage xml:id="howto-create-new-data-frame">
+                <title>
+                    How to Create a New Data Frame and Enter Data in R-Instat
+                </title>
+
+                <p>
+                    Here we look at how to create a new data frame and enter
+                    values manually:
+                    <ol>
+                        <li>
+                            <p>
+                                Go to <alert>File &gt; New Data Frame</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Ensure that the <alert>New</alert> tab is
+                                selected.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Set <alert>Columns</alert> to <alert>1</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Set <alert>Rows</alert> to <alert>5</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Set <alert>Name</alert> to <alert>fruit</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Set <alert>New Data Frame Name</alert> to
+                                <alert>fruits</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Click <alert>OK</alert> to create the empty data
+                                frame.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Enter the values manually into the single
+                                column: <alert>apple</alert>,
+                                <alert>apple</alert>, <alert>apple</alert>,
+                                <alert>orange</alert>, <alert>orange</alert>.
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </assemblage>
 
             <figure xml:id="fig-create-df">
                 <caption>
@@ -2278,12 +2637,50 @@
                 <image source="create-df.png" width="70%"/>
             </figure>
 
-            <p>
-                Go to <alert>Describe &gt; Graph &gt; Bar Plot</alert> and
-                ensure that the tab is on "Frequency".
-                Place your "fruits" column into the "Single Variable" receiver
-                as shown in <xref ref="barchat-dlg-1"/>.
-            </p>
+            <assemblage xml:id="howto-barplot-fruits">
+                <title>How to Create a Bar Plot in R-Instat</title>
+
+                <p>
+                    Here we look at how to create a bar plot from a categorical
+                    variable:
+                    <ol>
+                        <li>
+                            <p>
+                                Go to
+                                <alert>Describe &gt; Graph &gt; Bar Plot</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Ensure the <alert>Frequency</alert> tab is
+                                selected.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Make sure you are working on the correct data
+                                set.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Put the <alert>fruits</alert> column into the
+                                <alert>Single Variable</alert> receiver as shown
+                                in <xref ref="barchat-dlg-1"/>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Click <alert>OK</alert> to create the bar plot.
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </assemblage>
 
             <figure xml:id="barchat-dlg-1">
                 <caption>A simple filled in Bar Chart Dialog.</caption>
@@ -2303,41 +2700,90 @@
                 </image>
             </figure>
 
-            <p>
-                Now we generate a summarised version of the fruits data frame.
-                To do this, go to
-                <alert>Prepare &gt; Data Reshape &gt; Summarise</alert>, and
-                <ul>
-                    <li>Insert "fruit" into "Variable(s) to Summarise"</li>
-                    <li>
-                        Insert "fruit" into "Summarise By"
-                        <figure xml:id="barchart-dlg-2">
-                            <caption>
-                                Filling in the Column Summaries Dialog
-                            </caption>
+            <assemblage xml:id="howto-summarise-fruits">
+                <title>How to Summarise a Data Frame in R-Instat</title>
 
-                            <image source="barchart-dlg-2.png" width="70%"/>
-                        </figure>
-                    </li>
+                <p>
+                    Here we look at how to generate a summarised version of the
+                    fruits data frame:
+                    <ol>
+                        <li>
+                            <p>
+                                Go to
+                                <alert>Prepare &gt; Data Reshape &gt; Summarise</alert>.
+                            </p>
+                        </li>
 
-                    <li>Click on "Summaries" for the sub-dialog</li>
-                    <li>
-                        On the sub-dialog, select "N Total", and uncheck any
-                        other options that are checked
-                        <figure xml:id="barchart-dlg-3">
-                            <caption>
-                                Selecting "N Total" in the Column Summaries
-                                Sub-Dialog
-                            </caption>
+                        <li>
+                            <p>
+                                Insert <alert>fruit</alert> into
+                                <alert>Variable(s) to Summarise</alert>.
+                            </p>
+                        </li>
 
-                            <image source="barchart-dlg-3.png" width="70%"/>
-                        </figure>
-                    </li>
+                        <li>
+                            <p>
+                                Insert <alert>fruit</alert> into
+                                <alert>Summarise By</alert>.
+                                See <xref ref="fig-barchart-dlg-2"/>.
+                            </p>
+                        </li>
 
-                    <li>Press Return</li>
-                    <li>Press "OK"</li>
-                </ul>
-            </p>
+                        <li>
+                            <p>
+                                Click on <alert>Summaries</alert> for the
+                                sub-dialog
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                On the sub-dialog, select
+                                <alert>N Total</alert>, and uncheck any other
+                                options that are checked.
+                                See <xref ref="fig-barchart-dlg-2"/>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Press <alert>Return</alert>
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Press <alert>OK</alert>
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </assemblage>
+
+            <figure xml:id="fig-barchart-dlg-2">
+                <caption>Filling in the Column Summaries Dialog</caption>
+                <sidebyside widths="45% 45%" margins="5%">
+                    <image source="barchart-dlg-2.png">
+                        <description>
+                            <p>
+                                Column Summaries dialog with
+                                <alert>fruit</alert> in the
+                                <alert>Summarise By</alert> and
+                                <alert>Variables to Summarise</alert> receivers
+                            </p>
+                        </description>
+                    </image>
+
+                    <image source="barchart-dlg-3.png">
+                        <description>
+                            <p>
+                                Selecting <alert>N Total</alert> in the Column
+                                Summaries Sub-Dialog
+                            </p>
+                        </description>
+                    </image>
+                </sidebyside>
+            </figure>
 
             <figure xml:id="barchart-dlg-4">
                 <caption>The Summarised Fruits Data Frame</caption>
@@ -2347,11 +2793,62 @@
             <p>
                 We now have a data frame where the fruits have been
                 <q>pre-counted</q>.
-                To generate a plot, open the "Bar Chart" dialog and click the
-                <alert>"Value" tab</alert>.
-                We set "count_all_fruit" to be the Single Variable, and "fruit"
-                to be the X Variable.
             </p>
+
+            <assemblage xml:id="howto-bar-chart-precounted">
+                <title>
+                    How to Create a Bar Chart from Pre-counted Values in
+                    R-Instat
+                </title>
+
+                <p>
+                    Here we look at how to create a bar chart when you already
+                    have summary (counted) values:
+                    <ol>
+                        <li>
+                            <p>
+                                Go to
+                                <alert>Describe &gt; Graphs &gt; Bar Chart</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Ensure you are working with the correct data
+                                frame containing your summary values.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Click the <alert>Value</alert> tab in the bar
+                                chart dialog.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Set <alert>count_all_fruit</alert> as the
+                                <alert>Single Variable</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Set <alert>fruit</alert> as the
+                                <alert>X Variable</alert>.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Click <alert>OK</alert> to generate the bar
+                                chart.
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </assemblage>
 
             <figure xml:id="barchart-dlg-5">
                 <caption>
@@ -2392,38 +2889,38 @@
                     <li>
                         <p>
                             Is <em>not</em> pre-counted in your data frame, we
-                            use <c>Frequency</c>.
+                            use <alert>Frequency</alert>.
                         </p>
                     </li>
 
                     <li>
                         <p>
                             Is pre-counted in your data frame, we use
-                            <c>Value</c> with the y-position aesthetic mapped to
-                            the variable that has the counts.
+                            <alert>Value</alert> with the y-position aesthetic
+                            mapped to the variable that has the counts.
                         </p>
                     </li>
                 </ul>
             </p>
 
             <p>
-                Let's now go back to the <c>flights</c> data frame in the
-                <c>nycflights23</c> package and visualize the distribution of
-                the categorical variable <c>carrier</c>.
+                Let's now go back to the <alert>flights</alert> data frame in
+                the <alert>nycflights23</alert> package and visualize the
+                distribution of the categorical variable <alert>carrier</alert>.
                 In other words, let's visualize the number of domestic flights
                 out of New York City each airline company flew in 2023.
                 Recall from <xref ref="subsec-exploredataframes"/> when you
-                first explored the <c>flights</c> data frame, you saw that each
-                row corresponds to a flight.
-                In other words, the <c>flights</c> data frame is more like the
-                <c>fruits</c> data frame than the <c>fruits_counted</c> data
-                frame because the flights have not been pre-counted by
-                <c>carrier</c>.
-                Thus we should use <c>Frequency</c> Tab instead of <c>Value</c>
-                to create a barplot.
+                first explored the <alert>flights</alert> data frame, you saw
+                that each row corresponds to a flight.
+                In other words, the <alert>flights</alert> data frame is more
+                like the <alert>fruits</alert> data frame than the
+                <alert>fruits_counted</alert> data frame because the flights
+                have not been pre-counted by <alert>carrier</alert>.
+                Thus we should use <alert>Frequency</alert> Tab instead of
+                <alert>Value</alert> to create a barplot.
                 Much like with the Histogram, there is only one variable in the
-                aesthetic mapping: the variable <c>carrier</c> gets mapped to
-                the <c>x</c>-position.
+                aesthetic mapping: the variable <alert>carrier</alert> gets
+                mapped to the <alert>x</alert>-position.
                 As a difference though, histograms have bars that touch whereas
                 bar graphs have white space between the bars going from left to
                 right.
@@ -2432,7 +2929,7 @@
             <figure xml:id="fig-flightsbar">
                 <caption>
                     Number of flights departing NYC in 2023 by airline using
-                    <c>geom_bar()</c>.
+                    <alert>geom_bar()</alert>.
                 </caption>
 
                 <image source="images/fig-flightsbar.png" width="90%">
@@ -2456,7 +2953,7 @@
                 airlines.
                 For example, AA is American Airlines Inc.
                 Alternatively, say you had a data frame where the number of
-                flights for each <c>carrier</c> was pre-counted as in
+                flights for each <alert>carrier</alert> was pre-counted as in
                 <xref ref="tab-flights-counted"/>.
                 Like with the fruits data frame, this can be done using
                 <alert>Prepare &gt; Data Reshape
@@ -2546,10 +3043,11 @@
 
             <p>
                 In order to create a barplot visualizing the distribution of the
-                categorical variable <c>carrier</c> in this case, we would now
-                use <c>Value</c> instead of <c>Frequency</c>, with an additional
-                <c>count_all_*</c> as the "Single Variable", and the
-                <c>carrier</c> as the "X Variable".
+                categorical variable <alert>carrier</alert> in this case, we
+                would now use <alert>Value</alert> instead of
+                <alert>Frequency</alert>, with an additional
+                <alert>count_all_*</alert> as the "Single Variable", and the
+                <alert>carrier</alert> as the "X Variable".
                 The resulting barplot would be identical to
                 <xref ref="fig-flightsbar"/>.
             </p>
@@ -2636,8 +3134,8 @@
                         <p>
                             How much smaller is the portion of the pie for
                             Hawaiian Airlines Inc.
-                            ( <c>HA</c> ) compared to United Airlines (
-                            <c>UA</c> )?
+                            ( <alert>HA</alert> ) compared to United Airlines (
+                            <alert>UA</alert> )?
                         </p>
                     </li>
 
@@ -2652,7 +3150,7 @@
                         <p>
                             How many carriers have fewer flights than Delta Air
                             Lines Inc.
-                            ( <c>DL</c> )?
+                            ( <alert>DL</alert> )?
                         </p>
                     </li>
                 </ul>
@@ -2721,17 +3219,56 @@
 
             <p>
                 Let's examine the <em>joint</em> distribution of outgoing
-                domestic flights from NYC by <c>carrier</c> as well as
-                <c>origin</c>, in other words, the number of flights for each
-                <c>carrier</c> and <c>origin</c> combination.
+                domestic flights from NYC by <alert>carrier</alert> as well as
+                <alert>origin</alert>, in other words, the number of flights for
+                each <alert>carrier</alert> and <alert>origin</alert>
+                combination.
                 This corresponds to the number of American Airlines flights from
-                <c>JFK</c>, the number of American Airlines flights from
-                <c>LGA</c>, the number of American Airlines flights from
-                <c>EWR</c>, the number of Endeavor Air flights from <c>JFK</c>,
-                and so on.
-                We can now add the additional variable <c>origin</c> by adding a
-                <c>origin</c> under the "By Factor" option in our dialog:
+                <alert>JFK</alert>, the number of American Airlines flights from
+                <alert>LGA</alert>, the number of American Airlines flights from
+                <alert>EWR</alert>, the number of Endeavor Air flights from
+                <alert>JFK</alert>, and so on.
+                We can now add the additional variable <alert>origin</alert> by
+                adding a <alert>origin</alert> under the "By Factor" option in
+                our dialog:
             </p>
+
+            <assemblage xml:id="howto-bar-chart-by-factor">
+                <title>How to Create a Bar Chart by Factor in R-Instat</title>
+
+                <p>
+                    Here we look at how to create a bar chart grouped by a
+                    factor:
+                    <ol>
+                        <li>
+                            <p>
+                                Reopen the <alert>Bar Chart</alert> dialog.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Put <alert>carrier</alert> into the usual
+                                receiver (Single Variable).
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Add <alert>origin</alert> under the
+                                <alert>By Factor</alert> option in the dialog.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Click <alert>OK</alert> to generate the grouped
+                                bar chart.
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </assemblage>
 
             <figure xml:id="barchart-dlg-6">
                 <caption>
@@ -2766,13 +3303,13 @@
                 While simple to make, in certain aspects it is not ideal.
                 For example, it is difficult to compare the heights of the
                 different colors between the bars, corresponding to comparing
-                the number of flights from each <c>origin</c> airport between
-                the carriers.
+                the number of flights from each <alert>origin</alert> airport
+                between the carriers.
             </p>
 
             <p>
                 Note that this "By Factor" (fill) is another aesthetic mapping
-                much like <c>x</c>-position.
+                much like <alert>x</alert>-position.
             </p>
 
             <p>
@@ -2781,12 +3318,51 @@
                 <em>side-by-side barplots</em>, also known as
                 <em>dodged barplots</em>, as seen in
                 <xref ref="fig-flights-dodged-bar-color"/>.
-                You can create a side-by-side barplot by simply clicking on the
-                "Position" drop-down on the Dialog, and selecting "Dodge".
-                In other words, we are overriding the default barplot type,
-                which is a <em>Stacked</em> barplot, and specifying it to be a
-                side-by-side barplot instead.
             </p>
+
+            <assemblage xml:id="howto-side-by-side-barplot">
+                <title>How to Create a Side-by-Side Bar Plot in R-Instat</title>
+
+                <p>
+                    Here we look at how to change a stacked bar plot into a
+                    side-by-side bar plot:
+                    <ol>
+                        <li>
+                            <p>
+                                Open the <alert>Bar Plot</alert> dialog.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Locate the <alert>Position</alert> drop-down
+                                menu in the dialog.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Select <alert>Dodge</alert> from the
+                                <alert>Position</alert> options.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                This overrides the default
+                                <alert>Stacked</alert> bar plot setting and
+                                produces a side-by-side bar plot instead.
+                            </p>
+                        </li>
+
+                        <li>
+                            <p>
+                                Click <alert>OK</alert> to generate the plot.
+                            </p>
+                        </li>
+                    </ol>
+                </p>
+            </assemblage>
 
             <figure xml:id="fig-flights-dodged-bar-color">
                 <caption>
@@ -2813,11 +3389,13 @@
                 distribution of hourly wind speeds at the 3 NYC airports
                 <em>split</em> by month using facets.
                 We apply the same principle to our barplot visualizing the
-                frequency of <c>carrier</c> split by <c>origin</c>.
-                Instead of having "origin" under our "By Factor" receiver, we
-                include it under the "Facet By" receiver.
+                frequency of <alert>carrier</alert> split by
+                <alert>origin</alert>.
+                Instead of having <alert>origin</alert> under our
+                <alert>By Factor</alert> receiver, we include it under the
+                <alert>Facet By</alert> receiver.
                 This gives small multiples of the plot across the levels of
-                <c>origin</c> in <xref ref="fig-facet-bar-vert"/>.
+                <alert>origin</alert> in <xref ref="fig-facet-bar-vert"/>.
             </p>
 
             <figure xml:id="fig-facet-bar-vert">
@@ -2942,9 +3520,9 @@
                 and relationships of variables contained in a wide array of
                 datasets.
                 This will be even more the case as we start to map more
-                variables to more of each <c>geom</c> etric object's <c>aes</c>
-                thetic attribute options, further unlocking the awesome power of
-                the <c>ggplot2</c> package.
+                variables to more of each <alert>geom</alert> etric object's
+                <alert>aes</alert> thetic attribute options, further unlocking
+                the awesome power of the <alert>ggplot2</alert> package.
             </p>
 
             <table xml:id="tab-viz-summary-table">
@@ -3017,17 +3595,17 @@
                 <xref ref="sec-scatterplots"/> we visualized the relationship
                 between departure delay and arrival delay for Envoy Air flights
                 only, rather than <em>all</em> flights.
-                This data is saved in the <c>envoy_flights</c> data frame from
-                the <c>moderndive</c> package.
+                This data is saved in the <alert>envoy_flights</alert> data
+                frame from the <alert>moderndive</alert> package.
             </p>
 
             <p>
-                In reality, the <c>envoy_flights</c> data frame is merely a
-                subset of the <c>flights</c> data frame from the
-                <c>nycflights23</c> package consisting of <em>all</em> flights
-                that left NYC in 2023.
-                We created <c>envoy_flights</c> using data wrangling (here,
-                filtering).
+                In reality, the <alert>envoy_flights</alert> data frame is
+                merely a subset of the <alert>flights</alert> data frame from
+                the <alert>nycflights23</alert> package consisting of
+                <em>all</em> flights that left NYC in 2023.
+                We created <alert>envoy_flights</alert> using data wrangling
+                (here, filtering).
             </p>
 
             <p>
