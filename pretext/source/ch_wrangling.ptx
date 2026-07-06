@@ -104,8 +104,8 @@
 
                 <li>
                     <p>
-                        <alert>Adding to</alert> its existing columns/variables
-                        to create new ones.
+                        <alert>Adding to ("mutate")</alert> its existing
+                        columns/variables to create new ones.
                         For example, convert hourly temperature readings from
                         Fahrenheit to Celsius.
                     </p>
@@ -139,8 +139,8 @@
                 <description>
                     <p>
                         Diagram showing how the filter operation takes in a data
-                        frame and a logical condition, returning a new data frame
-                        with only the rows that match the condition.
+                        frame and a logical condition, returning a new data
+                        frame with only the rows that match the condition.
                     </p>
                 </description>
             </image>
@@ -167,75 +167,100 @@
             <title>How to Filter in R-Instat</title>
 
             <p>
-                To create a filter, right-click anywhere in the Data Viewer and
-                choose <alert>Filter Rows</alert>.
-                This opens the Filter dialog.
-            </p>
-
-            <figure xml:id="fig-filter-dialog">
-                <!-- screenshot -->
-                <caption>The Filter Rows dialog.</caption>
-            </figure>
-
-            <p>
-                Click <alert>Define New Filter</alert>.
-                A second dialog appears where you define the conditions for the
-                filter.
-            </p>
-
-            <p>
-                Suppose we want to look only at flights travelling to Phoenix,
-                Arizona, whose destination code is <c>PHX</c>.
-                Select the variable <c>dest</c> and enter the value <c>PHX</c>.
-                Then click <alert>Add Condition</alert>.
-                You may also give the filter a name so that it can be reused
-                later.
-                Click <alert>Return</alert> to return to the main Filter dialog.
-            </p>
-
-            <p>
-                If <c>dest</c> has first been converted to a factor, defining
-                the filter is even easier.
+                We want to filter <c>dest</c>, which is a factor variable.
+                So, first we need to tell R-Instat to treat <c>dest</c> as a
+                factor.
                 Right-click the <c>dest</c> column heading and choose to convert
                 it to a factor.
-                Then reopen the Filter dialog and click
-                <alert>Define New Filter</alert>.
-                Instead of typing a destination code, you can simply select one
-                or more destinations from a list of check boxes.
-            </p>
+                <ol>
+                    <li>
+                        <p>
+                            Once you have made <c>dest</c> a factor, we can
+                            create our filter.
+                        </p>
+                    </li>
 
-            <figure xml:id="fig-filter-factor">
-                <!-- screenshot -->
-                <caption>Filtering using factor levels.</caption>
-            </figure>
+                    <li>
+                        <p>
+                            To create a filter, right-click anywhere in the Data
+                            Viewer and choose <alert>Filter Rows</alert>.
+                            This opens the Filter dialog.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Click <alert>Define New Filter</alert>.
+                            A second dialog appears where you define the
+                            conditions for the filter.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Suppose we want to look only at flights travelling
+                            to Phoenix, Arizona, whose destination code is
+                            <c>PHX</c>.
+                            Select the variable <c>dest</c> then check
+                            <alert>PHX</alert> in the list of available levels.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Then click <alert>Add Condition</alert>.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            You may also give the filter a name so that it can
+                            be reused later.
+                            Click <alert>Return</alert> to return to the main
+                            Filter dialog.
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>
+                            Once the filter has been defined, R-Instat provides
+                            three options:
+                            <ul>
+                                <li>
+                                    <alert>Apply as Filter.</alert> Only the
+                                    matching rows remain active for analysis,
+                                    while the other rows are temporarily hidden.
+                                    The row numbers in the data viewer turn red
+                                    to indicate that a filter is active.
+                                    To remove the filter, right-click in the
+                                    data viewer and choose
+                                    <alert>Remove Filter</alert>.
+                                </li>
+
+                                <li>
+                                    <alert>Apply as Subset.</alert> A new data
+                                    frame is created containing only the
+                                    selected rows.
+                                    The original data remain unchanged.
+                                </li>
+
+                                <li>
+                                    <alert>Store for Later.</alert> The filter
+                                    is saved but not applied.
+                                    This is useful if you expect to reuse the
+                                    same filter later in your analysis.
+                                </li>
+                            </ul>
+                        </p>
+                    </li>
+                </ol>
+            </p>
 
             <p>
-                Once the filter has been defined, R-Instat provides three
-                options:
+                Note that if you did not have <alert>dest</alert> set as a
+                factor, you would have had to type in the destination code
+                <alert>"PHX"</alert> instead of simply checking a box.
             </p>
-
-            <ul>
-                <li>
-                    <b>Apply as Filter.</b> Only the matching rows remain active
-                    for analysis, while the other rows are temporarily hidden.
-                    The row numbers in the data viewer turn red to indicate that
-                    a filter is active.
-                    To remove the filter, right-click in the data viewer and
-                    choose <alert>Remove Filter</alert>.
-                </li>
-
-                <li>
-                    <b>Apply as Subset.</b> A new data frame is created
-                    containing only the selected rows.
-                    The original data remain unchanged.
-                </li>
-
-                <li>
-                    <b>Store for Later.</b> The filter is saved but not applied.
-                    This is useful if you expect to reuse the same filter later
-                    in your analysis.
-                </li>
-            </ul>
 
             <p>
                 Filtering is a safe way to focus on a subset of the data because
@@ -244,9 +269,28 @@
             </p>
         </assemblage>
 
+        <figure xml:id="fig-filter-dialog">
+            <caption>The Filter Rows dialog.</caption>
+            <image source=""/>
+            <description>
+                <p>
+                    Screenshot of the Filter Rows dialog.
+                    The variable <c>dest</c> has been selected and the
+                    <c>PHX</c> box checked, so only rows with <c>dest</c> equal
+                    to <c>PHX</c> will be kept.
+                </p>
+            </description>
+        </figure>
+
+        <figure xml:id="fig-filter-factor">
+            <caption>Filtering using factor levels.</caption>
+            <image source=""/>
+        </figure>
+
         <p>
-            Before we set dest as a factor, we filtered by setting
-            <alert>== "PHX"</alert>.
+            If we did not set dest as a factor, we would filter by setting
+            <alert>== "PHX"</alert> (see <xref ref="fig-filter-dialog-numeric"/>
+            ).
             This is an example of a <em>logical condition</em> that tests for
             equality.
             You can use other operators <idx><h>operators</h></idx> beyond just
@@ -330,10 +374,9 @@
                 Right-click anywhere in the Data Viewer, choose
                 <alert>Filter Rows</alert>, and then click
                 <alert>Define New Filter</alert>.
-                Before adding conditions, convert <c>origin</c> and
-                <c>month</c> to factors (as we did earlier for <c>dest</c>) so
-                that we can pick values from check boxes rather than typing
-                them.
+                Before adding conditions, convert <c>origin</c> and <c>month</c>
+                to factors (as we did earlier for <c>dest</c> ) so that we can
+                pick values from check boxes rather than typing them.
             </p>
 
             <p>
@@ -342,20 +385,19 @@
             </p>
 
             <p>
-                Select <c>dest</c> and check both the <c>BTV</c> and
-                <c>SEA</c> boxes.
+                Select <c>dest</c> and check both the <c>BTV</c> and <c>SEA</c>
+                boxes.
                 Checking more than one box for the <em>same</em> variable
-                combines those values with <q>or,</q> so this single
-                condition matches flights heading to Burlington
-                <em>or</em> Seattle.
+                combines those values with <q>or,</q> so this single condition
+                matches flights heading to Burlington <em>or</em> Seattle.
                 Click <alert>Add Condition</alert> again to add it to the
                 filter.
             </p>
 
             <p>
-                Select <c>month</c> and check the boxes for
-                <c>October</c>, <c>November</c>, and <c>December</c>, then
-                click <alert>Add Condition</alert> a third time.
+                Select <c>month</c> and check the boxes for <c>October</c>,
+                <c>November</c>, and <c>December</c>, then click
+                <alert>Add Condition</alert> a third time.
             </p>
 
             <p>
@@ -393,8 +435,8 @@
                 boxes for <c>BTV</c> and <c>SEA</c>, just as before.
                 This time, before adding the condition, also check the
                 <alert>Not</alert> box.
-                Checking <alert>Not</alert> negates the condition, so instead
-                of keeping only rows where <c>dest</c> is BTV or SEA, it keeps
+                Checking <alert>Not</alert> negates the condition, so instead of
+                keeping only rows where <c>dest</c> is BTV or SEA, it keeps
                 every row <em>except</em> those two destinations, which is
                 exactly what the <alert>!</alert> operator does.
             </p>
@@ -432,13 +474,12 @@
             </p>
 
             <p>
-                Select the (already-factor) variable <c>dest</c> and check
-                the boxes for all five airports: <c>SEA</c>, <c>SFO</c>,
-                <c>PHX</c>, <c>BTV</c>, and <c>BDL</c>.
+                Select the (already-factor) variable <c>dest</c> and check the
+                boxes for all five airports: <c>SEA</c>, <c>SFO</c>, <c>PHX</c>,
+                <c>BTV</c>, and <c>BDL</c>.
                 Because these boxes all belong to the same variable, checking
-                several of them combines the values with <q>or,</q> so a
-                single condition is enough to match any one of the five
-                destinations.
+                several of them combines the values with <q>or,</q> so a single
+                condition is enough to match any one of the five destinations.
             </p>
 
             <p>
@@ -496,10 +537,10 @@
             <image source="images/cheatsheets/summary.png" width="80%">
                 <description>
                     <p>
-                        Diagram showing how a summary function in R-Instat
-                        takes many values as input from a column of a data
-                        frame and returns a single summary value such as the
-                        mean or standard deviation.
+                        Diagram showing how a summary function in R-Instat takes
+                        many values as input from a column of a data frame and
+                        returns a single summary value such as the mean or
+                        standard deviation.
                     </p>
                 </description>
             </image>
@@ -518,9 +559,9 @@
             <image source="images/cheatsheets/summarise1.png" width="80%">
                 <description>
                     <p>
-                        Diagram showing how the summarise function collapses
-                        a data frame with many rows into a single-row data
-                        frame containing the computed summary statistics.
+                        Diagram showing how the summarise function collapses a
+                        data frame with many rows into a single-row data frame
+                        containing the computed summary statistics.
                     </p>
                 </description>
             </image>
@@ -539,7 +580,8 @@
             <p>
                 Go to <alert>Describe &gt; One Variable &gt; Summarise</alert>
                 and click the <alert>Customised</alert> tab.
-                Input <c>wind_speed</c> into the <alert>Variables to
+                Input <c>wind_speed</c> into the
+                <alert>Variables to
                 Summarise</alert> receiver.
             </p>
 
@@ -547,30 +589,29 @@
                 By default, several summary statistics are checked.
                 Uncheck all of these, then check only <alert>mean</alert> and
                 <alert>sd</alert>.
-                The result can either appear in the output window, or be
-                saved as a new data frame; check
-                <alert>Store Table</alert> and name it
-                <c>summary_windspeed</c>, then click <alert>OK</alert>.
+                The result can either appear in the output window, or be saved
+                as a new data frame; check <alert>Store Table</alert> and name
+                it <c>summary_windspeed</c>, then click <alert>OK</alert>.
             </p>
 
             <figure xml:id="fig-one-var-summarise-dlg">
                 <caption>
-                    The One Variable Summarise dialog, showing
-                    <c>wind_speed</c> selected with only <c>mean</c> and
-                    <c>sd</c> checked, and the result stored as
-                    <c>summary_windspeed</c>.
+                    The One Variable Summarise dialog, showing <c>wind_speed</c>
+                    selected with only <c>mean</c> and <c>sd</c> checked, and
+                    the result stored as <c>summary_windspeed</c>.
                 </caption>
+
                 <image source="TODO.png" width="90%">
                     <description>
                         <p>
-                            Screenshot of the Customised tab of the One
-                            Variable Summarise dialog.
+                            Screenshot of the Customised tab of the One Variable
+                            Summarise dialog.
                             The variable <c>wind_speed</c> has been entered in
                             the Variables to Summarise receiver.
-                            In the list of summary statistic check boxes,
-                            only <c>mean</c> and <c>sd</c> are checked.
-                            The Store Table option is checked, with the new
-                            data frame name set to <c>summary_windspeed</c>.
+                            In the list of summary statistic check boxes, only
+                            <c>mean</c> and <c>sd</c> are checked.
+                            The Store Table option is checked, with the new data
+                            frame name set to <c>summary_windspeed</c>.
                         </p>
                     </description>
                 </image>
@@ -586,10 +627,10 @@
                 <description>
                     <p>
                         Output table with two columns, <c>mean</c> and
-                        <c>sd</c>, and a single row, showing that both the
-                        mean and standard deviation of <c>wind_speed</c> are
-                        <c>NA</c> because the variable contains missing
-                        values that have not yet been removed.
+                        <c>sd</c>, and a single row, showing that both the mean
+                        and standard deviation of <c>wind_speed</c> are
+                        <c>NA</c> because the variable contains missing values
+                        that have not yet been removed.
                     </p>
                 </description>
             </image>
@@ -745,8 +786,8 @@
                     <p>
                         Diagram showing how grouping assigns rows into groups
                         based on a categorical variable, and then summarising
-                        computes summary statistics separately for each
-                        group, returning one row per group.
+                        computes summary statistics separately for each group,
+                        returning one row per group.
                     </p>
                 </description>
             </image>
@@ -777,8 +818,8 @@
                 Then go to
                 <alert>Describe &gt; Two/Three Variables &gt; Summarise</alert>
                 and stay on the <alert>Two Variables</alert> tab.
-                Input <c>month</c> into the top, multiple-variable receiver,
-                and input <c>wind_speed</c> into the second, single-variable
+                Input <c>month</c> into the top, multiple-variable receiver, and
+                input <c>wind_speed</c> into the second, single-variable
                 receiver.
             </p>
 
@@ -793,21 +834,22 @@
                 Click <alert>Choose Summaries...</alert> to open the summary
                 statistics sub-dialog, uncheck the currently checked options,
                 and check only <alert>mean</alert> and <alert>sd</alert>.
-                Click <alert>Return</alert> to go back to the main dialog,
-                then click <alert>OK</alert>.
+                Click <alert>Return</alert> to go back to the main dialog, then
+                click <alert>OK</alert>.
             </p>
 
             <figure xml:id="fig-two-var-summarise-dlg">
                 <caption>
                     The Two Variables Summarise dialog, grouping
-                    <c>wind_speed</c> by <c>month</c> and storing the result
-                    as <c>summary_monthly_windspeed</c>.
+                    <c>wind_speed</c> by <c>month</c> and storing the result as
+                    <c>summary_monthly_windspeed</c>.
                 </caption>
+
                 <image source="TODO.png" width="90%">
                     <description>
                         <p>
-                            Screenshot of the Two Variables tab of the
-                            Summarise dialog.
+                            Screenshot of the Two Variables tab of the Summarise
+                            dialog.
                             The variable <c>month</c> has been entered in the
                             top, multiple-variable receiver, and
                             <c>wind_speed</c> in the second, single-variable
@@ -815,8 +857,8 @@
                             Omit Missing Values and Store Table are checked,
                             with the new data frame name set to
                             <c>summary_monthly_windspeed</c>.
-                            In the Choose Summaries sub-dialog, only
-                            <c>mean</c> and <c>sd</c> are checked.
+                            In the Choose Summaries sub-dialog, only <c>mean</c>
+                            and <c>sd</c> are checked.
                         </p>
                     </description>
                 </image>
@@ -838,28 +880,31 @@
             </p>
 
             <p>
-                Click <alert>Summaries</alert> and uncheck the selected
-                default options; check <alert>mean</alert> and
-                <alert>sd</alert> instead to get the mean and standard
-                deviation, then click <alert>Return</alert>.
-                Back on the main dialog, check <alert>Omit Missing
-                Values</alert> and click <alert>OK</alert>.
+                Click <alert>Summaries</alert> and uncheck the selected default
+                options; check <alert>mean</alert> and <alert>sd</alert> instead
+                to get the mean and standard deviation, then click
+                <alert>Return</alert>.
+                Back on the main dialog, check
+                <alert>Omit Missing
+                Values</alert> and click
+                <alert>OK</alert>.
             </p>
         </assemblage>
 
         <figure>
             <caption>
-                The Column Summaries dialog, summarising <c>wind_speed</c>
-                with the mean and standard deviation.
+                The Column Summaries dialog, summarising <c>wind_speed</c> with
+                the mean and standard deviation.
             </caption>
+
             <image source="column-summaries-summarise-dlg.png" width="90%">
                 <description>
                     <p>
                         Screenshot of the Column Summaries dialog.
                         <c>wind_speed</c> has been entered as the variable to
-                        summarise, only <c>mean</c> and <c>sd</c> are checked
-                        in the Summaries sub-dialog, and Omit Missing Values
-                        is checked.
+                        summarise, only <c>mean</c> and <c>sd</c> are checked in
+                        the Summaries sub-dialog, and Omit Missing Values is
+                        checked.
                     </p>
                 </description>
             </image>
@@ -879,20 +924,22 @@
             </p>
 
             <p>
-                Click <alert>Summaries</alert> and uncheck the selected
-                default options; check <alert>mean</alert> and
-                <alert>sd</alert> instead to get the mean and standard
-                deviation, then click <alert>Return</alert>.
-                Back on the main dialog, check <alert>Omit Missing
-                Values</alert> and click <alert>OK</alert>.
+                Click <alert>Summaries</alert> and uncheck the selected default
+                options; check <alert>mean</alert> and <alert>sd</alert> instead
+                to get the mean and standard deviation, then click
+                <alert>Return</alert>.
+                Back on the main dialog, check
+                <alert>Omit Missing
+                Values</alert> and click
+                <alert>OK</alert>.
             </p>
         </assemblage>
 
         <figure>
             <caption>
-                The Column Summaries dialog with <c>month</c> in the
-                Summarise By receiver, so that the mean and standard
-                deviation of <c>wind_speed</c> are computed for each month.
+                The Column Summaries dialog with <c>month</c> in the Summarise
+                By receiver, so that the mean and standard deviation of
+                <c>wind_speed</c> are computed for each month.
             </caption>
 
             <image source="column-summaries-group-by-dlg.png" width="90%">
@@ -912,15 +959,15 @@
 
         <figure>
             <caption>
-                The new data frame produced by the Column Summaries dialog,
-                with one row per month.
+                The new data frame produced by the Column Summaries dialog, with
+                one row per month.
             </caption>
 
             <image source="column-summaries-output-dlg.png" width="90%">
                 <description>
                     <p>
-                        Screenshot of the resulting data frame: 12 rows, one
-                        per month, with columns <c>month</c>,
+                        Screenshot of the resulting data frame: 12 rows, one per
+                        month, with columns <c>month</c>,
                         <c>mean_wind_speed</c>, and <c>sd_wind_speed</c>.
                     </p>
                 </description>
@@ -947,40 +994,37 @@
         </p>
 
         <assemblage xml:id="assemblage-howto-count-with-group-by">
-            <title>
-                How to Count Rows with Column Summaries in R-Instat
-            </title>
+            <title>How to Count Rows with Column Summaries in R-Instat</title>
 
             <p>
                 Go to
                 <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>
-                and input <c>origin</c> as the variable to summarise, and
-                also input <c>origin</c> into the <alert>Summarise
+                and input <c>origin</c> as the variable to summarise, and also
+                input <c>origin</c> into the
+                <alert>Summarise
                 By</alert> receiver.
             </p>
 
             <p>
-                Click <alert>Summaries</alert> and uncheck the selected
-                default options; check <alert>N Total</alert> instead to get
-                a count of rows, then click <alert>Return</alert> and
-                <alert>OK</alert>.
+                Click <alert>Summaries</alert> and uncheck the selected default
+                options; check <alert>N Total</alert> instead to get a count of
+                rows, then click <alert>Return</alert> and <alert>OK</alert>.
             </p>
         </assemblage>
 
         <figure>
             <caption>
-                The Column Summaries dialog, counting rows of
-                <c>origin</c> grouped by <c>origin</c>.
+                The Column Summaries dialog, counting rows of <c>origin</c>
+                grouped by <c>origin</c>.
             </caption>
 
             <image source="column-summaries-dlg-1.png" width="90%">
                 <description>
                     <p>
                         Screenshot of the Column Summaries dialog.
-                        <c>origin</c> has been entered both as the variable
-                        to summarise and in the Summarise By receiver, with
-                        only <c>N Total</c> checked in the Summaries
-                        sub-dialog.
+                        <c>origin</c> has been entered both as the variable to
+                        summarise and in the Summarise By receiver, with only
+                        <c>N Total</c> checked in the Summaries sub-dialog.
                     </p>
                 </description>
             </image>
@@ -989,14 +1033,14 @@
         <figure>
             <caption>
                 The new data frame produced by the Column Summaries dialog,
-                showing the number of flights departing from each NYC
-                airport.
+                showing the number of flights departing from each NYC airport.
             </caption>
+
             <image source="column-summaries-output-1.png" width="90%">
                 <description>
                     <p>
-                        Screenshot of the resulting data frame: 3 rows, one
-                        per origin airport (EWR, JFK, and LGA), with columns
+                        Screenshot of the resulting data frame: 3 rows, one per
+                        origin airport (EWR, JFK, and LGA), with columns
                         <c>origin</c> and <c>n_total</c> giving the count of
                         flights departing each airport.
                     </p>
@@ -1039,10 +1083,10 @@
                         <p>
                             Screenshot of the Column Summaries dialog.
                             <c>origin</c> has been entered as the variable to
-                            summarise, and both <c>origin</c> and
-                            <c>month</c> have been entered in the Summarise
-                            By receiver, so that counts are computed for
-                            every combination of airport and month.
+                            summarise, and both <c>origin</c> and <c>month</c>
+                            have been entered in the Summarise By receiver, so
+                            that counts are computed for every combination of
+                            airport and month.
                         </p>
                     </description>
                 </image>
@@ -1050,19 +1094,17 @@
 
             <figure>
                 <caption>
-                    The resulting <c>by_origin_monthly</c> data frame, with
-                    one row for each combination of <c>origin</c> and
-                    <c>month</c>.
+                    The resulting <c>by_origin_monthly</c> data frame, with one
+                    row for each combination of <c>origin</c> and <c>month</c>.
                 </caption>
 
                 <image source="column-summaries-output-2.png" width="90%">
                     <description>
                         <p>
-                            Screenshot of the resulting
-                            <c>by_origin_monthly</c> data frame: 36 rows,
-                            one for each of the 12 months at each of the 3
-                            NYC airports, with columns <c>origin</c>,
-                            <c>month</c>, and <c>n_total</c>.
+                            Screenshot of the resulting <c>by_origin_monthly</c>
+                            data frame: 36 rows, one for each of the 12 months
+                            at each of the 3 NYC airports, with columns
+                            <c>origin</c>, <c>month</c>, and <c>n_total</c>.
                         </p>
                     </description>
                 </image>
@@ -1147,9 +1189,9 @@
                 <description>
                     <p>
                         Diagram showing how mutate adds new columns to a data
-                        frame by computing them from existing columns,
-                        returning the original data frame with one or more
-                        new variables appended.
+                        frame by computing them from existing columns, returning
+                        the original data frame with one or more new variables
+                        appended.
                     </p>
                 </description>
             </image>
@@ -1193,11 +1235,10 @@
             <p>
                 Check <alert>Store Result</alert> and enter the new variable
                 name <c>temp_in_C</c>.
-                Click <alert>Position</alert> to choose where the new
-                variable should sit in the data frame; here, select
-                <alert>After</alert> and choose <c>temp</c>, so that
-                <c>temp_in_C</c> is placed immediately after the existing
-                <c>temp</c> variable.
+                Click <alert>Position</alert> to choose where the new variable
+                should sit in the data frame; here, select <alert>After</alert>
+                and choose <c>temp</c>, so that <c>temp_in_C</c> is placed
+                immediately after the existing <c>temp</c> variable.
                 Click <alert>OK</alert> to create the new variable.
             </p>
         </assemblage>
@@ -1262,24 +1303,23 @@
             <title>How to Rename Variables in R-Instat</title>
 
             <p>
-                There are two ways to open the Rename dialog: either
-                right-click on the variable you wish to rename and choose
+                There are two ways to open the Rename dialog: either right-click
+                on the variable you wish to rename and choose
                 <alert>Rename Column...</alert>, or go to
                 <alert>Prepare &gt; Data Frame &gt; Rename Columns...</alert>.
             </p>
 
             <p>
                 Stay on the <alert>Single</alert> tab.
-                In the <alert>Current Name</alert> receiver, put the
-                variable <c>temp</c> that we want to rename.
+                In the <alert>Current Name</alert> receiver, put the variable
+                <c>temp</c> that we want to rename.
                 In <alert>New Name</alert>, type the new name, in this case
                 <c>temp_in_F</c>.
             </p>
 
             <p>
                 The <alert>Column Label</alert> field is for metadata/labelling
-                purposes and is covered elsewhere; you can leave it blank
-                here.
+                purposes and is covered elsewhere; you can leave it blank here.
                 Click <alert>OK</alert> to rename the variable.
             </p>
         </assemblage>
@@ -1314,8 +1354,8 @@
                 Go to
                 <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>.
                 Put <c>temp_in_F</c> and <c>temp_in_C</c> as the
-                <alert>Variables to Summarise</alert>, and put <c>month</c>
-                in <alert>Summarise By</alert>.
+                <alert>Variables to Summarise</alert>, and put <c>month</c> in
+                <alert>Summarise By</alert>.
             </p>
 
             <p>
@@ -1391,8 +1431,7 @@
 
             <p>
                 Go to <alert>Prepare &gt; Calculator</alert>.
-                In <alert>Expression</alert>, type
-                <c>dep_delay - arr_delay</c>.
+                In <alert>Expression</alert>, type <c>dep_delay - arr_delay</c>.
                 Click <alert>Try</alert> to preview the new column's values.
             </p>
 
@@ -1492,7 +1531,8 @@
             <p>
                 Go to <alert>Describe &gt; One Variable &gt; Summarise</alert>
                 and select the <alert>Default</alert> tab.
-                Input <c>gain</c> into the <alert>Variables to
+                Input <c>gain</c> into the
+                <alert>Variables to
                 Summarise</alert> receiver.
             </p>
 
@@ -1513,8 +1553,8 @@
                         Screenshot of the Default tab of the One Variable
                         Summarise dialog.
                         <c>gain</c> has been entered in the Variables to
-                        Summarise receiver, and Store Table is checked with
-                        the new data frame name set to <c>summary_table</c>.
+                        Summarise receiver, and Store Table is checked with the
+                        new data frame name set to <c>summary_table</c>.
                     </p>
                 </description>
             </image>
@@ -1552,8 +1592,8 @@
             </p>
 
             <p>
-                Click the arrow next to <alert>Plot Options</alert> and
-                select <alert>Histogram Options</alert>.
+                Click the arrow next to <alert>Plot Options</alert> and select
+                <alert>Histogram Options</alert>.
                 In the sub-dialog that appears, click
                 <alert>Layer Parameters (Geom Parameters)</alert>.
                 Check <alert>bins</alert> and set it to <c>20</c>, and check
@@ -1838,10 +1878,9 @@ View(airlines)
                     <p>
                         Entity-relationship diagram showing the connections
                         between the flights, airlines, airports, planes, and
-                        weather data frames in the nycflights23 package,
-                        linked by shared key variables such as carrier, faa,
-                        tailnum, and combinations of year, month, day, hour,
-                        and origin.
+                        weather data frames in the nycflights23 package, linked
+                        by shared key variables such as carrier, faa, tailnum,
+                        and combinations of year, month, day, hour, and origin.
                     </p>
                 </description>
             </image>
@@ -1901,11 +1940,10 @@ View(flights_joined)
                 <image source="images/r4ds/join-inner.png" width="80%">
                     <description>
                         <p>
-                            Diagram of an inner join between two tables x and
-                            y, showing that only rows whose key variable
-                            values appear in both tables are retained in the
-                            result, with all columns from both tables
-                            present.
+                            Diagram of an inner join between two tables x and y,
+                            showing that only rows whose key variable values
+                            appear in both tables are retained in the result,
+                            with all columns from both tables present.
                         </p>
                     </description>
                 </image>
@@ -2198,10 +2236,9 @@ View(joined_flights)
                 <image source="images/cheatsheets/select.png" width="70%">
                     <description>
                         <p>
-                            Diagram showing how the select function keeps
-                            only the specified columns from a data frame,
-                            returning a new data frame with only those
-                            variables.
+                            Diagram showing how the select function keeps only
+                            the specified columns from a data frame, returning a
+                            new data frame with only those variables.
                         </p>
                     </description>
                 </image>
@@ -3007,10 +3044,9 @@ named_dests |&gt;
                     <description>
                         <p>
                             First page of the Data Transformation with dplyr
-                            cheatsheet, showing a visual summary of dplyr
-                            verbs for data manipulation including filter,
-                            select, mutate, summarize, arrange, and join
-                            operations.
+                            cheatsheet, showing a visual summary of dplyr verbs
+                            for data manipulation including filter, select,
+                            mutate, summarize, arrange, and join operations.
                         </p>
                     </description>
                 </image>
