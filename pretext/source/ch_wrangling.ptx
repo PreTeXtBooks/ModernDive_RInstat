@@ -566,13 +566,13 @@
   </section>
   <!-- ============================================================ -->
   <section xml:id="sec-summarize">
-    <title><alert>summarize</alert> variables</title>
+    <title><alert>Summarise</alert> variables</title>
 
     <p>
       The next common task when working with data frames is to compute
       <em>summary statistics</em>.
       <idx><h>summary statistics</h></idx> Summary statistics are single
-      numerical values that summarize a large number of values.
+      numerical values that summarise a large number of values.
       Commonly known examples of summary statistics include the mean (also
       called the average) and the median (the middle value).
       Other examples of summary statistics that might not immediately come to
@@ -639,20 +639,51 @@
       <title>How to Summarise Data in R-Instat</title>
 
       <p>
-        Go to <alert>Describe &gt; One Variable &gt; Summarise</alert> and click
-        the <alert>Customised</alert> tab.
-        Input <alert>wind_speed</alert> into the
-        <alert>Variables to
-                Summarise</alert> receiver.
-      </p>
+        Here we look at how to summarise data.
+        An example of this dialog filled in is given in
+        <xref ref="fig-one-var-summarise-dlg"/>.
+        <ol>
+          <li>
+            <p>
+              Go to <alert>Describe &gt; One Variable &gt; Summarise</alert> and
+              click the <alert>Customised</alert> tab.
+            </p>
+          </li>
 
-      <p>
-        By default, several summary statistics are checked.
-        Uncheck all of these, then check only <alert>mean</alert> and
-        <alert>sd</alert>.
-        The result can either appear in the output window, or be saved as a new
-        data frame; check <alert>Store Table</alert> and name it
-        <alert>summary_windspeed</alert>, then click <alert>OK</alert>.
+          <li>
+            <p>
+              Input <alert>wind_speed</alert> into the
+              <alert>Variables to Summarise</alert> receiver.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              By default, several summary statistics are selected.
+              Click <alert>Choose Summaries</alert> to open the sub-dialog.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              On the sub-dialog, uncheck all summary statistics.
+              Then, check only <alert>mean</alert> and <alert>sd</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Check <alert>Store Table</alert>, and name the table
+              <alert>summary_windspeed</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>OK</alert> to produce the summary table.
+            </p>
+          </li>
+        </ol>
       </p>
     </assemblage>
 
@@ -663,7 +694,7 @@
         and the result stored as <alert>summary_windspeed</alert>.
       </caption>
 
-      <image source="TODO.png" width="90%">
+      <image source="one-var-summarise-dlg-1.png" width="90%">
         <description>
           <p>
             Screenshot of the Customised tab of the One Variable Summarise
@@ -679,23 +710,25 @@
       </image>
     </figure>
 
-    <figure xml:id="fig-summarise-table">
-      <caption>
+    <table>
+      <title>
         Summary table output showing the mean and standard deviation.
-      </caption>
+      </title>
 
-      <image source="summary-table-output.png" width="90%">
-        <description>
-          <p>
-            Output table with two columns, <alert>mean</alert> and
-            <alert>sd</alert>, and a single row, showing that both the mean and
-            standard deviation of <alert>wind_speed</alert> are
-            <alert>NA</alert> because the variable contains missing values that
-            have not yet been removed.
-          </p>
-        </description>
-      </image>
-    </figure>
+      <tabular>
+        <row>
+          <cell>variable</cell>
+          <cell>mean</cell>
+          <cell>sd</cell>
+        </row>
+
+        <row>
+          <cell>wind_speed</cell>
+          <cell>NA</cell>
+          <cell>NA</cell>
+        </row>
+      </tabular>
+    </table>
 
     <p>
       Why are the values returned <alert>NA</alert>?
@@ -719,9 +752,10 @@
       time you try to calculate a summary statistic of a variable that has one
       or more <alert>NA</alert> missing values in R, <alert>NA</alert> is
       returned.
-      To work around this fact, you can set the <alert>na.rm</alert> argument to
-      <alert>TRUE</alert>, where <alert>rm</alert> is short for <q>remove</q>;
-      this will ignore any <alert>NA</alert> missing values and only return the
+      To work around this fact, you can click on the
+      <alert>Omit Missing Values</alert> check box in the
+      <alert>summarise</alert> dialog.
+      This will ignore any <alert>NA</alert> missing values and only return the
       summary value for all non-missing values.
     </p>
 
@@ -746,12 +780,34 @@
     </p>
 
     <p>
-      What are other summaries we can use inside the <alert>summarize</alert>
+      What are other summaries we can use inside the <alert>summarise</alert>
       verb to compute summary statistics?
       As seen in the diagram in <xref ref="fig-summary-function"/>, you can use
       any function in R that takes many values and returns just one.
+      A screenshot of some of the functions available in the
+      <alert>summarise</alert> dialog is shown in
+      <xref ref="fig-one-var-summarise-dlg-2"/>.
       Here are just a few:
     </p>
+
+    <figure xml:id="fig-one-var-summarise-dlg-2">
+      <caption>
+        The summaries sub-dialog showing the available summary statistics that
+        can be computed.
+      </caption>
+
+      <image source="one-var-summarise-dlg-2.png" width="90%">
+        <description>
+          <p>
+            Screenshot of the Summaries sub-dialog showing different available
+            summary statistics that can be computed in R-Instat:
+            <alert>mean</alert>, <alert>sd</alert>, <alert>min</alert>,
+            <alert>max</alert>, <alert>IQR</alert>, <alert>sum</alert>,
+            <alert>N total</alert>, and <alert>N Missing</alert>, among others.
+          </p>
+        </description>
+      </image>
+    </figure>
 
     <p>
       <ul>
@@ -868,28 +924,76 @@
         <title>How to Group and Summarise Data in R-Instat</title>
 
         <p>
-          First, set <alert>month</alert> as a factor.
-          Then go to
-          <alert>Describe &gt; Two/Three Variables &gt; Summarise</alert> and
-          stay on the <alert>Two Variables</alert> tab.
-          Input <alert>month</alert> into the top, multiple-variable receiver,
-          and input <alert>wind_speed</alert> into the second, single-variable
-          receiver.
-        </p>
+          Here we look at how to group and summarise data, as shown in
+          <xref ref="fig-two-var-summarise-dlg"/>.
+          <ol>
+            <li>
+              <p>
+                First, set <alert>month</alert> as a factor by right-clicking on
+                it in the data viewer.
+              </p>
+            </li>
 
-        <p>
-          Check <alert>Omit Missing Values</alert>, then check
-          <alert>Store Table</alert> and save the result as
-          <alert>summary_monthly_windspeed</alert>.
-        </p>
+            <li>
+              <p>
+                Go to
+                <alert>Describe &gt; Two/Three Variables &gt; Summarise</alert>
+                and stay on the <alert>Two Variables</alert> tab.
+              </p>
+            </li>
 
-        <p>
-          By default several summary statistics are selected.
-          Click <alert>Choose Summaries...</alert> to open the summary
-          statistics sub-dialog, uncheck the currently checked options, and
-          check only <alert>mean</alert> and <alert>sd</alert>.
-          Click <alert>Return</alert> to go back to the main dialog, then click
-          <alert>OK</alert>.
+            <li>
+              <p>
+                Input <alert>month</alert> into the top, multiple-variable
+                receiver.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Input <alert>wind_speed</alert> into the second, single-variable
+                receiver.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Check <alert>Omit Missing Values</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Check <alert>Store Table</alert> and name the table
+                <alert>summary_monthly_windspeed</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>Choose Summaries...</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Uncheck all currently selected summary statistics, then check
+                only <alert>mean</alert> and <alert>sd</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>Return</alert> to return to the main dialog.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>OK</alert> to produce the grouped summary table.
+              </p>
+            </li>
+          </ol>
         </p>
       </assemblage>
 
@@ -900,7 +1004,7 @@
           <alert>summary_monthly_windspeed</alert>.
         </caption>
 
-        <image source="TODO.png" width="90%">
+        <image source="two-var-summarise-dlg-1.png" width="70%">
           <description>
             <p>
               Screenshot of the Two Variables tab of the Summarise dialog.
@@ -925,18 +1029,52 @@
         <title>How to Create Column Summaries in R-Instat</title>
 
         <p>
-          Go to <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>
-          and input <alert>wind_speed</alert> as the variable to summarise.
-        </p>
+          Here we look at how to create column summaries:
+          <ol>
+            <li>
+              <p>
+                Go to
+                <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>.
+              </p>
+            </li>
 
-        <p>
-          Click <alert>Summaries</alert> and uncheck the selected default
-          options; check <alert>mean</alert> and <alert>sd</alert> instead to
-          get the mean and standard deviation, then click <alert>Return</alert>.
-          Back on the main dialog, check
-          <alert>Omit Missing
-                Values</alert> and click
-          <alert>OK</alert>.
+            <li>
+              <p>
+                Input <alert>wind_speed</alert> as the variable to summarise.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>Summaries</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Uncheck all currently selected summary statistics, then check
+                only <alert>mean</alert> and <alert>sd</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>Return</alert> to return to the main dialog.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Check <alert>Omit Missing Values</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>OK</alert> to create the column summaries.
+              </p>
+            </li>
+          </ol>
         </p>
       </assemblage>
 
@@ -961,24 +1099,64 @@
 
       <assemblage xml:id="assemblage-howto-column-summaries-group-by">
         <title>
-          How to Create Column Summaries with "Group by" in R-Instat
+          How to Create Column Summaries with a Grouping Variable in R-Instat
         </title>
 
         <p>
-          Go to <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>
-          and input <alert>wind_speed</alert> as the variable to summarise.
-          Input <alert>month</alert> into the <alert>Summarise By</alert>
-          receiver.
-        </p>
+          Here we look at how to create column summaries with a grouping
+          variable:
+          <ol>
+            <li>
+              <p>
+                Go to
+                <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>.
+              </p>
+            </li>
 
-        <p>
-          Click <alert>Summaries</alert> and uncheck the selected default
-          options; check <alert>mean</alert> and <alert>sd</alert> instead to
-          get the mean and standard deviation, then click <alert>Return</alert>.
-          Back on the main dialog, check
-          <alert>Omit Missing
-                Values</alert> and click
-          <alert>OK</alert>.
+            <li>
+              <p>
+                Input <alert>wind_speed</alert> as the variable to summarise.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Input <alert>month</alert> into the <alert>Summarise By</alert>
+                receiver.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>Summaries</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Uncheck all currently selected summary statistics, then check
+                only <alert>mean</alert> and <alert>sd</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>Return</alert> to return to the main dialog.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Check <alert>Omit Missing Values</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>OK</alert> to create the grouped column summaries.
+              </p>
+            </li>
+          </ol>
         </p>
       </assemblage>
 
@@ -1043,17 +1221,53 @@
         <title>How to Count Rows with Column Summaries in R-Instat</title>
 
         <p>
-          Go to <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>
-          and input <alert>origin</alert> as the variable to summarise, and also
-          input <alert>origin</alert> into the
-          <alert>Summarise
-                By</alert> receiver.
-        </p>
+          Here we look at how to count rows using column summaries:
+          <ol>
+            <li>
+              <p>
+                Go to
+                <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>.
+              </p>
+            </li>
 
-        <p>
-          Click <alert>Summaries</alert> and uncheck the selected default
-          options; check <alert>N Total</alert> instead to get a count of rows,
-          then click <alert>Return</alert> and <alert>OK</alert>.
+            <li>
+              <p>
+                Input <alert>origin</alert> as the variable to summarise.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Input <alert>origin</alert> into the <alert>Summarise By</alert>
+                receiver.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>Summaries</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Uncheck all currently selected summary statistics, then check
+                only <alert>N Total</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>Return</alert>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Click <alert>OK</alert> to generate the row counts.
+              </p>
+            </li>
+          </ol>
         </p>
       </assemblage>
 
@@ -1160,66 +1374,67 @@
         because there are 12 months for 3 airports ( <alert>EWR</alert>,
         <alert>JFK</alert>, and <alert>LGA</alert> ).
       </p>
+      <exercises>
+        <exercise xml:id="lc3-5">
+          <title>Learning Check 3.5</title>
 
-      <exercise xml:id="lc3-5">
-        <title>Learning Check 3.5</title>
+          <statement>
+            <p>
+              Recall from <xref ref="ch-visualization"/> when we looked at wind
+              speeds by months in NYC.
+              What does the standard deviation column in the
+              <alert>summary_monthly_windspeed</alert> data frame tell us about
+              wind speeds in NYC throughout the year?
+            </p>
+          </statement>
+        </exercise>
 
-        <statement>
-          <p>
-            Recall from <xref ref="ch-visualization"/> when we looked at wind
-            speeds by months in NYC.
-            What does the standard deviation column in the
-            <alert>summary_monthly_windspeed</alert> data frame tell us about
-            wind speeds in NYC throughout the year?
-          </p>
-        </statement>
-      </exercise>
+        <exercise xml:id="lc3-6">
+          <title>Learning Check 3.6</title>
 
-      <exercise xml:id="lc3-6">
-        <title>Learning Check 3.6</title>
+          <statement>
+            <p>
+              What code would be required to get the mean and standard deviation
+              wind speed for each day in 2023 for NYC?
+            </p>
+          </statement>
+        </exercise>
 
-        <statement>
-          <p>
-            What code would be required to get the mean and standard deviation
-            wind speed for each day in 2023 for NYC?
-          </p>
-        </statement>
-      </exercise>
+        <exercise xml:id="lc3-7">
+          <title>Learning Check 3.7</title>
 
-      <exercise xml:id="lc3-7">
-        <title>Learning Check 3.7</title>
+          <statement>
+            <p>
+              Recreate <xref ref="fig-dlg-column-summaries-2"/>, but instead of
+              grouping via <alert>origin</alert> then <alert>month</alert>,
+              group variables in a different order What differs in the resulting
+              dataset?
+            </p>
+          </statement>
+        </exercise>
 
-        <statement>
-          <p>
-            Recreate <xref ref="fig-dlg-column-summaries-2"/>, but instead of
-            grouping via <alert>origin</alert> then <alert>month</alert>, group
-            variables in a different order What differs in the resulting
-            dataset?
-          </p>
-        </statement>
-      </exercise>
+        <exercise xml:id="lc3-8">
+          <title>Learning Check 3.8</title>
 
-      <exercise xml:id="lc3-8">
-        <title>Learning Check 3.8</title>
+          <statement>
+            <p>
+              How could we identify how many flights left each of the three
+              airports for each <alert>carrier</alert>?
+            </p>
+          </statement>
+        </exercise>
 
-        <statement>
-          <p>
-            How could we identify how many flights left each of the three
-            airports for each <alert>carrier</alert>?
-          </p>
-        </statement>
-      </exercise>
+        <exercise xml:id="lc3-9">
+          <title>Learning Check 3.9</title>
 
-      <exercise xml:id="lc3-9">
-        <title>Learning Check 3.9</title>
-
-        <statement>
-          <p>
-            How does the <alert>filter</alert> operation differ from a
-            <alert>group_by</alert> followed by a <alert>summarize</alert>?
-          </p>
-        </statement>
-      </exercise>
+          <statement>
+            <p>
+              How does the <alert>filter</alert> operation differ from
+              <alert>grouping</alert> with a <alert>summarise</alert>?
+            </p>
+          </statement>
+        </exercise>
+      </exercises>
     </subsection>
   </section>
   <!-- ============================================================ -->
@@ -1253,8 +1468,8 @@
     </p>
 
     <p>
-      We can apply this formula to the <alert>temp</alert> variable using
-      <alert>mutate</alert>, which takes existing variables and
+      We can apply this formula to the <alert>temp</alert> variable using our
+      <alert>calculator</alert>, which takes existing variables and
       <alert>mutates</alert> them to create new ones.
     </p>
 
@@ -1262,31 +1477,63 @@
       <title>How to Mutate Variables in R-Instat</title>
 
       <p>
-        Go to <alert>Prepare &gt; Calculator</alert>.
-        The Calculator dialog appears.
-      </p>
+        There are lots of ways to create new variables in R-Instat, but one
+        flexible approach is to use the <alert>calculator</alert> dialog.
+        Here we look at how to add (mutate) a new variable using the calculator:
+        <ol>
+          <li>
+            <p>
+              Go to <alert>Prepare &gt; Calculator</alert>.
+            </p>
+          </li>
 
-      <p>
-        In the <alert>Expression</alert> box, type
-        <alert>(temp - 32) / 1.8</alert>.
-        Click <alert>Try</alert> to preview the calculated values and check that
-        the expression has no typos.
-      </p>
+          <li>
+            <p>
+              In the <alert>Expression</alert> box, type
+              <alert>(temp - 32) / 1.8</alert>.
+            </p>
+          </li>
 
-      <p>
-        Check <alert>Store Result</alert> and enter the new variable name
-        <alert>temp_in_C</alert>.
-        Click <alert>Position</alert> to choose where the new variable should
-        sit in the data frame; here, select <alert>After</alert> and choose
-        <alert>temp</alert>, so that <alert>temp_in_C</alert> is placed
-        immediately after the existing <alert>temp</alert> variable.
-        Click <alert>OK</alert> to create the new variable.
+          <li>
+            <p>
+              Click <alert>Try</alert> to preview the calculated values and
+              check the expression for errors.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Check <alert>Store Result</alert> and enter the new variable name
+              <alert>temp_in_C</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>Position</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Select <alert>After</alert> and choose <alert>temp</alert> so that
+              <alert>temp_in_C</alert> is placed immediately after
+              <alert>temp</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>OK</alert> to create the new variable.
+            </p>
+          </li>
+        </ol>
       </p>
     </assemblage>
 
     <figure>
       <caption>Screenshot of <alert>Calculation</alert> dialog.</caption>
-      <image source="calculator-dlg-1.png" width="40%">
+      <image source="calculator-dlg-1.png" width="80%">
         <description>
           <p>
             Screenshot of the Calculation dialog where the expression is
@@ -1301,7 +1548,7 @@
         Screenshot of <alert>Column Position</alert> sub-dialog.
       </caption>
 
-      <image source="column-position-1.png" width="40%">
+      <image source="column-position-1.png" width="70%">
         <description>
           <p>
             Screenshot of the Column Position sub-dialog where the position of
@@ -1343,29 +1590,54 @@
       <title>How to Rename Variables in R-Instat</title>
 
       <p>
-        There are two ways to open the Rename dialog: either right-click on the
-        variable you wish to rename and choose <alert>Rename Column...</alert>,
-        or go to <alert>Prepare &gt; Data Frame &gt; Rename Columns...</alert>.
-      </p>
+        Here we look at how to rename variables:
+        <ol>
+          <li>
+            <p>
+              Open the rename dialog by either right-clicking on the variable
+              and selecting <alert>Rename Column...</alert>, or by going to
+              <alert>Prepare &gt; Data Frame &gt; Rename Columns...</alert>.
+            </p>
+          </li>
 
-      <p>
-        Stay on the <alert>Single</alert> tab.
-        In the <alert>Current Name</alert> receiver, put the variable
-        <alert>temp</alert> that we want to rename.
-        In <alert>New Name</alert>, type the new name, in this case
-        <alert>temp_in_F</alert>.
-      </p>
+          <li>
+            <p>
+              Stay on the <alert>Single</alert> tab.
+            </p>
+          </li>
 
-      <p>
-        The <alert>Column Label</alert> field is for metadata/labelling purposes
-        and is covered elsewhere; you can leave it blank here.
-        Click <alert>OK</alert> to rename the variable.
+          <li>
+            <p>
+              In <alert>Current Name</alert>, select the variable
+              <alert>temp</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              In <alert>New Name</alert>, type <alert>temp_in_F</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              The <alert>Column Label</alert> field is for metadata and can be
+              left blank.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>OK</alert> to rename the variable.
+            </p>
+          </li>
+        </ol>
       </p>
     </assemblage>
 
     <figure>
       <caption>Screenshot of <alert>Rename</alert> dialog.</caption>
-      <image source="rename-dlg-1.png" width="40%">
+      <image source="rename-dlg-1.png" width="80%">
         <description>
           <p>
             Screenshot of the Rename dialog where the new variable name is
@@ -1390,15 +1662,52 @@
       <title>How to Summarise Columns in R-Instat</title>
 
       <p>
-        Go to <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>.
-        Put <alert>temp_in_F</alert> and <alert>temp_in_C</alert> as the
-        <alert>Variables to Summarise</alert>, and put <alert>month</alert> in
-        <alert>Summarise By</alert>.
-      </p>
+        Here we look at how to summarise multiple columns:
+        <ol>
+          <li>
+            <p>
+              Go to
+              <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>.
+            </p>
+          </li>
 
-      <p>
-        Click <alert>Summaries</alert> and select <alert>mean</alert>, then
-        click <alert>Return</alert> and <alert>OK</alert>.
+          <li>
+            <p>
+              Put <alert>temp_in_F</alert> and <alert>temp_in_C</alert> into
+              <alert>Variables to Summarise</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Put <alert>month</alert> into <alert>Summarise By</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>Summaries</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Select <alert>mean</alert> as the only summary statistic.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>Return</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>OK</alert> to produce the column summaries.
+            </p>
+          </li>
+        </ol>
       </p>
     </assemblage>
 
@@ -1432,21 +1741,24 @@
     </figure>
 
     <p>
-      What's this?
-      Our output data frame in <xref ref="fig-combined-data"/> shows the monthly
+      What's going on here?
+      Our output data frame in <xref ref="fig-combined-data"/> shows monthly
       summary statistics for the weather data.
-      We only asked for the mean of the temp_in_C and temp_in_F columns, so why
-      is sd_wind_speed and mean_wind_speed in there?
-      This is simple!
-      They're in there because we created these in the previous chapter.
-      R-Instat has a feature with it's metadata where it will automatically
-      include previously created variables in new summaries.
-      So we have previously summarised the weather data at the "month" level
-      (each row = 1 month).
-      R-Instat remembers this.
-      Clever tool, because, multilevel data.
-      R-Instat is making it easy for you.
-      So it stores it at that level.
+      We only requested the mean of the <alert>temp_in_C</alert> and
+      <alert>temp_in_F</alert> columns, so why do <alert>sd_wind_speed</alert>
+      and <alert>mean_wind_speed</alert> also appear?
+      This happens because these variables were created in a previous step.
+      R-Instat keeps track of metadata about the structure of your data,
+      including previously generated summary variables.
+      When you create new summaries, it automatically carries forward existing
+      variables that match the same grouping level.
+      In this case, we previously summarised the weather data by month (so each
+      row represents one month).
+      R-Instat remembers that structure and maintains it when creating new
+      summaries at the same level.
+      In short, the new summaries are added into an existing monthly-level data
+      frame rather than replacing it.
+      This is part of how R-Instat supports working with multilevel data.
     </p>
 
     <p>
@@ -1461,20 +1773,51 @@
       <title>How to Create a New Variable in R-Instat</title>
 
       <p>
-        Go to <alert>Prepare &gt; Calculator</alert>.
-        In <alert>Expression</alert>, type <alert>dep_delay - arr_delay</alert>.
-        Click <alert>Try</alert> to preview the new column's values.
-      </p>
+        Here we look at how to create a new variable using the calculator:
+        <ol>
+          <li>
+            <p>
+              Go to <alert>Prepare &gt; Calculator</alert>.
+            </p>
+          </li>
 
-      <p>
-        Check <alert>Store Result</alert> and name the new column
-        <alert>gain</alert>, then click <alert>OK</alert>.
+          <li>
+            <p>
+              In <alert>Expression</alert>, type
+              <alert>dep_delay - arr_delay</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>Try</alert> to preview the calculated values.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Check <alert>Store Result</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Name the new column <alert>gain</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>OK</alert> to create the new variable.
+            </p>
+          </li>
+        </ol>
       </p>
     </assemblage>
 
     <figure>
       <caption>Screenshot of <alert>Calculator</alert> dialog.</caption>
-      <image source="calculator-dlg-2.png" width="40%">
+      <image source="calculator-dlg-2.png" width="80%">
         <description>
           <p>
             Screenshot of the Calculator dialog.
@@ -1559,16 +1902,35 @@
       <title>How to Summarise a Variable in R-Instat</title>
 
       <p>
-        Go to <alert>Describe &gt; One Variable &gt; Summarise</alert> and
-        select the <alert>Default</alert> tab.
-        Input <alert>gain</alert> into the
-        <alert>Variables to
-                Summarise</alert> receiver.
-      </p>
+        Here we look at how to summarise a variable:
+        <ol>
+          <li>
+            <p>
+              Go to <alert>Describe &gt; One Variable &gt; Summarise</alert> and
+              select the <alert>Default</alert> tab.
+            </p>
+          </li>
 
-      <p>
-        Check <alert>Store Table</alert> and name the new data frame
-        <alert>summary_table</alert>, then click <alert>OK</alert>.
+          <li>
+            <p>
+              Input <alert>gain</alert> into the
+              <alert>Variables to Summarise</alert> receiver.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Check <alert>Store Table</alert> and name the new data frame
+              <alert>summary_table</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>OK</alert> to create the summary table.
+            </p>
+          </li>
+        </ol>
       </p>
     </assemblage>
 
@@ -1577,7 +1939,7 @@
         Screenshot of <alert>One Variable Summarise</alert> dialog.
       </caption>
 
-      <image source="describe-dlg-1.png" width="40%">
+      <image source="describe-dlg-1.png" width="80%">
         <description>
           <p>
             Screenshot of the Default tab of the One Variable Summarise dialog.
@@ -1612,19 +1974,62 @@
       </title>
 
       <p>
-        Go to <alert>Describe &gt; Graph &gt; Histogram</alert> and select the
-        <alert>Histogram</alert> tab.
-        Input the variable <alert>gain</alert> under
-        <alert>Single Variable</alert>.
-      </p>
+        Here we look at how to create a histogram of the <alert>gain</alert>
+        variable:
+        <ol>
+          <li>
+            <p>
+              Go to <alert>Describe &gt; Graph &gt; Histogram</alert> and select
+              the <alert>Histogram</alert> tab.
+            </p>
+          </li>
 
-      <p>
-        Click the arrow next to <alert>Plot Options</alert> and select
-        <alert>Histogram Options</alert>.
-        In the sub-dialog that appears, click
-        <alert>Layer Parameters (Geom Parameters)</alert>.
-        Check <alert>bins</alert> and set it to <alert>20</alert>, and check
-        <alert>colour</alert> and set it to <alert>White</alert>.
+          <li>
+            <p>
+              Input <alert>gain</alert> into the <alert>Single Variable</alert>
+              receiver.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click the arrow next to <alert>Plot Options</alert> and select
+              <alert>Histogram Options</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              In the sub-dialog, click
+              <alert>Layer Parameters (Geom Parameters)</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Check <alert>bins</alert> and set it to <alert>20</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Check <alert>colour</alert> and set it to <alert>White</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Close the sub-dialog to return to the main histogram dialog.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Generate the plot (e.g.
+              click <alert>OK</alert> ).
+            </p>
+          </li>
+        </ol>
       </p>
     </assemblage>
 
@@ -1672,58 +2077,59 @@
       For example, note that most values of <alert>gain</alert> are right around
       0.
     </p>
+    <exercises>
+      <exercise xml:id="lc3-10">
+        <title>Learning Check 3.10</title>
 
-    <exercise xml:id="lc3-10">
-      <title>Learning Check 3.10</title>
+        <statement>
+          <p>
+            What do positive values of the <alert>gain</alert> variable in
+            <alert>flights</alert> correspond to?
+            What about negative values?
+            And what about a zero value?
+          </p>
+        </statement>
+      </exercise>
 
-      <statement>
-        <p>
-          What do positive values of the <alert>gain</alert> variable in
-          <alert>flights</alert> correspond to?
-          What about negative values?
-          And what about a zero value?
-        </p>
-      </statement>
-    </exercise>
+      <exercise xml:id="lc3-11">
+        <title>Learning Check 3.11</title>
 
-    <exercise xml:id="lc3-11">
-      <title>Learning Check 3.11</title>
+        <statement>
+          <p>
+            Could we create the <alert>dep_delay</alert> and
+            <alert>arr_delay</alert> columns by simply subtracting
+            <alert>dep_time</alert> from <alert>sched_dep_time</alert> and
+            similarly for arrivals?
+            Try this out and explain any differences between the result and what
+            actually appears in <alert>flights</alert>.
+          </p>
+        </statement>
+      </exercise>
 
-      <statement>
-        <p>
-          Could we create the <alert>dep_delay</alert> and
-          <alert>arr_delay</alert> columns by simply subtracting
-          <alert>dep_time</alert> from <alert>sched_dep_time</alert> and
-          similarly for arrivals?
-          Try this out and explain any differences between the result and what
-          actually appears in <alert>flights</alert>.
-        </p>
-      </statement>
-    </exercise>
+      <exercise xml:id="lc3-12">
+        <title>Learning Check 3.12</title>
 
-    <exercise xml:id="lc3-12">
-      <title>Learning Check 3.12</title>
-
-      <statement>
-        <p>
-          What can we say about the distribution of <alert>gain</alert>?
-          Describe it in a few sentences using the plot and the
-          <alert>gain_summary</alert> data frame values.
-        </p>
-      </statement>
-    </exercise>
+        <statement>
+          <p>
+            What can we say about the distribution of <alert>gain</alert>?
+            Describe it in a few sentences using the plot and the
+            <alert>gain_summary</alert> data frame values.
+          </p>
+        </statement>
+      </exercise>
+    </exercises>
   </section>
   <!-- ============================================================ -->
   <section xml:id="sec-arrange">
     <title><alert>arrange</alert> and sort rows</title>
 
     <p>
-      TODO: Go from here!
       One of the most commonly performed data-wrangling tasks is to sort a data
       frame's rows in the alphanumeric order of one of the variables.
-      The <idx><h>R packages</h><h>dplyr</h><h>arrange</h></idx>
-      <alert>arrange</alert> function allows us to sort/reorder a data frame's
-      rows according to the values of the specified variable.
+      The <idx><h>R packages</h><h>dplyr</h><h>arrange</h></idx> We can easily
+      do this in R-Instat using the <alert>Sort</alert> dialog.
+      This allows us to sort/reorder a data frame's rows according to the values
+      of the specified variable.
     </p>
 
     <p>
@@ -1731,93 +2137,168 @@
       airports for all domestic flights departing from New York City in 2023:
     </p>
 
-    <program language="r">
-      <code>
-freq_dest &lt;- flights |&gt;
-  group_by(dest) |&gt;
-  summarize(num_flights = n)
-freq_dest
-      </code>
-    </program>
-    <pre>
-# A tibble: 118 × 2
-   dest  num_flights
-   &lt;chr&gt;       &lt;int&gt;
- 1 ABQ           228
- 2 ACK           916
- 3 AGS            20
- 4 ALB          1581
- 5 ANC            95
- 6 ATL         17570
- 7 AUS          4848
- 8 AVL          1617
- 9 AVP           145
-10 BDL           701
-# ℹ 108 more rows
-    </pre>
-    <p>
-      Observe that by default the rows of the resulting <alert>freq_dest</alert>
-      data frame are sorted in alphabetical order of <alert>dest</alert>
-      ination.
-      Say instead we would like to see the same data, but sorted from the most
-      to the least number of flights ( <alert>num_flights</alert> ) instead:
-    </p>
+    <assemblage xml:id="howto-sort-columns">
+      <title>How to Sort Columns in R-Instat</title>
 
-    <program language="r">
-      <code>
-freq_dest |&gt;
-  arrange(num_flights)
-      </code>
-    </program>
-    <pre>
-# A tibble: 118 × 2
-   dest  num_flights
-   &lt;chr&gt;       &lt;int&gt;
- 1 LEX             1
- 2 AGS            20
- 3 OGG            20
- 4 SBN            24
- 5 HDN            28
- 6 PNS            71
- 7 MTJ            77
- 8 ANC            95
- 9 VPS           109
-10 AVP           145
-# ℹ 108 more rows
-    </pre>
+      <p>
+        Here we look at how to sort data in a data frame.
+        You can do this either by right-clicking in the data view and selecting
+        <alert>Sort</alert>, or by going to
+        <alert>Prepare &gt; Data Frame &gt; Sort...</alert>.
+      </p>
+
+      <p>
+        First, we create a summary data frame that we can sort:
+        <ol>
+          <li>
+            <p>
+              Go to
+              <alert>Prepare &gt; Data Reshape &gt; Column Summaries</alert>
+              using the flights data.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Put <alert>dest</alert> into both receivers:
+              <alert>Variables to Summarise</alert> and
+              <alert>Summarise By</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>Summaries</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Uncheck all default summary statistics and select
+              <alert>N Total</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>Return</alert>, then click <alert>OK</alert> to
+              create the data frame showing the number of flights for each
+              destination.
+            </p>
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        Observe that by default the rows of the resulting
+        <alert>freq_dest</alert> data frame are sorted in alphabetical order of
+        <alert>dest</alert> ination.
+        Say instead we would like to see the same data, but sorted from the most
+        to the least number of flights ( <alert>num_flights</alert> ) instead:
+      </p>
+
+      <p>
+        Now sort this data frame in ascending order:
+        <ol>
+          <li>
+            <p>
+              Right-click anywhere in the data view and select
+              <alert>Sort</alert>.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              In the Sort dialog, select <alert>count_all_dest</alert> as the
+              variable to sort by.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Check <alert>Ascending</alert> so the smallest values come first.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Click <alert>OK</alert> to apply the sort.
+            </p>
+          </li>
+        </ol>
+      </p>
+    </assemblage>
+
+    <figure xml:id="fig-dest-click-sort">
+      <caption>The Sort Dialog in R-Instat.</caption>
+      <sidebyside widths="45% 45%" margins="5%">
+        <image source="dest-click-sort.png">
+          <description>
+            <p>
+              Right-click menu on the R-Instat data view with the
+              <alert>Sort</alert> option.
+            </p>
+          </description>
+        </image>
+
+        <image source="sort-dlg.png">
+          <description>
+            <p>
+              The Sort dialog in R-Instat with <alert>count_all_dest</alert>
+              selected as the variable to sort by, and <alert>Ascending</alert>
+              checked.
+            </p>
+          </description>
+        </image>
+      </sidebyside>
+    </figure>
+
+    <figure xml:id="fig-dest-click-sort">
+      <caption>The Data Frame in default order.</caption>
+      <sidebyside widths="45% 45%" margins="5%">
+        <image source="dest-unsorted.png">
+          <description>
+            <p>
+              The Data Frame in default order.
+            </p>
+          </description>
+        </image>
+
+        <image source="dest-sorted.png">
+          <description>
+            <p>
+              The Rearranged Data Frame with the least frequent destination
+              airports displayed first.
+            </p>
+          </description>
+        </image>
+      </sidebyside>
+    </figure>
+
     <p>
-      This is, however, the opposite of what we want.
       The rows are sorted with the least frequent destination airports displayed
       first.
       This is because <alert>arrange</alert> always returns rows sorted in
       ascending order by default.
-      To switch the ordering to be in <q>descending</q> order instead, we use
-      the <idx><h>R packages</h><h>dplyr</h><h>desc</h></idx>
-      <alert>desc</alert> function as so:
+      To switch the ordering to be in <q>descending</q> order instead, we simply
+      click the <alert>Descending</alert> option in the Sort dialog.
     </p>
 
-    <program language="r">
-      <code>
-freq_dest |&gt;
-  arrange(desc(num_flights))
-      </code>
-    </program>
-    <pre>
-# A tibble: 118 × 2
-   dest  num_flights
-   &lt;chr&gt;       &lt;int&gt;
- 1 BOS         19036
- 2 ORD         18200
- 3 MCO         17756
- 4 ATL         17570
- 5 MIA         16076
- 6 LAX         15968
- 7 FLL         14239
- 8 CLT         12866
- 9 DFW         11675
-10 SFO         11651
-# ℹ 108 more rows
-    </pre>
+    <figure xml:id="fig-dest-sorted">
+      <caption>
+        The Rearranged Data Frame with the most frequent destination airports
+        displayed first.
+      </caption>
+
+      <image source="dest-sorted-2.png">
+        <description>
+          <p>
+            The Rearranged Data Frame with the most frequent destination
+            airports displayed first.
+          </p>
+        </description>
+      </image>
+    </figure>
   </section>
   <!-- ============================================================ -->
   <section xml:id="sec-joins">
